@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ReferencePath>G:\programming\taikomasis objektinis\Alutis\social-tap\EmguCV\x86\;G:\programming\taikomasis objektinis\Alutis\social-tap\EmguCV\x64\</ReferencePath>
+  </PropertyGroup>
+</Project>
