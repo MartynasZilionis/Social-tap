@@ -133,21 +133,21 @@ namespace Social_Tap
                 triangleRectangleImage.Draw(triangle, new Bgr(Color.DarkBlue), 2);
             foreach (RotatedRect box in boxList)
                 triangleRectangleImage.Draw(box, new Bgr(Color.DarkOrange), 2);
-           // triangleRectangleImageBox.Image = triangleRectangleImage;
+            // triangleRectangleImageBox.Image = triangleRectangleImage;
             #endregion
 
             #region draw circles
             Image<Bgr, Byte> circleImage = img.CopyBlank();
             foreach (CircleF circle in circles)
                 circleImage.Draw(circle, new Bgr(Color.Brown), 2);
-           // circleImageBox.Image = circleImage;
+            // circleImageBox.Image = circleImage;
             #endregion
 
             #region draw lines
             Image<Bgr, Byte> lineImage = img.CopyBlank();
             foreach (LineSegment2D line in lines)
                 lineImage.Draw(line, new Bgr(Color.Green), 2);
-           // lineImageBox.Image = lineImage;
+            // lineImageBox.Image = lineImage;
             #endregion
         }
     }
