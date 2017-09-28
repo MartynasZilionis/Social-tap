@@ -1,4 +1,2 @@
-*.suo
-*.ide
-*.cache
-social-tap/obj/
+packages/
+MyProject/obj/
