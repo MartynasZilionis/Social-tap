@@ -39,7 +39,7 @@ namespace MyProject
             OpenFileDialog ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                EXIFInform.EXIFInfo.DoIt(ofd.FileName);
+                //EXIFInform.EXIFInfo.DoIt(ofd.FileName);
                 pictureBox1.ImageLocation = ofd.FileName;
                 img = Image.FromFile(ofd.FileName);
                 //Console.WriteLine(ofd.FileName);
