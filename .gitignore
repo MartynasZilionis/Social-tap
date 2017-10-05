@@ -1,2 +1,4 @@
 packages/
 MyProject/obj/
+.vs/
+MyProject/bin/
