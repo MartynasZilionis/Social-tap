@@ -58,12 +58,17 @@ namespace MyProject
                     capture = new Capture(camNumber);
                 mat = capture.QueryFrame();
                 while (mat.Size.IsEmpty)
+                {
+                    mat.Dispose();
                     mat = capture.QueryFrame();
+                }
                 Image<Emgu.CV.Structure.Bgr, Byte> img = mat.ToImage<Emgu.CV.Structure.Bgr, Byte>();
+                mat.Dispose();
                 int height = img.Height / 2;
                 int width = height / 2;
                 img.Draw(new Rectangle(img.Width / 2 - width / 2, height / 2, width, height), new Emgu.CV.Structure.Bgr(Color.Red));
                 var bmp = img.ToBitmap();
+                img.Dispose();
                 if (InvokeRequired)
                     pictureBox5.Invoke(new VoidDelegate(() => { UpdateCameraBox(bmp); }));
             }
