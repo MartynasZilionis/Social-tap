@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "social-tap", "MyProject\social-tap.csproj", "{4A595DCF-CBFE-42CD-9167-35DDA2504F68}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{06F73B36-6ED2-4B04-BC14-DE6215A5AA98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
