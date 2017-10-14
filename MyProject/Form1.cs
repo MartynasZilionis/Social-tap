@@ -50,12 +50,13 @@ namespace MyProject
         
         private void UpdateCameraInput()
         {
+            Mat mat;
             while (true)
             {
                 Thread.Sleep(50);
                 if (capture == null)
                     capture = new Capture(camNumber);
-                Mat mat = capture.QueryFrame();
+                mat = capture.QueryFrame();
                 while (mat.Size.IsEmpty)
                     mat = capture.QueryFrame();
                 Image<Emgu.CV.Structure.Bgr, Byte> img = mat.ToImage<Emgu.CV.Structure.Bgr, Byte>();
