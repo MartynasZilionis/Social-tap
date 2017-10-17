@@ -8,7 +8,7 @@ using Emgu.CV;
 using Emgu.Util;
 using System.Drawing;
 
-namespace MyProject
+namespace SocialTap
 {
     static class Program
     {
