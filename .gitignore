@@ -2,3 +2,5 @@ packages/
 MyProject/obj/
 .vs/
 MyProject/bin/
+UnitTestProject1/bin/
+UnitTestProject1/obj/
