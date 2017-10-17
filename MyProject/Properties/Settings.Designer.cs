@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyProject.Properties
+namespace SocialTap.Properties
 {
 
 
