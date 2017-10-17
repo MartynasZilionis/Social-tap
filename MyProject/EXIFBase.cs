@@ -133,8 +133,7 @@ namespace EXIFInform
         public enum ExifField : int
         {
             Latitude = 0x0002,
-            Longitude = 0x0004,
-            Comment = 0x9c9c
+            Longitude = 0x0004
 
             /// More fields here
         }
@@ -177,12 +176,69 @@ namespace EXIFInform
                 /// Add Exif Info to be added/updated
                 info.Add(EXIFBase.ExifField.Latitude, "54.675051");
                 info.Add(EXIFBase.ExifField.Longitude, "25.273356");
-            info.Add(EXIFBase.ExifField.Comment, "WTF BLE TIE TAGAI");
             Console.WriteLine("Starting EXIF edit");
 
                 /// Call the main function
                 EXIFBase.ChangeImageExif(fileName, info);
-            }
+            ExtractMetaData(fileName);
+        }
+
+
+        private static void ExtractMetaData(String file)
+{
+            String Long = "";
+            String Lat = "";
+            try
+    {
+        // Create an Image object. 
+        Image theImage = new Bitmap(file);
+
+        // Get the PropertyItems property from image.
+        PropertyItem[] propItems = theImage.PropertyItems;
+
+        // Set up the display.
+        Font font1 = new Font("Arial", 10);
+  
+
+        // For each PropertyItem in the array, display the id, 
+        // type, and length.
+        int count = 0;
+                System.Text.ASCIIEncoding encoding = new System.Text.ASCIIEncoding();
+                foreach ( PropertyItem propItem in propItems )
+        {
+
+                    Console.WriteLine("   ID: 0x" +
+                        propItem.Id.ToString("x"));
+                    Console.WriteLine("   type: " +
+                propItem.Type.ToString());
+                    Console.WriteLine("   length: " +
+                        propItem.Len.ToString() +
+                        " bytes");
+                    
+                    string manufacturer = encoding.GetString(propItem.Value);
+
+                   Console.WriteLine(
+                       "Value of metadata " + manufacturer + ".");
+                    count += 1;
+                    if (propItem.Id == 4)
+                    {
+                        Long = manufacturer;
+                    }
+                    else if (propItem.Id == 2)
+                    {
+                        Lat = manufacturer;
+                    }
+                    manufacturer = "";
+        }
+    }
+    catch(Exception)
+    {
+                Console.WriteLine("There was an error." + 
+            "Make sure the path to the image file is valid.");
+    }
+            Console.WriteLine("Latitude: " + Lat + "Longitude: " + Long);
+
+}
         }
 
     }

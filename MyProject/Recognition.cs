@@ -20,17 +20,25 @@ namespace recognition
     public class Recognition
     {
         //Paveiksliukai kurie yra redaguoti ir perduodami atgal, kad butu parodyti
-        private Image Ractang;
+        private Image HSV;
         private Image Lines;
         private Image Temp;
 
-        public Image GetRactang() { return Ractang; }
-        public Image GetLines() { return Lines; }
-        public Image GetTemp() { return Temp; }
+        public Image _hsv
+        {
+            get { return HSV; }
+        }
+        public Image _lines
+        {
+            get { return Lines; }
+        }
+        public Image _temp
+        {
+            get { return Temp; }
+        }
 
-        private Image<Hsv, Byte> img;
-        private Image<Hsv, Byte> temp;
-
+        //Laikini paveiksliukai, palengvinantys testavima, 0 - ka randa programa, 1 - kaip perdaromas paveiksliukas
+        private List<Image<Hsv, Byte>> Laikini = new List<Image<Hsv, Byte>>();
 
         private byte[] Color = new byte[3];         //Centrinio pixelio spalva  
 
@@ -48,9 +56,9 @@ namespace recognition
         private int xvk = 0, yvk = 200; // virsus kaire
         private int xak = 0, yak = 200; // apacia kaire
 
-        public Recognition(Image X)
+        public Recognition(Image X, int alpha = 60)
         {
-            Recognize(X, 60);
+            Recognize(skirtumas: alpha, pav: X);
         }
 
         //Nustatomos tinkamos spalvos paklaidos
@@ -92,7 +100,7 @@ namespace recognition
                     (X.Data[x, 200, 1] <= CPlus[1] && X.Data[x, 200, 1] >= CMinus[1]) &&
                     (X.Data[x, 200, 2] <= CPlus[2] && X.Data[x, 200, 2] >= CMinus[2]))
                 {
-                    DrawBeer(temp, x, 200);
+                    DrawBeer(Laikini[1], x, 200);
                 }
                 else
                 {
@@ -112,7 +120,7 @@ namespace recognition
                     (X.Data[x, 200, 1] <= CPlus[1] && X.Data[x, 200, 1] >= CMinus[1]) &&
                     (X.Data[x, 200, 2] <= CPlus[2] && X.Data[x, 200, 2] >= CMinus[2]))
                 {
-                    DrawBeer(temp, x, 200);
+                    DrawBeer(Laikini[1], x, 200);
                 }
                 else
                 {
@@ -134,7 +142,7 @@ namespace recognition
                         (X.Data[x, y, 1] <= CPlus[1] && X.Data[x, y, 1] >= CMinus[1]) &&
                         (X.Data[x, y, 2] <= CPlus[2] && X.Data[x, y, 2] >= CMinus[2]))
                     {
-                        DrawBeer(temp, x, y);
+                        DrawBeer(Laikini[1], x, y);
                     }
                     else
                     {
@@ -157,7 +165,7 @@ namespace recognition
                         (X.Data[x, y, 1] <= CPlus[1] && X.Data[x, y, 1] >= CMinus[1]) &&
                         (X.Data[x, y, 2] <= CPlus[2] && X.Data[x, y, 2] >= CMinus[2]))
                     {
-                        DrawBeer(temp, x, y);
+                        DrawBeer(Laikini[1], x, y);
                     }
                     else
                     {
@@ -180,7 +188,7 @@ namespace recognition
                         (X.Data[x, y, 1] <= CPlus[1] && X.Data[x, y, 1] >= CMinus[1]) &&
                         (X.Data[x, y, 2] <= CPlus[2] && X.Data[x, y, 2] >= CMinus[2]))
                     {
-                        DrawBeer(temp, x, y);
+                        DrawBeer(Laikini[1], x, y);
                     }
                     else
                     {
@@ -203,7 +211,7 @@ namespace recognition
                         (X.Data[x, y, 1] <= CPlus[1] && X.Data[x, y, 1] >= CMinus[1]) &&
                         (X.Data[x, y, 2] <= CPlus[2] && X.Data[x, y, 2] >= CMinus[2]))
                     {
-                        DrawBeer(temp, x, y);
+                        DrawBeer(Laikini[1], x, y);
                     }
                     else
                     {
@@ -215,59 +223,63 @@ namespace recognition
             }
         }
 
-        private void Recognize(Image X, int a)
+        private void Recognize(Image pav, int skirtumas)
         {
             //Nustatoma paklaida
-            Alpha = a;
+            Alpha = skirtumas;
+
+            Laikini.Add(new Image<Hsv, byte>(400, 400));
+            Laikini.Add(new Image<Hsv, byte>(400, 400));
 
             //Sukuriami paveiksleliai ir paimama centrinio pixelio spalva
-            img = new Image<Hsv, byte>(400, 400);
-            temp = new Image<Hsv, byte>(400, 400);
-            temp.SetValue(new Hsv(0, 0, 255));
+            Laikini[1] = new Image<Hsv, byte>(400, 400);
+            Laikini[1].SetValue(new Hsv(0, 0, 255));
 
-            img.Bitmap = (Bitmap)X;
-            img = img.Resize(400, 400, Emgu.CV.CvEnum.Inter.Linear, true);
+            Laikini[0].Bitmap = (Bitmap)pav;
+            Laikini[0] = Laikini[0].Resize(400, 400, Emgu.CV.CvEnum.Inter.Linear, true);
 
             //Pakoreguojamas paveiksliukas, kad geriau veiktu atpazinimo algoritmas
-            img = img.SmoothBlur(7, 7);
-            img = img.Dilate(3);
-            img = img.Erode(5);
+            Laikini[0] = Laikini[0].SmoothBlur(7, 7);
+            Laikini[0] = Laikini[0].Dilate(3);
+            Laikini[0] = Laikini[0].Erode(5);
 
             //Gaunama centrinio pixelio spalva HSV koduoteje
             for (int i = 0; i < 3; i++)
             {
-                Color[i] = img.Data[200, 200, i];
+                Color[i] = Laikini[0].Data[200, 200, i];
             }
 
             SetColourBounds(Color);
 
             //Kitas budas atpazinimo, su kuriuo dar nezinau ka daryti, juodai baltas paveikslikas
-            Hsv Color1 = new Hsv(img.Data[200, 200, 0] - 60, img.Data[200, 200, 1] - 60, img.Data[200, 200, 2] - 60);
-            Hsv Color2 = new Hsv(img.Data[200, 200, 0] + 60, img.Data[200, 200, 1] + 60, img.Data[200, 200, 2] + 60);
+            Hsv Color1 = new Hsv(Laikini[0].Data[200, 200, 0] - Alpha, Laikini[0].Data[200, 200, 1] - Alpha, Laikini[0].Data[200, 200, 2] - Alpha);
+            Hsv Color2 = new Hsv(Laikini[0].Data[200, 200, 0] + Alpha, Laikini[0].Data[200, 200, 1] + Alpha, Laikini[0].Data[200, 200, 2] + Alpha);
+
             Image<Gray, byte> hsvimg = new Image<Gray, byte>(400, 400);
-            hsvimg = img.InRange(Color1, Color2);
+            hsvimg = Laikini[0].InRange(Color1, Color2);
 
             //Randami visi taškai ir piešiama kas matoma
-            BeerTop(img);
-            BeerBottom(img);
-            BeerUpperLeftPoint(img);
-            BeerLowerLeftPoint(img);
-            BeerUpperRightPoint(img);
-            BeerLowerRightPoint(img);
+            BeerTop(Laikini[0]);
+            BeerBottom(Laikini[0]);
+            BeerUpperLeftPoint(Laikini[0]);
+            BeerLowerLeftPoint(Laikini[0]);
+            BeerUpperRightPoint(Laikini[0]);
+            BeerLowerRightPoint(Laikini[0]);
 
             //Nupiesiami paveiksliukai ir linijos ant jų
-            Draw(temp);
-            Draw(img);
+            Draw(Laikini[1]);
+            Draw(Laikini[0]);
 
             //Paveiksliukai konvertuojami atgal i Image tipa is emgucv Image tipo
-            Lines = img.ToBitmap();
-            Temp = temp.Bitmap;
-            Ractang = hsvimg.Bitmap;
+            Lines = Laikini[0].ToBitmap();
+            Temp = Laikini[1].Bitmap;
+            HSV = hsvimg.Bitmap;
 
             //Atlaisvinama atmintis
-            img.Dispose();
-            temp.Dispose();
+            Laikini[0].Dispose();
+            Laikini[1].Dispose();
             hsvimg.Dispose();
+            Laikini.RemoveRange(0, 2);
         }
     }
 }
