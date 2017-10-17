@@ -40,22 +40,33 @@ namespace recognition
         //Laikini paveiksliukai, palengvinantys testavima, 0 - ka randa programa, 1 - kaip perdaromas paveiksliukas
         private List<Image<Hsv, Byte>> Laikini = new List<Image<Hsv, Byte>>();
 
-        private byte[] Color = new byte[3];         //Centrinio pixelio spalva  
+        private byte[] Color = Enumerable.Repeat<byte>(0, 3).ToArray();         //Centrinio pixelio spalva  
 
         //Koreguota pikelio spalva, naudojama ifui, siandien per paskaita suzinojau apie HVS, manau reikes perdaryt
-        private int[] CPlus = new int[3];
-        private int[] CMinus = new int[3];
+        private int[] CPlus = Enumerable.Repeat(0, 3).ToArray();
+        private int[] CMinus = Enumerable.Repeat(0, 3).ToArray();
 
         //Kokia paklaida nuo centrinio pixelio spalvos užskaityt pixelius kaip tinkamus
         private int Alpha;
 
-        private int xv = 0, yv = 0; // virsutinis taskas
-        private int xa = 0, ya = 0; // apatinis taskas
-        private int xvd = 0, yvd = 200; // virsus desine
-        private int xad = 0, yad = 200; // apacia desine
-        private int xvk = 0, yvk = 200; // virsus kaire
-        private int xak = 0, yak = 200; // apacia kaire
+        public int xv = 0, yv = 0; // virsutinis taskas
+        public int xa = 0, ya = 0; // apatinis taskas
+        public int xvd = 0, yvd = 200; // virsus desine
+        public int xad = 0, yad = 200; // apacia desine
+        public int xvk = 0, yvk = 200; // virsus kaire
+        public int xak = 0, yak = 200; // apacia kaire
 
+        //-----------------------------------------------------------
+        // UNIT TESTAMAS TIK
+        public Recognition() { }
+        public void ADD_TO_LIST()
+        {
+            Laikini.Add(new Image<Hsv, byte>(400, 400));
+            Laikini.Add(new Image<Hsv, byte>(400, 400));
+        }
+        //------------------------------------------------------------
+
+        // Toliau kas reikia
         public Recognition(Image X, int alpha = 60)
         {
             Recognize(skirtumas: alpha, pav: X);
@@ -92,7 +103,7 @@ namespace recognition
         }
 
         //Randamas alaus viršus
-        private void BeerTop(Image<Hsv, Byte> X)
+        public void BeerTop(Image<Hsv, Byte> X)
         {
             for (int x = 200; x > 0; x--)
             {
@@ -112,7 +123,7 @@ namespace recognition
         }
 
         //Randama alaus apacia
-        private void BeerBottom(Image<Hsv, Byte> X)
+        public void BeerBottom(Image<Hsv, Byte> X)
         {
             for (int x = 200; x < 400; x++)
             {
@@ -132,7 +143,7 @@ namespace recognition
         }
 
         //Virsutinis kairys taskas
-        private void BeerUpperLeftPoint(Image<Hsv, Byte> X)
+        public void BeerUpperLeftPoint(Image<Hsv, Byte> X)
         {
             for (int x = xv; x < xv + ((xa - xv) / 2); x++)
             {
@@ -155,7 +166,7 @@ namespace recognition
         }
 
         //Apatainis kairys taskas
-        private void BeerLowerLeftPoint(Image<Hsv, Byte> X)
+        public void BeerLowerLeftPoint(Image<Hsv, Byte> X)
         {
             for (int x = xv + ((xa - xv) / 2); x < xa; x++)
             {
@@ -178,7 +189,7 @@ namespace recognition
         }
 
         //Virsutinis desinys taskas
-        private void BeerUpperRightPoint(Image<Hsv, Byte> X)
+        public void BeerUpperRightPoint(Image<Hsv, Byte> X)
         {
             for (int x = xv; x < xv + ((xa - xv) / 2); x++)
             {
@@ -201,7 +212,7 @@ namespace recognition
         }
 
         //Apatinis desinys taskas
-        private void BeerLowerRightPoint(Image<Hsv, Byte> X)
+        public void BeerLowerRightPoint(Image<Hsv, Byte> X)
         {
             for (int x = xv + ((xa - xv) / 2); x < xa; x++)
             {
