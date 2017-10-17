@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "social-tap", "MyProject\social-tap.csproj", "{4A595DCF-CBFE-42CD-9167-35DDA2504F68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{CC15E052-273A-4527-A282-16424AFC603C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{4A595DCF-CBFE-42CD-9167-35DDA2504F68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A595DCF-CBFE-42CD-9167-35DDA2504F68}.Release|x64.ActiveCfg = Release|x64
 		{4A595DCF-CBFE-42CD-9167-35DDA2504F68}.Release|x64.Build.0 = Release|x64
+		{CC15E052-273A-4527-A282-16424AFC603C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC15E052-273A-4527-A282-16424AFC603C}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,7 @@ using recognition;
 using Emgu.CV;
 using DirectShowLib;
 
+
 namespace SocialTap
 {
     public partial class Form1 : Form
@@ -30,18 +31,22 @@ namespace SocialTap
             {
                 //EXIFInform.EXIFInfo.DoIt(ofd.FileName);
                 imgProcessing?.Dispose();
-                imgProcessing = Image.FromFile(ofd.FileName);
-                pictureBox1.Image = imgProcessing;
-                button2.Enabled = true;
+                if (System.Text.RegularExpressions.Regex.IsMatch(ofd.FileName, ".jpg$"))
+                {
+                    imgProcessing = Image.FromFile(ofd.FileName);
+                    pictureBox1.Image = imgProcessing;
+                    button2.Enabled = true;
+                }
+                else Console.WriteLine("Netinkamo tipo failas");
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Recognition RC = new Recognition(img);
-            pictureBox3.Image = RC.GetRactang();
-            pictureBox4.Image = RC.GetLines();
-            pictureBox2.Image = RC.GetTemp();
+            Recognition RC = new Recognition(imgProcessing, 60);
+            pictureBox3.Image = RC._hsv;
+            pictureBox4.Image = RC._lines;
+            pictureBox2.Image = RC._temp;
         }
 
         private void button3_Click(object sender, EventArgs e)
