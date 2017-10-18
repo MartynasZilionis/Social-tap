@@ -20,22 +20,9 @@ namespace recognition
     public class Recognition
     {
         //Paveiksliukai kurie yra redaguoti ir perduodami atgal, kad butu parodyti
-        private Image HSV;
-        private Image Lines;
-        private Image Temp;
-
-        public Image _hsv
-        {
-            get { return HSV; }
-        }
-        public Image _lines
-        {
-            get { return Lines; }
-        }
-        public Image _temp
-        {
-            get { return Temp; }
-        }
+        public Image HSV   { get; private set; }
+        public Image Lines { get; private set; }
+        public Image Temp  { get; private set; }
 
         //Laikini paveiksliukai, palengvinantys testavima, 0 - ka randa programa, 1 - kaip perdaromas paveiksliukas
         private List<Image<Hsv, Byte>> Laikini = new List<Image<Hsv, Byte>>();
@@ -247,7 +234,7 @@ namespace recognition
             Laikini[1].SetValue(new Hsv(0, 0, 255));
 
             Laikini[0].Bitmap = (Bitmap)pav;
-            Laikini[0] = Laikini[0].Resize(400, 400, Emgu.CV.CvEnum.Inter.Linear, true);
+            Laikini[0] = Laikini[0].Resize(400, 400, Emgu.CV.CvEnum.Inter.Linear);
 
             //Pakoreguojamas paveiksliukas, kad geriau veiktu atpazinimo algoritmas
             Laikini[0] = Laikini[0].SmoothBlur(7, 7);
