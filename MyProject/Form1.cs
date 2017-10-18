@@ -37,7 +37,7 @@ namespace SocialTap
                     pictureBox1.Image = imgProcessing;
                     button2.Enabled = true;
                 }
-                else Console.WriteLine("Netinkamo tipo failas");
+                else MessageBox.Show("Netinkamo tipo failas");
             }
         }
 
