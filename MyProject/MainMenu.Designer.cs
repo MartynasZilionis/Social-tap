@@ -61,7 +61,6 @@
             this.BarName.Name = "BarName";
             this.BarName.Size = new System.Drawing.Size(175, 40);
             this.BarName.TabIndex = 14;
-            this.BarName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label5
             // 
@@ -72,7 +71,6 @@
             this.label5.Size = new System.Drawing.Size(173, 32);
             this.label5.TabIndex = 15;
             this.label5.Text = "Hello there!";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // NextForm
             // 
@@ -100,7 +98,6 @@
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenu";
-            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

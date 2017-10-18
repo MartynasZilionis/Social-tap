@@ -17,14 +17,15 @@ namespace SocialTap.Tests
         {
             //Arrange
             MainMenu obj = new MainMenu();
-            Regex valid = new Regex("^[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]{1,10}$");
-            string test = "Ąsila5";
-
-            //Act
-            obj.RegexValidate(valid, test);
 
             //Assert
-            Assert.AreNotEqual(true, obj.tf);
+            Assert.IsTrue(obj.RegexValidate("Ąsilas"));
+            Assert.IsFalse(obj.RegexValidate("asilas"));
+            Assert.IsFalse(obj.RegexValidate("Ąsi1as"));
+            Assert.IsTrue(obj.RegexValidate("Asilas"));
+            Assert.IsTrue(obj.RegexValidate("Aąčęėįšųūž"));
+            Assert.IsFalse(obj.RegexValidate("Asilasasilas"));
+            Assert.IsFalse(obj.RegexValidate("ASILAS"));
         }
     }
 }
