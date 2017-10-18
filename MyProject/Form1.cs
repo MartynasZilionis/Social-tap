@@ -44,9 +44,9 @@ namespace SocialTap
         private void button2_Click(object sender, EventArgs e)
         {
             Recognition RC = new Recognition(imgProcessing, 60);
-            pictureBox3.Image = RC._hsv;
-            pictureBox4.Image = RC._lines;
-            pictureBox2.Image = RC._temp;
+            pictureBox3.Image = RC.HSV;
+            pictureBox4.Image = RC.Lines;
+            pictureBox2.Image = RC.Temp;
         }
 
         private void button3_Click(object sender, EventArgs e)
