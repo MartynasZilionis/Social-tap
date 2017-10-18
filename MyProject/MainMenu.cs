@@ -32,19 +32,25 @@ namespace SocialTap
         {
             
         }
-
-        private void NextForm_Click(object sender, EventArgs e)
+        public bool tf;
+        public void NextForm_Click(object sender, EventArgs e)
         {
-            Regex valid = new Regex("[a-zA-Z]");
-            if (!valid.IsMatch(BarName.Text))
+            Regex valid = new Regex("^[A-ZĄČĘĖĮŠŲŪŽ][a-ząčęėįšųūž]{1,10}$");
+            RegexValidate(valid, BarName.Text);
+            if (!tf)
             {
-                MessageBox.Show("Bar Name is invadil. Use only Latin letters.");
+                MessageBox.Show("Bar name is invadil. \nIt should be: \n 1. only one word \n 2. starting with uppercase \n 3. every other letter - lowercase \n 4. use only Lithuanian letters.");
             }
             else
             {
                 Form1 m = new Form1();
                 m.Show();
             }
+        }
+
+        public void RegexValidate(Regex regex, string text)
+        {  
+            tf = regex.IsMatch(text);
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
