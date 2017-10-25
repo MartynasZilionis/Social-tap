@@ -15,6 +15,9 @@ namespace SocialTap
         private Image img;
         private Image imgProcessing;
         private static Capture capture = null;
+        private static Rectangle cameraRect;
+        private static int lastHeight = 0;
+        private static int lastWidth = 0;
         private Thread cameraThread = null;
         private int cameraIndex;
         private static readonly object imagesLock = new object();
@@ -22,6 +25,7 @@ namespace SocialTap
         public Form1()
         {
             InitializeComponent();
+            cameraRect = new Rectangle(0, 0, 1, 1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -73,14 +77,12 @@ namespace SocialTap
             }
             else
             {
-                //lock (imagesLock)
-                //{
-                    imgProcessing?.Dispose();
-                    imgProcessing = (Image) img.Clone();
-                    pictureBox1.Image = imgProcessing;
-                    button2.Enabled = true;
-                    button3.Enabled = true;
-                //}
+                imgProcessing?.Dispose();
+                Bitmap bmp = new Bitmap(img);
+                imgProcessing = bmp.Clone(cameraRect, bmp.PixelFormat);
+                pictureBox1.Image = imgProcessing;
+                button2.Enabled = true;
+                button3.Enabled = true;
             }
         }
         
@@ -112,9 +114,8 @@ namespace SocialTap
                     image = mat.ToImage<Emgu.CV.Structure.Bgr, Byte>();
                     rawBitmap.Dispose();
                     rawBitmap = image.ToBitmap();
-                    int height = image.Height / 2;
-                    int width = height / 2;
-                    image.Draw(new Rectangle(image.Width / 2 - width / 2, height / 2, width, height), new Emgu.CV.Structure.Bgr(Color.Red));
+                    UpdateCameraRect(image);
+                    image.Draw(cameraRect, new Emgu.CV.Structure.Bgr(Color.Red));
                     UpdateCameraBox(image.Bitmap, rawBitmap);
                     //imagesMutex.ReleaseMutex();
                     //isImagesMutexLocked = false;
@@ -139,6 +140,15 @@ namespace SocialTap
                 img = raw;
                 pictureBox5.Image = processed;
             }
+        }
+
+        private void UpdateCameraRect(Image<Emgu.CV.Structure.Bgr, byte> img)
+        {
+            if (img.Height == lastHeight && img.Width == lastWidth)
+                return;
+            int height = img.Height / 2;
+            int width = height / 2;
+            cameraRect = new Rectangle(img.Width / 2 - width / 2, height / 2, width, height);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
