@@ -149,6 +149,8 @@ namespace SocialTap
             int height = img.Height / 2;
             int width = height / 2;
             cameraRect = new Rectangle(img.Width / 2 - width / 2, height / 2, width, height);
+            lastHeight = img.Height;
+            lastWidth = img.Width;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
