@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:social_tap_mobile"
+             x:Class="social_tap_mobile.MainPage">
+    <Grid Padding="20" ColumnSpacing="10" RowSpacing="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Entry x:Name="entryBar"/>
+
+        <Label x:Name="lblStart" 
+               Grid.Row="2"
+               Grid.ColumnSpan="2" 
+               Text="Social Tap"/>
+        <Button x:Name="btmNext" 
+                Grid.Row="1" 
+                Text="Next" 
+                TextColor="FloralWhite" 
+                BackgroundColor="#0897D2"/>
+        <Button x:Name="btmClear" 
+                Grid.Row="1" 
+                Grid.Column="1"
+                Text="Clear" 
+                TextColor="FloralWhite" 
+                BackgroundColor="#D0082E"/>
+
+
+    </Grid>
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>-->
+</ContentPage>
