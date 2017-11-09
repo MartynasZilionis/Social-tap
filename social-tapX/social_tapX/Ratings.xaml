@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="social_tapX.Ratings">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="125"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="Backround"
+                   Source=""
+                   IsVisible="true"
+                   Grid.ColumnSpan="5"
+                   Grid.RowSpan="5"
+                   Opacity="0.25"
+                   />
+
+            <Label x:Name="Name"
+                   Text="BarNameHere"
+                   TextColor="LimeGreen"
+                   Font="Bold, Italic, Medium"
+                   HorizontalOptions="Start"
+                   VerticalOptions="CenterAndExpand"   
+                   Grid.Column="1"
+                   Grid.Row="1"
+                />
+
+            <Label x:Name="Percent"
+                   Text="%"
+                   TextColor="LimeGreen"
+                   Font="Bold, Italic, Medium"
+                   HorizontalOptions="Start"
+                   VerticalOptions="CenterAndExpand"   
+                   Grid.Column="2"
+                   Grid.Row="1"
+                />
+
+            <Label x:Name="Rating"
+                   Text="Rating"
+                   TextColor="LimeGreen"
+                   Font="Bold, Italic, Medium"
+                   HorizontalOptions="Start"
+                   VerticalOptions="CenterAndExpand"   
+                   Grid.Column="3"
+                   Grid.Row="1"
+                />
+
+            <ListView x:Name="BarName"
+                      HorizontalOptions="CenterAndExpand"
+                      VerticalOptions="CenterAndExpand"   
+                      Grid.Column="1"
+                      Grid.Row="2"
+                      IsEnabled="False"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="LimeGreen"
+                      />
+            <ListView x:Name="BarPercent"
+                      HorizontalOptions="CenterAndExpand"
+                      VerticalOptions="CenterAndExpand"   
+                      Grid.Column="2"
+                      Grid.Row="2"
+                      IsEnabled="False"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="LimeGreen"
+                      />
+            <ListView x:Name="BarRating"
+                      HorizontalOptions="CenterAndExpand"
+                      VerticalOptions="CenterAndExpand"   
+                      Grid.Column="3"
+                      Grid.Row="2"
+                      IsEnabled="False"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="LimeGreen"
+                      />
+
+            <Button x:Name="Next"
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Text=""
+                    TextColor="LimeGreen"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    Pressed="Next_Pressed"
+                    HeightRequest="300"
+                    WidthRequest="300"
+                    Font="Italic, Bold, Large"
+                    />
+
+            <Button x:Name="Back"
+                    Grid.Column="2"
+                    Grid.Row="3"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Text=""
+                    TextColor="LimeGreen"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    Pressed="Back_Pressed"
+                    HeightRequest="300"
+                    WidthRequest="300"
+                    Font="Italic, Bold, Large"
+                    />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="social_tapX.Feedback">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="Backround"
+                   Source=""
+                   IsVisible="true"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="5"
+                   Opacity="0.25"
+                   />
+
+            <Label x:Name="Title"
+                   Text=""
+                   TextColor="LimeGreen"
+                   Opacity="1"
+                   IsVisible="True"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Font="Bold, Italic, Large"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+
+            <Editor x:Name="ComentOnUs"
+                    Text=""
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    FontSize="Medium"  
+                    Focused="ComentOnUs_Focused"
+                    />
+
+            <Button x:Name="Submit"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, Large"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="true"
+                    IsEnabled="true"
+                    Opacity="1"   
+                    Pressed="Submit_Pressed"
+                />
+
+            <Label x:Name="ThankYou"
+                   Text=""
+                   TextColor="LimeGreen"
+                   Opacity="0"
+                   IsVisible="false"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Font="Bold, Italic, 85"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

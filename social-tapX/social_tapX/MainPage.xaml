@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:social_tapX"
+             x:Class="social_tapX.MainPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            
+            <Image x:Name="Backround"
+                   Source=""
+                   Opacity="0"
+                   IsVisible="False"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="7"
+                   />
+            <Label x:Name="Question"
+                   Text=""
+                   TextColor="LimeGreen"
+                   Opacity="1"
+                   IsVisible="true"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Font="Bold, Italic, 50"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
+            <Button x:Name="Picture"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Picture_Pressed"
+                />
+            <Button x:Name="Comment"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Comment_Pressed"
+                />
+            <Button x:Name="Rating"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Rating_Pressed"
+                />
+            <Button x:Name="Feedback"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Feedback_Pressed"
+                />
+        </Grid>        
+    </ContentPage.Content>
+</ContentPage>
