@@ -1,7 +1,5 @@
+social-tapX/*/obj/
+social-tapX/*/bin/
 packages/
-MyProject/obj/
-MyProject/bin/
-.vs/social-tap/v15/sqlite3/storage.ide
-.vs/social-tap/v15/.suo
-UnitTestProject1/bin/
-UnitTestProject1/obj/
+social-tapX/.vs/
+.vs/

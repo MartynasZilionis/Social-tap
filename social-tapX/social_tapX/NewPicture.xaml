@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="social_tapX.NewPicture">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            
+            <Image x:Name="Backround"
+                   Source=""
+                   IsVisible="true"
+                   Grid.ColumnSpan="4"
+                   Grid.RowSpan="5"
+                   Opacity="0.25"
+                   />
+            
+            <Button x:Name="FromFile"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="From File"
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="true"
+                    Opacity="1"   
+                    Pressed="FromFile_Pressed"
+                />
+
+            <Button x:Name="FromCamera"
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Text="Photo"
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="true"
+                    Opacity="1"   
+                    Pressed="FromCamera_Pressed"
+                />
+
+            <Button x:Name="OK"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Text="OK"
+                    TextColor="LimeGreen"
+                    Font="Bold, Italic, 50"
+                    BorderWidth="3"
+                    BorderColor="LimeGreen"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    HeightRequest="300"
+                    WidthRequest="800"
+                    IsVisible="false"
+                    IsEnabled="False"
+                    Opacity="1"   
+                    Pressed="OK_Pressed"
+                />
+            <Image x:Name="Photo"
+                   Source=""
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Grid.RowSpan="1"
+                   IsVisible="True"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
