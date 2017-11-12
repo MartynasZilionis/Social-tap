@@ -3,3 +3,6 @@ social-tapX/*/bin/
 packages/
 social-tapX/.vs/
 .vs/
+SocialTapServer/bin/
+SocialTapServer.Tests/obj/
+SocialTapServer/obj/
