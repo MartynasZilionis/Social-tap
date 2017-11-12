@@ -15,9 +15,10 @@ namespace social_tapX
         private string barname;
         private string comment;
         private int Rating = 0;
-
+        
         private Image[] Star;
         private int RatingFlag = 0;
+        private int FocusFlag = 0;
 
         public Comments ()
 		{
@@ -37,7 +38,7 @@ namespace social_tapX
             {
                 this.barname = BarName.Text;
                 this.comment = Comment.Text;
-
+                SaveInfo();
                 BarName.IsVisible = false;
                 BarName.IsEnabled = false;
                 Comment.IsVisible = false;
@@ -70,7 +71,7 @@ namespace social_tapX
                     await Task.Delay(20);
                 }
                 ThankYou.IsVisible = false;
-                await Navigation.PopAsync();
+                await Navigation.PopToRootAsync();
             }
             else if (BarName.Text == "")
             {
@@ -81,6 +82,7 @@ namespace social_tapX
             {
                 Comment.TextColor = Color.Red;
                 Comment.Text = "Please Enter Your Comment Here";
+                FocusFlag = 1;
             }
             else 
             {
@@ -113,7 +115,18 @@ namespace social_tapX
 
         private void Comment_Focused(object sender, FocusEventArgs e)
         {
-            Comment.TextColor = Color.Black;
+            if (FocusFlag == 1)
+            {
+                Comment.TextColor = Color.Black;
+                Comment.Text = "";
+                FocusFlag = 0;
+            }
+
+        }
+
+        private void SaveInfo()
+        {
+            WebService.Set_BarAndCommentsAndRating(barname, comment, Rating);
         }
 
         private void Star1_B_Pressed(object sender, EventArgs e)

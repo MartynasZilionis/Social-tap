@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "social_tapX", "social-tapX\social_tapX\social_tapX.shproj", "{04E4C100-C071-4D78-85C3-F5EB817AC854}"
 EndProject
@@ -18,6 +18,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		social-tapX\social_tapX\social_tapX.projitems*{04e4c100-c071-4d78-85c3-f5eb817ac854}*SharedItemsImports = 13
+		social-tapX\social_tapX\social_tapX.projitems*{686dd692-a519-4b8c-b862-3047e2399301}*SharedItemsImports = 4
 		social-tapX\social_tapX\social_tapX.projitems*{cc37998f-ea2c-4401-88d6-6031e58ae432}*SharedItemsImports = 4
 		social-tapX\social_tapX\social_tapX.projitems*{f82f9c9e-848a-4bd7-9502-aef75db52392}*SharedItemsImports = 4
 	EndGlobalSection

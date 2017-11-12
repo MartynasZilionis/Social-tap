@@ -57,7 +57,7 @@ namespace social_tapX
             Question.Text = "Would You Like To:";
             Question.IsVisible = true;
             Picture.Text = "Take a Picture";
-            Comment.Text = "Leave a Comment";
+            Comment.Text = "Comment";
             Rating.Text = "View Top Rated";
             Feedback.Text = "Feedback :)";
             Button[] Buttons = { Picture, Comment, Rating, Feedback };
@@ -84,7 +84,7 @@ namespace social_tapX
 
         private void Comment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Comments());
+            Navigation.PushAsync(new ChoseCommentsPage());
         }
 
         private void Rating_Pressed(object sender, EventArgs e)
@@ -95,6 +95,11 @@ namespace social_tapX
         private void Feedback_Pressed(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Feedback());
+        }
+
+        private void DEBUG_Pressed(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new DEBUG());
         }
     }
 }
