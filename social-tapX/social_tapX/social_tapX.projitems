@@ -52,6 +52,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Recognition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestModels\Bar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestModels\Comment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RestModels\Rating.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WebService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,9 +45,10 @@ namespace SocialTapServer
 
         public IEnumerable<Bar> GetBars(GeoCoordinate location, int count)
         {
-            IEnumerable<Bar> answer = (from x in bars
-                                       orderby x.Value.Location.GetDistanceTo(location)
-                                       select x.Value).Take(count);
+            IEnumerable<Bar> answer = bars.Select(x => x.Value).OrderBy(x => { return x.Location.GetDistanceTo(location); }).Take(count);
+                //(from x in bars
+                                       //orderby x.Value.Location.GetDistanceTo(location)
+                                       //select (x => { return x.Value; })).Take(count);
             return answer;
         }
 

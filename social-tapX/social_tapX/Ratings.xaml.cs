@@ -62,11 +62,11 @@ namespace social_tapX
         {
             for (int i = 0; i < 20; i++)
             {
-                if (i < WebService.GetListOfBars(Count).Count)
+                if (i < App.WebSvc.GetListOfBars(Count).Count)
                 {
-                    Bname.Add(WebService.GetListOfBars(Count).ToArray()[i].Name);
-                    Bpercent.Add(WebService.GetListOfBars(Count).ToArray()[i].Percent);
-                    Brating.Add(WebService.GetListOfBars(Count).ToArray()[i].Rating);
+                    Bname.Add(App.WebSvc.GetListOfBars(Count).ToArray()[i].Name);
+                    Bpercent.Add(App.WebSvc.GetListOfBars(Count).ToArray()[i].Percent);
+                    Brating.Add(App.WebSvc.GetListOfBars(Count).ToArray()[i].Rating);
                 }
                 else
                 {

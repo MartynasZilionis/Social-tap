@@ -9,10 +9,11 @@ namespace social_tapX
 {
 	public partial class App : Application
 	{
+        public static IWebService WebSvc { get; private set; }
 		public App ()
 		{
 			InitializeComponent();
-
+            WebSvc = new WebService();
 			MainPage = new NavigationPage (new social_tapX.MainPage());
 		}
 
