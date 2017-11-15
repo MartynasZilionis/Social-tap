@@ -57,6 +57,9 @@ namespace social_tapX
                 Submit.IsEnabled = false;
                 Submit.IsVisible = false;
                 FeedBack = ComentOnUs.Text;
+
+                WebService.Set_FeedbackAndDate(FeedBack, DateTime.Now);
+
                 Thankyou();
             }
         }

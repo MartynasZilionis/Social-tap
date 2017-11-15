@@ -22274,12 +22274,12 @@
   },
   "project": {
     "restore": {
-      "projectUniqueName": "F:\\Main\\Main\\C# social tap\\social-tap xamarin\\social-tapX\\social-tapX\\social_tapX.UWP\\social_tapX.UWP.csproj",
+      "projectUniqueName": "F:\\Main\\Main\\C# social tap\\social-tap\\social-tapX\\social_tapX.UWP\\social_tapX.UWP.csproj",
       "projectName": "social_tapX.UWP",
-      "projectPath": "F:\\Main\\Main\\C# social tap\\social-tap xamarin\\social-tapX\\social-tapX\\social_tapX.UWP\\social_tapX.UWP.csproj",
-      "projectJsonPath": "F:\\Main\\Main\\C# social tap\\social-tap xamarin\\social-tapX\\social-tapX\\social_tapX.UWP\\project.json",
+      "projectPath": "F:\\Main\\Main\\C# social tap\\social-tap\\social-tapX\\social_tapX.UWP\\social_tapX.UWP.csproj",
+      "projectJsonPath": "F:\\Main\\Main\\C# social tap\\social-tap\\social-tapX\\social_tapX.UWP\\project.json",
       "packagesPath": "C:\\Users\\Martynas\\.nuget\\packages\\",
-      "outputPath": "F:\\Main\\Main\\C# social tap\\social-tap xamarin\\social-tapX\\social-tapX\\social_tapX.UWP\\obj\\",
+      "outputPath": "F:\\Main\\Main\\C# social tap\\social-tap\\social-tapX\\social_tapX.UWP\\obj\\",
       "projectStyle": "ProjectJson",
       "configFilePaths": [
         "C:\\Users\\Martynas\\AppData\\Roaming\\NuGet\\NuGet.Config",

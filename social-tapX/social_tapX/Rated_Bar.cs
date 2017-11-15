@@ -12,5 +12,7 @@
             Percent = "" + percent;
             Rating = "" + rating;
         }
+
+
     }
 }

@@ -14,6 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="20"/>
@@ -23,7 +24,7 @@
                    Source=""
                    IsVisible="true"
                    Grid.ColumnSpan="4"
-                   Grid.RowSpan="5"
+                   Grid.RowSpan="6"
                    Opacity="0.25"
                    />
             
@@ -63,8 +64,22 @@
                     Pressed="FromCamera_Pressed"
                 />
 
+            <Entry x:Name="BarName"
+                   Placeholder="Enter Bar Name Here"
+                   PlaceholderColor="LimeGreen"
+                   Text=""
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="2"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   HeightRequest="200"
+                   WidthRequest="800"
+                   FontSize="Medium"
+                   />
+
             <Button x:Name="OK"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Text="OK"
@@ -84,7 +99,7 @@
                 />
             <Image x:Name="Photo"
                    Source=""
-                   Grid.Row="2"
+                   Grid.Row="3"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
                    Grid.RowSpan="1"

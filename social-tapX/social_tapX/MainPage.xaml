@@ -107,6 +107,13 @@
                     Opacity="0"
                     Pressed="Feedback_Pressed"
                 />
+
+            <Button x:Name="DEBUG"
+                    Grid.Column="1"
+                    Grid.Row="6"
+                    Text="DEBUG"
+                    Pressed="DEBUG_Pressed"
+                    />
         </Grid>        
     </ContentPage.Content>
 </ContentPage>
