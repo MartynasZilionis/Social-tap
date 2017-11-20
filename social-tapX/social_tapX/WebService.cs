@@ -46,28 +46,29 @@ namespace social_tapX
         //ir negali grąžinti daugiau negu 20 (bent kolkas), tikslaii nzn kas nutiktų :D 
         public static List<Rated_Bar> GetListOfBars(int ToNumber)
         {
-            List<Rated_Bar> ListOfBars = new List<Rated_Bar>();
-
-            ListOfBars.Add(new Rated_Bar("Trys Draugai", 85.45, 9.4));
-            ListOfBars.Add(new Rated_Bar("Du Draugai", 75.45, 9.4));
-            ListOfBars.Add(new Rated_Bar("Vienas Draugas", 25.45, 5.4));
-            ListOfBars.Add(new Rated_Bar("(╯°□°）╯︵ ┻━┻", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("A", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("B", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("C", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("D", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("E", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("F", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("G", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("H", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("(╯°□°）", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("(╯°□°）╯", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("︵ ┻━┻", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("I", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("Y", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("J", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar("K", 5.45, 0.4));
-            ListOfBars.Add(new Rated_Bar(" (ﾉಥ益ಥ）ﾉ ︵ ┻━┻", 5.45, 0.4));
+            List<Rated_Bar> ListOfBars = new List<Rated_Bar>
+            {
+                new Rated_Bar("Trys Draugai", 85.45, 9.4),
+                new Rated_Bar("Du Draugai", 75.45, 9.4),
+                new Rated_Bar("Vienas Draugas", 25.45, 5.4),
+                new Rated_Bar("(╯°□°）╯︵ ┻━┻", 5.45, 0.4),
+                new Rated_Bar("A", 5.45, 0.4),
+                new Rated_Bar("B", 5.45, 0.4),
+                new Rated_Bar("C", 5.45, 0.4),
+                new Rated_Bar("D", 5.45, 0.4),
+                new Rated_Bar("E", 5.45, 0.4),
+                new Rated_Bar("F", 5.45, 0.4),
+                new Rated_Bar("G", 5.45, 0.4),
+                new Rated_Bar("H", 5.45, 0.4),
+                new Rated_Bar("(╯°□°）", 5.45, 0.4),
+                new Rated_Bar("(╯°□°）╯", 5.45, 0.4),
+                new Rated_Bar("︵ ┻━┻", 5.45, 0.4),
+                new Rated_Bar("I", 5.45, 0.4),
+                new Rated_Bar("Y", 5.45, 0.4),
+                new Rated_Bar("J", 5.45, 0.4),
+                new Rated_Bar("K", 5.45, 0.4),
+                new Rated_Bar(" (ﾉಥ益ಥ）ﾉ ︵ ┻━┻", 5.45, 0.4)
+            };
 
             return ListOfBars;
         }

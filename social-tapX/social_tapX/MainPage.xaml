@@ -4,29 +4,33 @@
              xmlns:local="clr-namespace:social_tapX"
              x:Class="social_tapX.MainPage">
     <ContentPage.Content>
+
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
             <Grid.RowDefinitions>
-                <RowDefinition Height="160"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
             <Image x:Name="Backround"
                    Source=""
                    Opacity="0"
                    IsVisible="False"
-                   Grid.ColumnSpan="3"
-                   Grid.RowSpan="7"
+                   Grid.ColumnSpan="5"
+                   Grid.RowSpan="8"
                    />
             <Label x:Name="Question"
                    Text=""
@@ -35,7 +39,8 @@
                    IsVisible="true"
                    Grid.Row="1"
                    Grid.Column="1"
-                   Font="Bold, Italic, 50"
+                   Grid.ColumnSpan="3"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    />
@@ -43,8 +48,9 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Text=""
+                    Grid.ColumnSpan="3"
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"
@@ -61,8 +67,9 @@
                     Grid.Column="1"
                     Text=""
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
+                    Grid.ColumnSpan="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
@@ -78,8 +85,9 @@
                     Grid.Column="1"
                     Text=""
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
+                    Grid.ColumnSpan="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
@@ -90,13 +98,14 @@
                     Opacity="0"
                     Pressed="Rating_Pressed"
                 />
-            <Button x:Name="Feedback"
+            <Button x:Name="Feed_back"
                     Grid.Row="5"
                     Grid.Column="1"
                     Text=""
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
+                    Grid.ColumnSpan="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"
                     HorizontalOptions="Center"
@@ -107,13 +116,6 @@
                     Opacity="0"
                     Pressed="Feedback_Pressed"
                 />
-
-            <Button x:Name="DEBUG"
-                    Grid.Column="1"
-                    Grid.Row="6"
-                    Text="DEBUG"
-                    Pressed="DEBUG_Pressed"
-                    />
         </Grid>        
     </ContentPage.Content>
 </ContentPage>

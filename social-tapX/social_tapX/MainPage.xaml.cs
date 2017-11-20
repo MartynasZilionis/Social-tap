@@ -10,13 +10,33 @@ namespace social_tapX
 	public partial class MainPage : ContentPage
 	{
         public string Name;
-        static public Image BackroundImage;
+        public static Image BackroundImage;
+        public static int WidthIs = 0;
+        public static int HeightIs = 0;
 
         public MainPage()
         {
             InitializeComponent();
+
+            Feedback.DoneEvent += DoneHandler;
+
+            Page ForSize = new ContentPage();
+            WidthIs = (int)ForSize.Width;
+            HeightIs = (int)ForSize.Height;
+            ForSize = null;
             GetImage();
             Initialize();
+        }
+
+        async private void DoneHandler(object sender, EventArgs y)
+        {
+            try {
+                await Navigation.PopAsync();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                //its all good here, just skip it
+            }
         }
 
         async void Initialize()
@@ -29,8 +49,11 @@ namespace social_tapX
         async void InitializeBackround()
         {
             Backround.Source = BackroundImage.Source;
+            
             Backround.Opacity = 0;
             Backround.IsVisible = true;
+            Backround.HeightRequest = HeightIs;
+            Backround.WidthRequest = WidthIs;
 
             for (double i = 0; i < 1; i += 0.017)
             {
@@ -47,7 +70,9 @@ namespace social_tapX
 
         void GetImage()
         {
-            BackroundImage = new Image { Source = "config\\logo.jpg" };
+            BackroundImage = new Image { Source = "logo.jpg" };
+            BackroundImage.WidthRequest = WidthIs;
+            BackroundImage.HeightRequest = HeightIs;
         }
 
 
@@ -59,8 +84,8 @@ namespace social_tapX
             Picture.Text = "Take a Picture";
             Comment.Text = "Comment";
             Rating.Text = "View Top Rated";
-            Feedback.Text = "Feedback :)";
-            Button[] Buttons = { Picture, Comment, Rating, Feedback };
+            Feed_back.Text = "Feedback :)";
+            Button[] Buttons = { Picture, Comment, Rating, Feed_back };
             foreach (Button B in Buttons)
                 {
                     B.IsVisible = true;
@@ -95,11 +120,6 @@ namespace social_tapX
         private void Feedback_Pressed(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Feedback());
-        }
-
-        private void DEBUG_Pressed(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new DEBUG());
         }
     }
 }

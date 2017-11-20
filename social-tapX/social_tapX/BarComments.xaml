@@ -5,16 +5,14 @@
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="125"/>
-                <ColumnDefinition Width="125"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -25,8 +23,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Image x:Name="Backround"
@@ -40,7 +40,7 @@
             <Label x:Name="BarName"
                    Text=""
                    TextColor="LimeGreen"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="Start"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -50,7 +50,7 @@
             <Label x:Name="C_1"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -61,7 +61,7 @@
             <Label x:Name="C_2"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -72,7 +72,7 @@
             <Label x:Name="C_3"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -83,7 +83,7 @@
             <Label x:Name="C_4"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -94,7 +94,7 @@
             <Label x:Name="C_5"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -105,7 +105,7 @@
             <Label x:Name="C_6"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -116,7 +116,7 @@
             <Label x:Name="C_7"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -127,7 +127,7 @@
             <Label x:Name="C_8"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -138,7 +138,7 @@
             <Label x:Name="C_9"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"
@@ -149,7 +149,7 @@
             <Label x:Name="C_10"
                    Text=""
                    TextColor="Black"
-                   Font="Bold, Italic, Medium"
+                   Font="Bold, Italic, Large"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"   
                    Grid.Column="1"

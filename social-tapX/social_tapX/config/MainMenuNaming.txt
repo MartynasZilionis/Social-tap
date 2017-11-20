@@ -1,6 +1,0 @@
-logo.jpg* Backround image name
-Would You Like To:* Main menu firt message
-Take a Picture* 1st button name
-Leave a Comment* 2nd button name
-View Top Rated* 3rd button name
-Feedback :)* 4th button name

@@ -26,10 +26,6 @@
       <DependentUpon>Comments.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DEBUG.xaml.cs">
-      <DependentUpon>DEBUG.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Feedback.xaml.cs">
       <DependentUpon>Feedback.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -52,6 +48,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Recognition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TEST.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)WebService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,13 +86,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)config\beerrating.png" />
-    <Content Include="$(MSBuildThisFileDirectory)config\logo.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)config\MainMenuNaming.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)config\backround.jpg" />
-    <Content Include="$(MSBuildThisFileDirectory)config\ratingstar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)ReadCommentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -109,12 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)BarComments.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)DEBUG.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
