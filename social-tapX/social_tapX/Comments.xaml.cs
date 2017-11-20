@@ -70,8 +70,14 @@ namespace social_tapX
                     ThankYou.Opacity = i;
                     await Task.Delay(20);
                 }
-                ThankYou.IsVisible = false;
-                await Navigation.PopToRootAsync();
+                try
+                {
+                    await Navigation.PopAsync();
+                }
+                catch (Exception y)
+                {
+                    //its all good here, just skip it
+                }
             }
             else if (BarName.Text == "")
             {

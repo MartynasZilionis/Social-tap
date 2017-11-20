@@ -5,19 +5,19 @@
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="80"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
             <Image x:Name="Backround"
@@ -33,7 +33,7 @@
                     Grid.Column="1"
                     Text="From File"
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"
@@ -51,7 +51,7 @@
                     Grid.Column="2"
                     Text="Photo"
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"
@@ -84,7 +84,7 @@
                     Grid.ColumnSpan="2"
                     Text="OK"
                     TextColor="LimeGreen"
-                    Font="Bold, Italic, 50"
+                    Font="Bold, Italic, Large"
                     BorderWidth="3"
                     BorderColor="LimeGreen"
                     BackgroundColor="Transparent"

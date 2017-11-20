@@ -9,20 +9,30 @@ using Xamarin.Forms.Xaml;
 
 namespace social_tapX
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    delegate void BackEnebled(bool x);
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BarComments : ContentPage
 	{
         private string Bar_Name;
         private List<Label> Labels = null;
-        private List<string> Comments = null;
         private int Count;
-        private int BackIsEnabled;
+        private int BackIsEnabled;        
+
+        private void backenabled(bool x)
+        {
+            Back.IsEnabled = x;
+            Back.IsVisible = x;
+        }
 
         public BarComments(string Bar_Name, int count = 10, int backisenabled = 0)
 		{
             Count = count;
             BackIsEnabled = backisenabled;
 			InitializeComponent ();
+
+            BackEnebled BE = backenabled;
+
             Backround.Source = MainPage.BackroundImage.Source;
             BarName.Text = Bar_Name;
             this.Bar_Name = Bar_Name;
@@ -30,13 +40,11 @@ namespace social_tapX
 
             if (BackIsEnabled == 1)
             {
-                Back.IsEnabled = true;
-                Back.IsVisible = true;
+                BE(true);
             }
             else
             {
-                Back.IsEnabled = false;
-                Back.IsVisible = false;
+                BE(false);
             }
             Next.IsVisible = true;
             Next.IsEnabled = true;
@@ -74,5 +82,7 @@ namespace social_tapX
         {
             Navigation.PopModalAsync();
         }
+
+        private delegate void BackDelegate(bool x);
     }
 }

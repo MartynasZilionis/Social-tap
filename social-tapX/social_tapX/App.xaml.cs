@@ -12,7 +12,7 @@ namespace social_tapX
 		public App ()
 		{
 			InitializeComponent();
-
+            
 			MainPage = new NavigationPage (new social_tapX.MainPage());
 		}
 

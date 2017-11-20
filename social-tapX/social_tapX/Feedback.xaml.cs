@@ -9,9 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace social_tapX
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+ 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Feedback : ContentPage
 	{
+        public delegate void ThisIsDone(Object sender, EventArgs args);
+        public static event ThisIsDone DoneEvent = delegate { };
+
         private string FeedBack;
 
 		public Feedback ()
@@ -39,7 +42,16 @@ namespace social_tapX
                 await Task.Delay(20);
             }
             ThankYou.IsVisible = false;
-            await Navigation.PopAsync();
+            if (DoneEvent != null) DoneEvent(this, new EventArgs());
+
+            /*try
+            {
+                await Navigation.PopAsync();
+            }
+            catch (Exception e)
+            {
+                //its all good here, just skip it
+            }*/
         }
 
         private void Submit_Pressed(object sender, EventArgs e)
