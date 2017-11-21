@@ -132,7 +132,7 @@ namespace social_tapX
 
         private void SaveInfo()
         {
-            WebService.Set_BarAndCommentsAndRating(barname, comment, Rating);
+            App.WebSvc.Set_BarAndCommentsAndRating(barname, comment, Rating);
         }
 
         private void Star1_B_Pressed(object sender, EventArgs e)

@@ -78,9 +78,9 @@ namespace social_tapX
 
             for (int i = 0; i < 20; i++)
             {
-                if (i < WebService.GetListOfBars(Count).Count)
+                if (i < App.WebSvc.GetListOfBars(Count).Count)
                 {
-                    SD(WebService.GetListOfBars(Count).ElementAt(i).Name, WebService.GetListOfBars(Count).ElementAt(i).Percent, WebService.GetListOfBars(Count).ElementAt(i).Rating);
+                    SD(App.WebSvc.GetListOfBars(Count).ElementAt(i).Name, App.WebSvc.GetListOfBars(Count).ElementAt(i).Percent, App.WebSvc.GetListOfBars(Count).ElementAt(i).Rating);
                 }
                 else
                 {

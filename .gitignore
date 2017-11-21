@@ -6,3 +6,4 @@ social-tapX/.vs/
 SocialTapServer/bin/
 SocialTapServer.Tests/obj/
 SocialTapServer/obj/
+*.orig

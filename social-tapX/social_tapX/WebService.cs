@@ -1,10 +1,25 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using social_tapX.RestModels;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace social_tapX
 {
-    static public class WebService
+    public interface IWebService
     {
+        void Set_BarAndPercent(string name, int percent);
+        void Set_BarAndCommentsAndRating(string name, string comment, int rating);
+        void Set_FeedbackAndDate(string feedback, DateTime date);
+        List<Rated_Bar> GetListOfBars(int ToNumber);
+        List<string> GetListOfComments(string Bar_Name, int ToNumber);
+    }
+
+    public class WebService : IWebService
+    {
+        private static HttpClient client = new HttpClient();
+        private static string serviceUrl = "http://localhost:53162/api";
         //DĖL DEBUGINIMO PRIEŽASČIŲ BARP BARCR IR FBD YRA PUBLIC, ŠIAIP TURĖTŪ BŪT PRIVATE
 
 
@@ -14,7 +29,7 @@ namespace social_tapX
         //Naudoja {get; private set;} abiem laukam
         public static BarAndPercent BarP = new BarAndPercent("", 0);
 
-        public static void Set_BarAndPercent(string name, int percent)
+        public void Set_BarAndPercent(string name, int percent)
         {
             BarP = new BarAndPercent(name, percent);
         }
@@ -25,7 +40,7 @@ namespace social_tapX
         //Naudoja {get; private set;} visiems laukams
         public static BarAndCommentsAndRating BarCR = new BarAndCommentsAndRating("", "", 0);
 
-        public static void Set_BarAndCommentsAndRating(string name, string comment, int rating)
+        public void Set_BarAndCommentsAndRating(string name, string comment, int rating)
         {
             BarCR = new BarAndCommentsAndRating(name, comment, rating);
         }
@@ -35,7 +50,7 @@ namespace social_tapX
         //Naudoja {get; private set;} abiems laukams
         public static FeedbackAndDate FBD = new FeedbackAndDate("", new DateTime(2000, 01, 01));
         
-        public static void Set_FeedbackAndDate(string feedback, DateTime date)
+        public void Set_FeedbackAndDate(string feedback, DateTime date)
         {
             FBD = new FeedbackAndDate(feedback, date);
         }
@@ -44,7 +59,7 @@ namespace social_tapX
         //ToNumber, pvz jei ToNumber = 20, tai grąžina pirmus 20 (0 - 19), jei ToNumber = 40, tai 20-39 and so on.
         //Jeigu baigiasi barų pavadinimai grąžina kiek gali, likusių vietų NEPILDYTI niekuo
         //ir negali grąžinti daugiau negu 20 (bent kolkas), tikslaii nzn kas nutiktų :D 
-        public static List<Rated_Bar> GetListOfBars(int ToNumber)
+        public List<Rated_Bar> GetListOfBars(int ToNumber)
         {
             List<Rated_Bar> ListOfBars = new List<Rated_Bar>
             {
@@ -76,7 +91,7 @@ namespace social_tapX
 
         //Šitas metodas turi grąžinti komentarus baro, kurio pavadinimas Bar_Name. Visos kitos taisyklės kaip ir 
         //Kito metodo (public static List<Rated_Bar> GetListOfBars(int ToNumber))
-        public static List<string> GetListOfComments(string Bar_Name, int ToNumber)
+        public List<string> GetListOfComments(string Bar_Name, int ToNumber)
         {
             List<string> Y = new List<string>
             {
@@ -93,5 +108,71 @@ namespace social_tapX
             };
             return Y;
         }
+        
+        /// <summary>
+        /// Gets all the <see cref="Bar">Bars</see>. (WIP)
+        /// </summary>
+        public async Task<IEnumerable<Bar>> GetAllBars()
+        {
+            return await GetList<Bar>("/Bar");
+        }
+
+        /// <summary>
+        /// Gets <see cref="count"/> comments about a <see cref="Bar"/>.
+        /// </summary>
+        /// <param name="barId">Id of the <see cref="Bar"/>.</param>
+        /// <param name="from">From which <see cref="Comment"/> to start (skips comments before that)?</param>
+        /// <param name="count">How many <see cref="Comment">Comments</see> to get?</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Comment>> GetComments(Guid barId, int from, int count)
+        {
+            return await GetList<Comment>(string.Format("/Comment/{1}/{2}/{3}", barId, from, count));
+        }
+
+        public async Task<IEnumerable<Rating>> GetRatings(Guid barId, int from, int count)
+        {
+            return await GetList<Rating>(string.Format("/Rating/{1}/{2}/{3}", barId, from, count));
+        }
+
+        public async Task UploadBar(Bar bar)
+        {
+            await Upload(bar, "/Bar");
+        }
+
+        public async Task UploadComment(Guid barId, Comment comment)
+        {
+            await Upload(comment, "/Comment/" + barId);
+        }
+
+        public async Task UploadRating(Guid barId, Rating rating)
+        {
+            await Upload(rating, "/Rating/" + barId);
+        }
+
+        private async Task Upload(object obj, string path)
+        {
+            var json = JsonConvert.SerializeObject(obj);
+            using (var content = new StringContent(json))
+            {
+                using (var response = await client.PostAsync(serviceUrl + path, content))
+                {
+                    if (!response.IsSuccessStatusCode)
+                        throw new HttpRequestException(response.StatusCode.ToString());
+                }
+            }
+        }
+
+        private async Task<IEnumerable<T>> GetList<T>(string path)
+        {
+            using (var response = await client.GetAsync(serviceUrl + path))
+            {
+                if (!response.IsSuccessStatusCode)
+                    throw new HttpRequestException(response.StatusCode.ToString());
+                return JsonConvert.DeserializeObject<List<T>>(await response.Content.ReadAsStringAsync());
+            }
+        }
+
+
     }
+    
 }
