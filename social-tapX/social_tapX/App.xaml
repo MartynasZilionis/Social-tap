@@ -4,7 +4,13 @@
              x:Class="social_tapX.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
+		
+        <ResourceDictionary>
 
-	</Application.Resources>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#F44336"/>
+                <Setter Property="BarTextColor" Value="#FFF3E0"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
