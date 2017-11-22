@@ -7,3 +7,4 @@ SocialTapServer/bin/
 SocialTapServer.Tests/obj/
 SocialTapServer/obj/
 *.orig
+UpgradeLog*.htm
