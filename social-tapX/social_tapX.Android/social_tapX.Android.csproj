@@ -52,6 +52,9 @@
     <Reference Include="Emgu.CV.UI">
       <HintPath>refs\Emgu.CV.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Emgu.CV.World">
+      <HintPath>refs\Emgu.CV.World.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV.World.Android">
       <HintPath>refs\Emgu.CV.World.Android.dll</HintPath>
     </Reference>
