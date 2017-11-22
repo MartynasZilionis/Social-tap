@@ -115,7 +115,7 @@ namespace social_tapX
         private void Rated()
         {
             OK.Text = "OK";
-            OK.TextColor = Color.LimeGreen;
+            OK.TextColor = Color.OrangeRed;
             RatingFlag = 0;
         }
 

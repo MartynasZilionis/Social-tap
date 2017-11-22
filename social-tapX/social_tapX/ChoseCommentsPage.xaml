@@ -6,16 +6,14 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -31,15 +29,11 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Text=""
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="True"
                     Pressed="NewComment_Pressed"
                     Grid.ColumnSpan="3"
@@ -49,15 +43,11 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Text=""
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="True"
                     Pressed="ReadComment_Pressed"
                     Grid.ColumnSpan="3"

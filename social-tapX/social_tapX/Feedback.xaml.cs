@@ -79,7 +79,7 @@ namespace social_tapX
         private void ComentOnUs_Focused(object sender, FocusEventArgs e)
         {
             Submit.Text = "Submit";
-            Submit.TextColor = Color.LimeGreen;
+            Submit.TextColor = Color.OrangeRed;
         }
     }
 }

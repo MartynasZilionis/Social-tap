@@ -6,27 +6,26 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -43,15 +42,11 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="12"
                     Text="OK"
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="true"
                     IsEnabled="true"
                     Opacity="1"   
@@ -63,14 +58,12 @@
                    Grid.Column="1"
                    Grid.ColumnSpan="12"
                    Placeholder="Bar Name Goes Here"
-                   PlaceholderColor="LimeGreen"
+                   PlaceholderColor="#E65100"
                    Text=""
                    Opacity="1"
                    IsVisible="true"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="FillAndExpand"
-                   HeightRequest="300"
-                   WidthRequest="800"
                    FontSize="Medium"
                    />
 
@@ -85,7 +78,7 @@
             
             <Label x:Name="ThankYou"
                    Text=""
-                   TextColor="LimeGreen"
+                   TextColor="#E65100"
                    Opacity="0"
                    IsVisible="false"
                    Grid.Row="2"
@@ -99,16 +92,14 @@
             <Button x:Name="Star1_B"
                     Opacity="0"
                     Pressed="Star1_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="1"
                     IsEnabled="True"
                 />
             <Image x:Name="Star1_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="1"
                    IsEnabled="False"
@@ -117,16 +108,15 @@
             <Button x:Name="Star2_B"
                     Opacity="0"
                     Pressed="Star2_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="2"
                     IsEnabled="True"
                 />
             <Image x:Name="Star2_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
+
                    Grid.Row="3"
                    Grid.Column="2"
                    IsEnabled="False"
@@ -135,16 +125,13 @@
             <Button x:Name="Star3_B"
                     Opacity="0"
                     Pressed="Star3_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="3"
                     IsEnabled="True"
                 />
             <Image x:Name="Star3_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
                    Grid.Row="3"
                    Grid.Column="3"
                    IsEnabled="False"
@@ -153,16 +140,14 @@
             <Button x:Name="Star4_B"
                     Opacity="0"
                     Pressed="Star4_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="4"
                     IsEnabled="True"
                 />
             <Image x:Name="Star4_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="4"
                    IsEnabled="False"
@@ -171,16 +156,14 @@
             <Button x:Name="Star5_B"
                     Opacity="0"
                     Pressed="Star5_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="5"
                     IsEnabled="True"
                 />
             <Image x:Name="Star5_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="5"
                    IsEnabled="False"
@@ -189,16 +172,14 @@
             <Button x:Name="Star6_B"
                     Opacity="0"
                     Pressed="Star6_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="6"
                     IsEnabled="True"
                 />
             <Image x:Name="Star6_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="6"
                    IsEnabled="False"
@@ -207,16 +188,14 @@
             <Button x:Name="Star7_B"
                     Opacity="0"
                     Pressed="Star7_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="7"
                     IsEnabled="True"
                 />
             <Image x:Name="Star7_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="7"
                    IsEnabled="False"
@@ -225,16 +204,14 @@
             <Button x:Name="Star8_B"
                     Opacity="0"
                     Pressed="Star8_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="8"
                     IsEnabled="True"
                 />
             <Image x:Name="Star8_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="8"
                    IsEnabled="False"
@@ -243,16 +220,14 @@
             <Button x:Name="Star9_B"
                     Opacity="0"
                     Pressed="Star9_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="9"
                     IsEnabled="True"
                 />
             <Image x:Name="Star9_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="9"
                    IsEnabled="False"
@@ -261,16 +236,14 @@
             <Button x:Name="Star10_B"
                     Opacity="0"
                     Pressed="Star10_B_Pressed"
-                    HeightRequest="50"
-                    WidthRequest="50"
+
                     Grid.Row="3"
                     Grid.Column="10"
                     IsEnabled="True"
                 />
             <Image x:Name="Star10_I"
                    Source=""
-                   HeightRequest="50"
-                   WidthRequest="50"
+
                    Grid.Row="3"
                    Grid.Column="10"
                    IsEnabled="False"

@@ -6,9 +6,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -39,7 +39,7 @@
 
             <Label x:Name="BarName"
                    Text=""
-                   TextColor="LimeGreen"
+                   TextColor="#E65100"
                    Font="Bold, Italic, Large"
                    HorizontalOptions="Start"
                    VerticalOptions="CenterAndExpand"   
@@ -163,13 +163,9 @@
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
                     Text=""
-                    TextColor="LimeGreen"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    TextColor="#FFF3E0"
+                    BackgroundColor="#EF6C00"
                     Pressed="Next_Pressed"
-                    HeightRequest="300"
-                    WidthRequest="300"
                     Font="Italic, Bold, Large"
                     />
 
@@ -179,13 +175,9 @@
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
                     Text=""
-                    TextColor="LimeGreen"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    TextColor="#FFF3E0"
+                    BackgroundColor="#EF6C00"
                     Pressed="Back_Pressed"
-                    HeightRequest="300"
-                    WidthRequest="300"
                     Font="Italic, Bold, Large"
                     />
         </Grid>

@@ -6,17 +6,17 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
@@ -32,15 +32,11 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Text="From File"
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="true"
                     Opacity="1"   
                     Pressed="FromFile_Pressed"
@@ -50,15 +46,11 @@
                     Grid.Row="1"
                     Grid.Column="2"
                     Text="Photo"
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="true"
                     Opacity="1"   
                     Pressed="FromCamera_Pressed"
@@ -66,15 +58,13 @@
 
             <Entry x:Name="BarName"
                    Placeholder="Enter Bar Name Here"
-                   PlaceholderColor="LimeGreen"
+                   PlaceholderColor="#E65100"
                    Text=""
-                   Grid.Column="1"
-                   Grid.ColumnSpan="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="4"
                    Grid.Row="2"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"
-                   HeightRequest="200"
-                   WidthRequest="800"
                    FontSize="Medium"
                    />
 
@@ -83,15 +73,11 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Text="OK"
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="false"
                     IsEnabled="False"
                     Opacity="1"   
@@ -102,7 +88,6 @@
                    Grid.Row="3"
                    Grid.Column="1"
                    Grid.ColumnSpan="2"
-                   Grid.RowSpan="1"
                    IsVisible="True"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"

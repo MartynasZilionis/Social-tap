@@ -5,18 +5,18 @@
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="AUto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -30,7 +30,7 @@
 
             <Label x:Name="Name"
                    Text=""
-                   TextColor="LimeGreen"
+                   TextColor="#E65100"
                    Font="Bold, Italic, Medium"
                    HorizontalOptions="Start"
                    VerticalOptions="CenterAndExpand"   
@@ -40,7 +40,7 @@
 
             <Label x:Name="Percent"
                    Text=""
-                   TextColor="LimeGreen"
+                   TextColor="#E65100"
                    Font="Bold, Italic, Medium"
                    HorizontalOptions="Start"
                    VerticalOptions="CenterAndExpand"   
@@ -50,7 +50,7 @@
 
             <Label x:Name="Rating"
                    Text=""
-                   TextColor="LimeGreen"
+                   TextColor="#E65100"
                    Font="Bold, Italic, Medium"
                    HorizontalOptions="Start"
                    VerticalOptions="CenterAndExpand"   
@@ -65,7 +65,7 @@
                       Grid.Row="2"
                       IsEnabled="False"
                       SeparatorVisibility="Default"
-                      SeparatorColor="LimeGreen"
+                      SeparatorColor="#E65100"
                       />
             <ListView x:Name="BarPercent"
                       HorizontalOptions="CenterAndExpand"
@@ -74,7 +74,7 @@
                       Grid.Row="2"
                       IsEnabled="False"
                       SeparatorVisibility="Default"
-                      SeparatorColor="LimeGreen"
+                      SeparatorColor="#E65100"
                       />
             <ListView x:Name="BarRating"
                       HorizontalOptions="CenterAndExpand"
@@ -83,7 +83,7 @@
                       Grid.Row="2"
                       IsEnabled="False"
                       SeparatorVisibility="Default"
-                      SeparatorColor="LimeGreen"
+                      SeparatorColor="#E65100"
                       />
 
             <Button x:Name="Next"
@@ -92,13 +92,9 @@
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
                     Text=""
-                    TextColor="LimeGreen"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    TextColor="#FFF3E0"
+                    BackgroundColor="#EF6C00"
                     Pressed="Next_Pressed"
-                    HeightRequest="300"
-                    WidthRequest="300"
                     Font="Italic, Bold, Large"
                     />
 
@@ -108,13 +104,9 @@
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
                     Text=""
-                    TextColor="LimeGreen"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    TextColor="#FFF3E0"
+                    BackgroundColor="#EF6C00"
                     Pressed="Back_Pressed"
-                    HeightRequest="300"
-                    WidthRequest="300"
                     Font="Italic, Bold, Large"
                     />
 
