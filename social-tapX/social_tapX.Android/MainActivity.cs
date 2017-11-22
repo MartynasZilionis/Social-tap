@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Graphics;
 
 namespace social_tapX.Droid
 {
@@ -21,7 +22,10 @@ namespace social_tapX.Droid
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 			LoadApplication (new social_tapX.App ());
-		}
+            Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
+            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
+            Window.SetStatusBarColor(Color.Tomato);
+        }
 	}
 }
 

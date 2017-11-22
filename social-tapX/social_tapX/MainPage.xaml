@@ -2,26 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:social_tapX"
-             x:Class="social_tapX.MainPage">
-    <ContentPage.Content>
+             x:Class="social_tapX.MainPage"
+             Title = "Title">
+    <ContentPage.Content Title = "Title">
 
-        <Grid>
+        <Grid ColumnSpacing="10" RowSpacing="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
@@ -29,17 +27,16 @@
                    Source=""
                    Opacity="0"
                    IsVisible="False"
-                   Grid.ColumnSpan="5"
-                   Grid.RowSpan="8"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="7"
                    />
             <Label x:Name="Question"
                    Text=""
-                   TextColor="LimeGreen"
+                   TextColor="#E65100"
                    Opacity="1"
                    IsVisible="true"
                    Grid.Row="1"
                    Grid.Column="1"
-                   Grid.ColumnSpan="3"
                    Font="Bold, Italic, Large"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
@@ -48,16 +45,11 @@
                     Grid.Row="2"
                     Grid.Column="1"
                     Text=""
-                    Grid.ColumnSpan="3"
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="False"
                     Opacity="0"
                     Pressed="Picture_Pressed"
@@ -66,16 +58,11 @@
                     Grid.Row="3"
                     Grid.Column="1"
                     Text=""
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    Grid.ColumnSpan="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="False"
                     Opacity="0"
                     Pressed="Comment_Pressed"
@@ -84,16 +71,12 @@
                     Grid.Row="4"
                     Grid.Column="1"
                     Text=""
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    Grid.ColumnSpan="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
+                    
                     IsVisible="False"
                     Opacity="0"
                     Pressed="Rating_Pressed"
@@ -102,18 +85,12 @@
                     Grid.Row="5"
                     Grid.Column="1"
                     Text=""
-                    TextColor="LimeGreen"
+                    TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
-                    BorderWidth="3"
-                    Grid.ColumnSpan="3"
-                    BorderColor="LimeGreen"
-                    BackgroundColor="Transparent"
+                    BackgroundColor="#EF6C00"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    HeightRequest="300"
-                    WidthRequest="800"
                     IsVisible="False"
-                    Opacity="0"
                     Pressed="Feedback_Pressed"
                 />
         </Grid>        
