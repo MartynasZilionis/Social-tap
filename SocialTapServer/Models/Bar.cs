@@ -17,6 +17,11 @@ namespace SocialTapServer.Models
         /// </summary>
         public Guid Id { get; set; }
 
+        public void AddComment(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Name of the bar.
         /// </summary>

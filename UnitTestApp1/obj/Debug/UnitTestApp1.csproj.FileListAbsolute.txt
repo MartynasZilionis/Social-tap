@@ -1,0 +1,13 @@
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\bin\Debug\UnitTestApp1.dll
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\bin\Debug\UnitTestApp1.pdb
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\bin\Debug\UnitTestApp1.UnitTestApp1.apk
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\bin\Debug\UnitTestApp1.UnitTestApp1-Signed.apk
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\UnitTestApp1.csprojResolveAssemblyReference.cache
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\UnitTestApp1.csproj.CoreCompileInputs.cache
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\UnitTestApp1.dll
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\UnitTestApp1.pdb
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\android\bin\UnitTestApp1.UnitTestApp1.apk
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\res\drawable\icon.png
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\res\values\strings.xml
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\R.cs.flag
+C:\Users\Dell Vostro\Source\Repos\Social-tap2\UnitTestApp1\obj\Debug\uploadflags.txt

@@ -7,3 +7,4 @@ SocialTapServer/bin/
 SocialTapServer.Tests/obj/
 SocialTapServer/obj/
 *.orig
+UnitTest.Test/bin/Debug/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll

@@ -52,7 +52,7 @@ namespace social_tapX
                 {
                     Name = BarName.Text;
                     int percent = Recognition.Recognize();
-                    WebService.Set_BarAndPercent(BarName.Text, percent);
+                    App.WebSvc.Set_BarAndPercent(BarName.Text, percent);
                     BarName.Text = "There Is " + percent + "% Beer In The Mug!";
                     SamePhoto = 1;
                 }
