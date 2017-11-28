@@ -8,3 +8,5 @@ SocialTapServer.Tests/obj/
 SocialTapServer/obj/
 *.orig
 UpgradeLog*.htm
+SocialTapServer.Tests/bin/
+UnitTest.Test/obj/

@@ -17,6 +17,7 @@ namespace social_tapX
 			MainPage = new NavigationPage (new social_tapX.MainPage());
 		}
 
+
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
