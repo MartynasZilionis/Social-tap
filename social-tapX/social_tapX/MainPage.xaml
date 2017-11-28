@@ -22,7 +22,16 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+            <Label x:Name="LocationShow"
+                   Text=""
+                   TextColor="#E65100"
+                   Opacity="1"
+                   IsVisible="true"
+                   Grid.ColumnSpan="3"
+                   Font="Bold, Italic, Large"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
             <Image x:Name="Backround"
                    Source=""
                    Opacity="0"
@@ -92,6 +101,19 @@
                     VerticalOptions="Center"
                     IsVisible="False"
                     Pressed="Feedback_Pressed"
+                />
+            <Button x:Name="GetLocation"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Location_Pressed"
                 />
         </Grid>        
     </ContentPage.Content>
