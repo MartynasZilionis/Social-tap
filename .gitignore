@@ -5,6 +5,7 @@ social-tapX/.vs/
 .vs/
 SocialTapServer/bin/
 SocialTapServer.Tests/obj/
+SocialTapServer.Tests/bin/
 SocialTapServer/obj/
 *.orig
 UpgradeLog*.htm
