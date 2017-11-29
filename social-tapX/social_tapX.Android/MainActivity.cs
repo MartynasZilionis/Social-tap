@@ -1,25 +1,14 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Android.Graphics;
-using Android;
-using Android.Content;
-using Plugin.Geolocator;
-using Android.Support.V4.Content;
-using static Android.Manifest;
 using Plugin.Permissions;
-using Android.Security;
-using Xamarin.Forms;
-using Android.Provider;
 
 namespace social_tapX.Droid
 {
-	[Activity (Label = "social_tapX", Icon = "@drawable/icon", Theme="@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity (Label = "social_tapX", Icon = "@drawable/icon", Theme="@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate (Bundle bundle)

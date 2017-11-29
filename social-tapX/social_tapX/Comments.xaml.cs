@@ -103,12 +103,12 @@ namespace social_tapX
             Rating = x;
             for(int i = 0; i < x; i++)
             {
-                Star[i].Source = "config\\beerrating.png";
+                Star[i].Source = "beerrating.png";
             }
 
             for (int i = x; i < 10; i++)
             {
-                Star[i].Source = "config\\ratingstar.png";
+                Star[i].Source = "ratingstar.png";
             }
         }
 

@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Android.Graphics;
+using System;
+using System.IO;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace social_tapX
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewPicture : ContentPage
 	{
         private string Name = "";
         private int SamePhoto = 0;
+        private Bitmap BM;
 
 		public NewPicture ()
 		{
@@ -21,22 +20,45 @@ namespace social_tapX
             Backround.Source = MainPage.BackroundImage.Source;
 		}
 
-        private void FromFile_Pressed(object sender, EventArgs e)
+        void ExportBitmapAsPNG(Bitmap bitmap)
         {
-            Photo.Source = "config\\backround.jpg";
-            OK.IsEnabled = true;
-            OK.IsVisible = true;
-            BarName.Text = Name;
-            SamePhoto = 0;
+            var filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
+            var stream = new FileStream(filePath, FileMode.Create);
+            bitmap.Compress(Bitmap.CompressFormat.Png, 100, stream);
+            stream.Close();
         }
 
-        private void FromCamera_Pressed(object sender, EventArgs e)
+        private async void FromCamera_Pressed(object sender, EventArgs e)
         {
-            Photo.Source = "config\\logo.jpg";
-            OK.IsEnabled = true;
-            OK.IsVisible = true;
-            BarName.Text = Name;
-            SamePhoto = 0;
+            ImageSource _photo = "ratingstar.png";
+
+            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+
+            if (photo != null)
+            {
+                try
+                {
+                    System.IO.File.Delete(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg"));
+                }
+                catch (System.IO.FileNotFoundException y)
+                {
+
+                }
+
+                _photo = ImageSource.FromStream(() => { return photo.GetStream(); });
+                Photo.Source = _photo;
+
+                BM = await social_tapX.ImageBitmapHandler.GetImageFromImageSource(_photo, Xamarin.Forms.Forms.Context);
+
+                OK.IsEnabled = true;
+                OK.IsVisible = true;
+                BarName.Text = Name;
+                SamePhoto = 0;
+            }
+            else
+            {
+                BarName.Text = "ERROR";
+            }
         }
 
         private void OK_Pressed(object sender, EventArgs e)
@@ -46,12 +68,21 @@ namespace social_tapX
                 if (BarName.Text == "")
                 {
                     BarName.Placeholder = "Please Enter Bar Name Here";
-                    BarName.PlaceholderColor = Color.Red;
+                    BarName.PlaceholderColor = Xamarin.Forms.Color.Red;
                 }
                 else
                 {
                     Name = BarName.Text;
-                    int percent = Recognition.Recognize();
+                    social_tapX.Recognition RC = social_tapX.Recognition.GetRecognition();
+                    RC.Recognize(BM, 60);
+                    int percent = RC.Proc;
+                    
+                    BM = RC.BITMAP;
+
+                    ExportBitmapAsPNG(BM);
+
+                    Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
+
                     App.WebSvc.Set_BarAndPercent(BarName.Text, percent);
                     BarName.Text = "There Is " + percent + "% Beer In The Mug!";
                     SamePhoto = 1;
@@ -61,7 +92,7 @@ namespace social_tapX
             {
                 BarName.Text = "";
                 BarName.Placeholder = "Please Chose Another Photo";
-                BarName.PlaceholderColor = Color.Red;
+                BarName.PlaceholderColor = Xamarin.Forms.Color.Red;
             }
         }
     }

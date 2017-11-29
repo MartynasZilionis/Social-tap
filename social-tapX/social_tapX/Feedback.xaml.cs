@@ -42,7 +42,7 @@ namespace social_tapX
                 await Task.Delay(20);
             }
             ThankYou.IsVisible = false;
-            if (DoneEvent != null) DoneEvent(this, new EventArgs());
+            DoneEvent?.Invoke(this, new EventArgs());
 
             /*try
             {

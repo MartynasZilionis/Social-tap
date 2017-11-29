@@ -1,17 +1,14 @@
-﻿using Android;
-using Plugin.Geolocator;
+﻿using Plugin.Geolocator;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
 namespace social_tapX
 {
-	public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage
 	{
         public string Name;
         public static Image BackroundImage;

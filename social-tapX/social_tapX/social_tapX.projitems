@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -31,6 +31,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)FeedbackAndDate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ImageBitmapHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -48,7 +49,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Recognition.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TEST.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RestModels\Bar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RestModels\Comment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RestModels\Rating.cs" />
