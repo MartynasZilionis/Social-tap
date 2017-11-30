@@ -36,7 +36,7 @@ namespace SocialTapServer.Database
 
         #endregion Singleton
 
-        private SQLiteConnection _connection;
+        private SQLiteConnection _connection = null;
         private string _dbFileName = "SocialTap.sqlite";
         private DatabaseCache cache = new DatabaseCache();
 

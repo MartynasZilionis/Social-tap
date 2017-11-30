@@ -19,7 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
+
             <Image x:Name="Backround"
                    Source=""
                    IsVisible="true"
@@ -27,20 +27,6 @@
                    Grid.RowSpan="6"
                    Opacity="0.25"
                    />
-            
-            <Button x:Name="FromFile"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="From File"
-                    TextColor="#FFF3E0"
-                    Font="Bold, Italic, Large"
-                    BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    IsVisible="true"
-                    Opacity="1"   
-                    Pressed="FromFile_Pressed"
-                />
 
             <Button x:Name="FromCamera"
                     Grid.Row="1"

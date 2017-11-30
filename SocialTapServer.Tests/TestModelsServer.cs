@@ -11,10 +11,12 @@ namespace SocialTapServer.Tests
         [TestMethod]
         public void TestCorrectBarInitialisation()
         {
-            Models.Bar test = new Models.Bar();
-            test.Id = Guid.NewGuid();
-            test.Name = "Test Name";
-            test.Location = new System.Device.Location.GeoCoordinate(0, 0);
+            Models.Bar test = new Models.Bar
+            {
+                Id = Guid.NewGuid(),
+                Name = "Test Name",
+                Location = new System.Device.Location.GeoCoordinate(0, 0)
+            };
             test.AddComment(new Models.Comment());
             test.AddComment(new Models.Comment());
             test.AddRating(new Models.Rating());
