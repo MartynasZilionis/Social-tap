@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using SocialTapServer.Database;
 using System.Device.Location;
+using System.Threading.Tasks;
 
 namespace SocialTapServer.Controllers
 {
@@ -14,12 +15,12 @@ namespace SocialTapServer.Controllers
     {
         // GET: api/GetBars/15.222222;16.333333/3 (latitude;longitude)
         [Route("api/GetBars/{location}/{number}")]
-        public IHttpActionResult Get(string location, int number)
+        public async Task<IHttpActionResult> Get(string location, int number)
         {
             var parts = location.Split(';');
             try
             {
-                return Ok(DatabaseManager.Instance.GetBars(new GeoCoordinate(float.Parse(parts[0]), float.Parse(parts[1])), number));
+                return Ok(await DatabaseManager.Instance.GetBars(new Coordinate(float.Parse(parts[0]), float.Parse(parts[1])), number));
             }
             catch (FormatException)
             {
@@ -28,26 +29,26 @@ namespace SocialTapServer.Controllers
         }
 
         // GET: api/Bar (WIP)
-        public IHttpActionResult Get()
+        public async Task<IHttpActionResult> Get()
         {
             IEnumerable<Bar> answer = new List<Bar>();
             try
             {
-                answer = DatabaseManager.Instance.GetBars(new GeoCoordinate(0, 0), 5);
+                answer = await DatabaseManager.Instance.GetBars(new Coordinate(0, 0), 5);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                InternalServerError();
+                return InternalServerError(e);
             }
             return Ok(answer);
         }
 
         // GET: api/Bar/00000000-0000-0000-0000-000000000000 (WIP)
-        public IHttpActionResult Get(Guid id)
+        public async Task<IHttpActionResult> Get(Guid id)
         {
             try
             {
-                return Ok(DatabaseManager.Instance.GetBar(id));
+                return Ok(await DatabaseManager.Instance.GetBar(id));
             }
             catch (KeyNotFoundException)
             {
@@ -56,7 +57,7 @@ namespace SocialTapServer.Controllers
         }
 
         // POST: api/Bar
-        public async void Post([FromBody]Bar value)
+        public async Task Post([FromBody]Bar value)
         {
             //TODO: retard-proof everything.
             await DatabaseManager.Instance.AddBar(value);

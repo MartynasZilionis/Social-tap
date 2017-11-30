@@ -93,12 +93,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Database\Upgrade.sql" />
     <Content Include="Database\Initialize.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BarsController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="InvalidIdException.cs" />
@@ -110,9 +111,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301909356_InitialCreate.cs" />
+    <Compile Include="Migrations\201711301909356_InitialCreate.Designer.cs">
+      <DependentUpon>201711301909356_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711301952396_a.cs" />
+    <Compile Include="Migrations\201711301952396_a.Designer.cs">
+      <DependentUpon>201711301952396_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\BarProfile.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -131,6 +142,17 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711301909356_InitialCreate.resx">
+      <DependentUpon>201711301909356_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301952396_a.resx">
+      <DependentUpon>201711301952396_a.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

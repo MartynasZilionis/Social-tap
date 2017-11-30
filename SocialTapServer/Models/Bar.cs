@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Device.Location;
 using System.ComponentModel.DataAnnotations;
 
 namespace SocialTapServer.Models
@@ -27,7 +26,7 @@ namespace SocialTapServer.Models
         /// <summary>
         /// Geographic location of the bar.
         /// </summary>
-        public GeoCoordinate Location { get; set; }
+        public Coordinate Location { get; set; }
 
         /// <summary>
         /// The average mug fill percentage in this bar.
@@ -85,7 +84,7 @@ namespace SocialTapServer.Models
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new GeoCoordinate(0, 0), new List<Comment>(), new List<Rating>()) { }
+        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0), new List<Comment>(), new List<Rating>()) { }
 
         //[JsonIgnore]
         //private List<Comment> comments = new List<Comment>();
@@ -96,7 +95,7 @@ namespace SocialTapServer.Models
         [JsonIgnore]
         private object ratingsLock = new object();
 
-        public Bar(Guid id, string name, GeoCoordinate location, IEnumerable<Comment> comments, IEnumerable<Rating> ratings)
+        public Bar(Guid id, string name, Coordinate location, IEnumerable<Comment> comments, IEnumerable<Rating> ratings)
         {
             Ratings = new List<Rating>(ratings);
             Comments = new List<Comment>(comments);

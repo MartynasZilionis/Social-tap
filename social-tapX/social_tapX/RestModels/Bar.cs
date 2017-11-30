@@ -24,7 +24,7 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Geographic location of the bar.
         /// </summary>
-        //public GeoCoordinate Location { get; set; }
+        public Coordinate Location { get; set; }
 
         /// <summary>
         /// The average mug fill percentage in this bar.

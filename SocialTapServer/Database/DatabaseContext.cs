@@ -9,6 +9,7 @@ namespace SocialTapServer.Database
 {
     public class DatabaseContext : DbContext
     {
+        public DatabaseContext() : base("DatabaseContext") { }
         public DbSet<Bar> Bars { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Rating> Ratings { get; set; }
