@@ -98,7 +98,9 @@
     <Content Include="Database\Initialize.sql" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BarsController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="InvalidIdException.cs" />
     <Compile Include="Database\DatabaseCache.cs" />
     <Compile Include="Controllers\BarController.cs" />

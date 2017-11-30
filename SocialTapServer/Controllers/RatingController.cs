@@ -16,7 +16,7 @@ namespace SocialTapServer.Controllers
         {
             var bar = DatabaseManager.Instance.GetBar(id);
             
-            return Ok(new Rating(bar.Score, 1000, bar.AveragePrice, DateTime.MinValue));
+            return Ok(new Rating(bar.AverageFill, 1000, bar.AveragePrice, DateTime.MinValue));
         }
 
         // GET: api/Rating/00000000-0000-0000-0000-000000000000/0/10
@@ -27,11 +27,9 @@ namespace SocialTapServer.Controllers
         }
 
         // POST: api/Rating/00000000-0000-0000-0000-000000000000
-        public void Post([FromBody]Rating value, Guid id)
+        public async void Post([FromBody]Rating value, Guid id)
         {
-            var bar = DatabaseManager.Instance.GetBar(id);
-
-            bar.AddRating(value);
+            await DatabaseManager.Instance.AddRating(id, value);
         }
     }
 }

@@ -56,7 +56,7 @@ namespace SocialTapServer
         {
             return bars[id];
         }
-
+        /*
         public IEnumerable<Rating> GetRatings(Guid barId, int index, int count)
         {
             return bars[barId].GetRatings(index, count);
@@ -76,5 +76,6 @@ namespace SocialTapServer
         {
             bars[barId].AddComment(comment);
         }
+        */
     }
 }

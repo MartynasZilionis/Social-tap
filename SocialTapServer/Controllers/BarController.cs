@@ -12,7 +12,7 @@ namespace SocialTapServer.Controllers
 {
     public class BarController : ApiController
     {
-        // GET: api/GetBars/15.222;16.333/3 (latitude;longitude)
+        // GET: api/GetBars/15.222222;16.333333/3 (latitude;longitude)
         [Route("api/GetBars/{location}/{number}")]
         public IHttpActionResult Get(string location, int number)
         {
@@ -56,10 +56,10 @@ namespace SocialTapServer.Controllers
         }
 
         // POST: api/Bar
-        public void Post([FromBody]Bar value)
+        public async void Post([FromBody]Bar value)
         {
             //TODO: retard-proof everything.
-            DatabaseManager.Instance.AddBar(value);
+            await DatabaseManager.Instance.AddBar(value);
         }
     }
 }

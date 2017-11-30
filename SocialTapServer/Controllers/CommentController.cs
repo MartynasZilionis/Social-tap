@@ -19,11 +19,9 @@ namespace SocialTapServer.Controllers
         }
 
         // POST: api/Comment/00000000-0000-0000-0000-000000000000
-        public void Post([FromBody]Comment value, Guid id)
+        public async void Post([FromBody]Comment value, Guid id)
         {
-            var bar = DatabaseManager.Instance.GetBar(id);
-
-            bar.AddComment(value);
+            await DatabaseManager.Instance.AddComment(id, value);
         }
     }
 }

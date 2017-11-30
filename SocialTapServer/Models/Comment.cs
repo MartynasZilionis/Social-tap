@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,12 @@ namespace SocialTapServer.Models
     /// </summary>
     public class Comment
     {
+        /// <summary>
+        /// Unique ID of the comment.
+        /// </summary>
+        [Key]
+        [JsonIgnore]
+        public Guid Id { get; set; }
         /// <summary>
         /// Name of whoever wrote the comment.
         /// </summary>
@@ -26,11 +34,15 @@ namespace SocialTapServer.Models
         /// </summary>
         public DateTime Date { get; set; }
 
+        [JsonIgnore]
+        public Bar Bar { get; set; }
+
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
         public Comment()
         {
+            Id = Guid.NewGuid();
             Author = "Nobody";
             Content = "Dummy comment";
             Date = DateTime.UtcNow;
