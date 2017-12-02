@@ -56,6 +56,10 @@
       <DependentUpon>ReadCommentsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ReadCommentsPage_2.xaml.cs">
+      <DependentUpon>ReadCommentsPage_2.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Recognition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RestModels\Bar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RestModels\Comment.cs" />
@@ -123,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)BarsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)ReadCommentsPage_2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

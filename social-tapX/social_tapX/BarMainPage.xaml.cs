@@ -12,14 +12,21 @@ namespace social_tapX
     {
 
         //public object LabelGeolocation { get; private set; }
+        private Rated_Bar Bar;
         private string BarName;
 
-        public BarMainPage(string barName)
+        public BarMainPage(Rated_Bar bar)
         {
-            BarName = barName;
+            Bar = bar;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
             InitializeMainMenu();
+            GetBarDetails();
+        }
+
+        private void GetBarDetails()
+        {
+            BarName = Bar.Name;
         }
 
         async private void DoneHandler(object sender, EventArgs y)
@@ -42,8 +49,7 @@ namespace social_tapX
             Picture.Text = "Take a Picture";
             Comment.Text = "Comment";
             Rating.Text = "View Top Rated";
-            Feed_back.Text = "Feedback :)";
-            Button[] Buttons = { Picture, Comment, Rating, Feed_back, GetLocation };
+            Button[] Buttons = { Picture, Comment, Rating};
             foreach (Button B in Buttons)
             {
                 B.IsVisible = true;
@@ -104,17 +110,12 @@ namespace social_tapX
 
         private void Comment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ChoseCommentsPage());
+            Navigation.PushAsync(new ChoseCommentsPage(Bar));
         }
 
         private void Rating_Pressed(object sender, EventArgs e)
         {
             Navigation.PushAsync(new Ratings());
-        }
-
-        private void Feedback_Pressed(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new Feedback());
         }
     }
 }

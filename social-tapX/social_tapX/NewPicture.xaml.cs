@@ -42,7 +42,6 @@ namespace social_tapX
             ImageSource _photo = "ratingstar.png";
 
             var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
-
             if (photo != null)
             {
                 try
@@ -63,6 +62,7 @@ namespace social_tapX
                 OK.IsVisible = true;
                 BarName.Text = Name;
                 SamePhoto = 0;
+
             }
             else
             {
@@ -74,34 +74,27 @@ namespace social_tapX
         {
             if (SamePhoto == 0)
             {
-                if (BarName.Text == "")
-                {
-                    BarName.Placeholder = "Please Enter Bar Name Here";
-                    BarName.PlaceholderColor = Xamarin.Forms.Color.Red;
-                }
-                else
-                {
-                    Name = BarName.Text;
-                    social_tapX.Recognition RC = social_tapX.Recognition.GetRecognition();
-                    RC.Recognize(BM, 60);
-                    int percent = RC.Proc;
-                    
-                    BM = RC.BITMAP;
+                Name = BarName.Text;
+                social_tapX.Recognition RC = social_tapX.Recognition.GetRecognition();
+                RC.Recognize(BM, 60);
+                int percent = RC.Proc;
+                 
+                BM = RC.BITMAP;
 
-                    ExportBitmapAsPNG(BM);
+                ExportBitmapAsPNG(BM);
 
-                    Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
+                Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
 
-                    App.WebSvc.Set_BarAndPercent(BarName.Text, percent);
-                    BarName.Text = "There Is " + percent + "% Beer In The Mug!";
-                    SamePhoto = 1;
-                }
+                App.WebSvc.Set_BarAndPercent(BarName.Text, percent);
+                BarName.IsVisible = true;
+                BarName.Text = "There Is " + percent + "% Beer In The Mug!";
+                SamePhoto = 1;
             }
             else
             {
-                BarName.Text = "";
-                BarName.Placeholder = "Please Chose Another Photo";
-                BarName.PlaceholderColor = Xamarin.Forms.Color.Red;
+                BarName.IsVisible = true;
+                BarName.Text = "Please Chose Another Photo";
+                BarName.TextColor = Xamarin.Forms.Color.Red;
             }
         }
     }

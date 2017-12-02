@@ -88,7 +88,9 @@ namespace social_tapX
             Question.IsVisible = true;
             ExistingBar.Text = "Choose Bar";
             NewBar.Text = "Add Bar";
-            Button[] Buttons = { ExistingBar, NewBar};
+            Feed_back.Text = "Feedback :)";
+            Rating.Text = "Top Rated Bars";
+            Button[] Buttons = { ExistingBar, NewBar, Feed_back, Rating};
             foreach (Button B in Buttons)
                 {
                     B.IsVisible = true;
@@ -105,7 +107,7 @@ namespace social_tapX
             }
         }
 
-        private async void Location_Pressed(object sender, EventArgs e)
+        private async void GatherLocation()
         {
             TimeSpan timeout = new TimeSpan(0, 0, 10);
             try
@@ -145,12 +147,22 @@ namespace social_tapX
 
         private void ExistingBar_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new BarsList());
+            GatherLocation();
+            Navigation.PushAsync(new BarsList(Lat, Long));
         }
 
         private void NewBar_Pressed(object sender, EventArgs e)
         {
-           
+            GatherLocation();
+        }
+
+        private void Feedback_Pressed(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Feedback());
+        }
+        private void Rating_Pressed(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Ratings());
         }
 
     }

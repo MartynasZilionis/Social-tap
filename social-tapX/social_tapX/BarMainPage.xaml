@@ -88,18 +88,6 @@
                     Opacity="0"
                     Pressed="Rating_Pressed"
                 />
-            <Button x:Name="Feed_back"
-                    Grid.Row="5"
-                    Grid.Column="1"
-                    Text=""
-                    TextColor="#FFF3E0"
-                    Font="Bold, Italic, Large"
-                    BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    IsVisible="False"
-                    Pressed="Feedback_Pressed"
-                />
             <Button x:Name="GetLocation"
                     Grid.Row="6"
                     Grid.Column="1"
