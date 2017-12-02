@@ -52,18 +52,18 @@ namespace social_tapX
             Next.Text = "Next";
             Back.Text = "Back";
 
-            LoadComments(Bar_Name);
+            LoadCommentsAsync(Bar_Name);
         }
 
-        private void LoadComments(string Bar_Name)
+        private async void LoadCommentsAsync(string Bar_Name)
         {
             int i = 0;
             foreach (Label L in Labels){
                 L.FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label));
-
-                if (i < App.WebSvc.GetListOfComments(Bar_Name, Count).Count)
+                var comments = await App.WebSvc.GetComments(Guid.Parse(Bar_Name), 0, Count);
+                if (i < comments.Count())
                 {
-                    L.Text = App.WebSvc.GetListOfComments(Bar_Name, Count).ElementAt(i);
+                    L.Text = comments.ElementAt(i).Content;
                 }
                 else
                 {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Device.Location;
+using System.ComponentModel.DataAnnotations;
 
 namespace SocialTapServer.Models
 {
@@ -15,12 +15,8 @@ namespace SocialTapServer.Models
         /// <summary>
         /// Unique ID of the bar.
         /// </summary>
+        [Key]
         public Guid Id { get; set; }
-
-        public void AddComment(string v)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// Name of the bar.
@@ -30,18 +26,18 @@ namespace SocialTapServer.Models
         /// <summary>
         /// Geographic location of the bar.
         /// </summary>
-        public GeoCoordinate Location { get; set; }
+        public Coordinate Location { get; set; }
 
         /// <summary>
         /// The average mug fill percentage in this bar.
         /// </summary>
-        public float Score
+        public float AverageFill
         {
             get
             {
-                if (ratings.Count == 0)
+                if (Ratings.Count == 0)
                     return 0;
-                return (from r in ratings select r.FillPercentage).Average();
+                return (from r in Ratings select r.FillPercentage).Average();
             }
         }
 
@@ -52,86 +48,60 @@ namespace SocialTapServer.Models
         {
             get
             {
-                if (ratings.Count == 0)
+                if (Ratings.Count == 0)
                     return 0;
-                return (from r in ratings select ((r.MugPrice / r.MugSize) * 1000)).Average();
+                return (from r in Ratings select ((r.MugPrice / r.MugSize) * 1000)).Average();
             }
         }
 
         /// <summary>
-        /// Amount of comments uploaded for this bar.
+        /// Comments uploaded for this bar.
         /// </summary>
-        public int Comments
-        {
+        [JsonIgnore]
+        public List<Comment> Comments { get; set; }
+
+        /// <summary>
+        /// Ratings uploaded for this bar.
+        /// </summary>
+        [JsonIgnore]
+        public List<Rating> Ratings { get; set; }
+
+        public int CommentsCount {
             get
             {
-                return comments.Count;
+                return Comments.Count;
             }
         }
 
-        /// <summary>
-        /// Amount of ratings uploaded for this bar.
-        /// </summary>
-        public int Ratings
+        public int RatingsCount
         {
             get
             {
-                return ratings.Count;
+                return Ratings.Count;
             }
         }
 
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Bar()
-        {
-            Id = Guid.NewGuid();
-            Name = "Dummy Bar";
-            Location = new GeoCoordinate(0,0);
-        }
+        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0), new List<Comment>(), new List<Rating>()) { }
 
-        [JsonIgnore]
-        private List<Comment> comments = new List<Comment>();
-        [JsonIgnore]
-        private List<Rating> ratings = new List<Rating>();
+        //[JsonIgnore]
+        //private List<Comment> comments = new List<Comment>();
+        //[JsonIgnore]
+        //private List<Rating> ratings = new List<Rating>();
         [JsonIgnore]
         private object commentsLock = new object();
         [JsonIgnore]
         private object ratingsLock = new object();
 
-        public Bar(Guid id, string name, GeoCoordinate location, IEnumerable<Comment> comments, IEnumerable<Rating> ratings)
+        public Bar(Guid id, string name, Coordinate location, IEnumerable<Comment> comments, IEnumerable<Rating> ratings)
         {
+            Ratings = new List<Rating>(ratings);
+            Comments = new List<Comment>(comments);
             Id = id;
-            this.comments.AddRange(comments);
-            this.ratings.AddRange(ratings);
             Name = name;
             Location = location;
-        }
-
-        public IEnumerable<Rating> GetRatings(int index, int count)
-        {
-            return ratings.GetRange(index, count);
-        }
-        
-        public IEnumerable<Comment> GetComments(int index, int count)
-        {
-            return comments.GetRange(index, count);
-        }
-
-        public void AddRating(Rating rating)
-        {
-            lock(ratingsLock)
-            {
-                ratings.Add(rating);
-            }
-        }
-
-        public void AddComment(Comment comment)
-        {
-            lock (commentsLock)
-            {
-                comments.Add(comment);
-            }
         }
     }
 }

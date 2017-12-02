@@ -1,7 +1,6 @@
 ﻿using SocialTapServer.Models;
 using System;
 using System.Collections.Generic;
-using System.Device.Location;
 using System.Linq;
 using System.Web;
 
@@ -22,7 +21,7 @@ namespace SocialTapServer
                     guid,
                     new Bar(guid,
                     "Dummy Bar",
-                    new GeoCoordinate(0,0),
+                    new Coordinate(0,0),
                     new List<Comment>
                     {
                         new Comment()
@@ -43,9 +42,9 @@ namespace SocialTapServer
             }
         }
 
-        public IEnumerable<Bar> GetBars(GeoCoordinate location, int count)
+        public IEnumerable<Bar> GetBars(Coordinate location, int count)
         {
-            IEnumerable<Bar> answer = bars.Select(x => x.Value).OrderBy(x => { return x.Location.GetDistanceTo(location); }).Take(count);
+            IEnumerable<Bar> answer = new List<Bar>();//bars.Select(x => x.Value).OrderBy(x => { return x.Location.GetDistanceTo(location); }).Take(count);
                 //(from x in bars
                                        //orderby x.Value.Location.GetDistanceTo(location)
                                        //select (x => { return x.Value; })).Take(count);
@@ -56,7 +55,7 @@ namespace SocialTapServer
         {
             return bars[id];
         }
-
+        /*
         public IEnumerable<Rating> GetRatings(Guid barId, int index, int count)
         {
             return bars[barId].GetRatings(index, count);
@@ -76,5 +75,6 @@ namespace SocialTapServer
         {
             bars[barId].AddComment(comment);
         }
+        */
     }
 }

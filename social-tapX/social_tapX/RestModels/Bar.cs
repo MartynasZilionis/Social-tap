@@ -14,6 +14,7 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Unique ID of the bar.
         /// </summary>
+        [JsonIgnore]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -24,106 +25,41 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Geographic location of the bar.
         /// </summary>
-        //public GeoCoordinate Location { get; set; }
+        public Coordinate Location { get; set; }
 
         /// <summary>
         /// The average mug fill percentage in this bar.
         /// </summary>
-        public float Score
-        {
-            get
-            {
-                if (ratings.Count == 0)
-                    return 0;
-                return (from r in ratings select r.FillPercentage).Average();
-            }
-        }
+        [JsonIgnore]
+        public float? Score{ get; set; }
 
         /// <summary>
         /// The average beer price (EUR/l).
         /// </summary>
-        public float AveragePrice
-        {
-            get
-            {
-                if (ratings.Count == 0)
-                    return 0;
-                return (from r in ratings select ((r.MugPrice / r.MugSize) * 1000)).Average();
-            }
-        }
+        [JsonIgnore]
+        public float? AveragePrice { get; set; }
 
         /// <summary>
         /// Amount of comments uploaded for this bar.
         /// </summary>
-        public int Comments
-        {
-            get
-            {
-                return comments.Count;
-            }
-        }
+        [JsonIgnore]
+        public int? CommentsCount { get; set; }
 
         /// <summary>
         /// Amount of ratings uploaded for this bar.
         /// </summary>
-        public int Ratings
-        {
-            get
-            {
-                return ratings.Count;
-            }
-        }
+        [JsonIgnore]
+        public int RatingsCount { get; set; }
 
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Bar()
-        {
-            Id = Guid.NewGuid();
-            Name = "Dummy Bar";
-        }
+        public Bar() : this("Dummy Bar", new Coordinate(0,0)) { }
 
-        [JsonIgnore]
-        private List<Comment> comments = new List<Comment>();
-        [JsonIgnore]
-        private List<Rating> ratings = new List<Rating>();
-        [JsonIgnore]
-        private object commentsLock = new object();
-        [JsonIgnore]
-        private object ratingsLock = new object();
-
-        public Bar(Guid id, string name, IEnumerable<Comment> comments, IEnumerable<Rating> ratings)
+        public Bar(string name, Coordinate coord)
         {
-            Id = id;
-            this.comments.AddRange(comments);
-            this.ratings.AddRange(ratings);
             Name = name;
-        }
-
-        public IEnumerable<Rating> GetRatings(int index, int count)
-        {
-            return ratings.GetRange(index, count);
-        }
-        
-        public IEnumerable<Comment> GetComments(int index, int count)
-        {
-            return comments.GetRange(index, count);
-        }
-
-        public void AddRating(Rating rating)
-        {
-            lock(ratingsLock)
-            {
-                ratings.Add(rating);
-            }
-        }
-
-        public void AddComment(Comment comment)
-        {
-            lock (commentsLock)
-            {
-                comments.Add(comment);
-            }
+            Location = coord;
         }
     }
 }

@@ -12,3 +12,4 @@ UpgradeLog*.htm
 SocialTapServer.Tests/bin/
 UnitTest.Test/obj/
 UnitTest.Test/bin/
+*.user
