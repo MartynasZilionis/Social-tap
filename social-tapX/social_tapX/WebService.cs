@@ -82,11 +82,32 @@ namespace social_tapX
                 new Rated_Bar("Y", 5.45, 0.4),
                 new Rated_Bar("J", 5.45, 0.4),
                 new Rated_Bar("K", 5.45, 0.4),
+                new Rated_Bar(" (ﾉಥ益ಥ）ﾉ ︵ ┻━┻", 5.45, 0.4),
+                new Rated_Bar("Trys Biciuliai", 85.45, 9.4),
+                new Rated_Bar("Du Biciuliai", 75.45, 9.4),
+                new Rated_Bar("Vienas Draugelis", 25.45, 5.4),
+                new Rated_Bar("(╯°□°）╯︵ ┻━┻", 5.45, 0.4),
+                new Rated_Bar("AA", 5.45, 0.4),
+                new Rated_Bar("BB", 5.45, 0.4),
+                new Rated_Bar("CC", 5.45, 0.4),
+                new Rated_Bar("DD", 5.45, 0.4),
+                new Rated_Bar("EE", 5.45, 0.4),
+                new Rated_Bar("FF", 5.45, 0.4),
+                new Rated_Bar("GG", 5.45, 0.4),
+                new Rated_Bar("HH", 5.45, 0.4),
+                new Rated_Bar("(╯°□°）", 5.45, 0.4),
+                new Rated_Bar("(╯°□°）╯", 5.45, 0.4),
+                new Rated_Bar("︵ ┻━┻", 5.45, 0.4),
+                new Rated_Bar("II", 5.45, 0.4),
+                new Rated_Bar("YY", 5.45, 0.4),
+                new Rated_Bar("JJ", 5.45, 0.4),
+                new Rated_Bar("KK", 5.45, 0.4),
                 new Rated_Bar(" (ﾉಥ益ಥ）ﾉ ︵ ┻━┻", 5.45, 0.4)
             };
 
             return ListOfBars;
         }
+
 
 
         //Šitas metodas turi grąžinti komentarus baro, kurio pavadinimas Bar_Name. Visos kitos taisyklės kaip ir 
@@ -171,8 +192,6 @@ namespace social_tapX
                 return JsonConvert.DeserializeObject<List<T>>(await response.Content.ReadAsStringAsync());
             }
         }
-
-
     }
     
 }

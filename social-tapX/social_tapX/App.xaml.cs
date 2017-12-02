@@ -10,7 +10,7 @@ namespace social_tapX
 	public partial class App : Application
 	{
         public static IWebService WebSvc { get; private set; }
-		public App ()
+        public App ()
 		{
 			InitializeComponent();
             WebSvc = new WebService();

@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:social_tapX"
-             x:Class="social_tapX.MainPage"
-             Title = "Title">
+             x:Class="social_tapX.BarMainPage">
     <ContentPage.Content Title = "Title">
 
         <Grid ColumnSpacing="10" RowSpacing="10">
@@ -22,6 +20,16 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Label x:Name="LocationShow"
+                   Text=""
+                   TextColor="#E65100"
+                   Opacity="1"
+                   IsVisible="true"
+                   Grid.ColumnSpan="3"
+                   Font="Bold, Italic, Large"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   />
             <Image x:Name="Backround"
                    Source=""
                    Opacity="0"
@@ -40,7 +48,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    />
-            <Button x:Name="ExistingBar"
+            <Button x:Name="Picture"
                     Grid.Row="2"
                     Grid.Column="1"
                     Text=""
@@ -51,9 +59,9 @@
                     VerticalOptions="Center"
                     IsVisible="False"
                     Opacity="0"
-                    Pressed="ExistingBar_Pressed"
+                    Pressed="Picture_Pressed"
                 />
-            <Button x:Name="NewBar"
+            <Button x:Name="Comment"
                     Grid.Row="3"
                     Grid.Column="1"
                     Text=""
@@ -64,8 +72,47 @@
                     VerticalOptions="Center"
                     IsVisible="False"
                     Opacity="0"
-                    Pressed="NewBar_Pressed"
+                    Pressed="Comment_Pressed"
                 />
-        </Grid>        
+            <Button x:Name="Rating"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Rating_Pressed"
+                />
+            <Button x:Name="Feed_back"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    IsVisible="False"
+                    Pressed="Feedback_Pressed"
+                />
+            <Button x:Name="GetLocation"
+                    Grid.Row="6"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Location_Pressed"
+                />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
