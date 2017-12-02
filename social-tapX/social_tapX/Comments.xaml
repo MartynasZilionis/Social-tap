@@ -53,27 +53,29 @@
                     Pressed="OK_Pressed"
                 />
 
-            <Entry x:Name="BarName"
+            <Label x:Name="BarName"
                    Grid.Row="1"
                    Grid.Column="1"
                    Grid.ColumnSpan="12"
-                   Placeholder="Bar Name Goes Here"
-                   PlaceholderColor="#E65100"
                    Text=""
                    Opacity="1"
                    IsVisible="true"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="FillAndExpand"
                    FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
                    />
 
             <Editor x:Name="Comment"
                     Text=""
                     Grid.Row="2"
                     Grid.Column="1"
+                    Grid.RowSpan="1"
                     Grid.ColumnSpan="12"
                     FontSize="Medium"  
                     Focused="Comment_Focused"
+                    IsVisible="True"
                     />
             
             <Label x:Name="ThankYou"
@@ -102,7 +104,7 @@
 
                    Grid.Row="3"
                    Grid.Column="1"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star2_B"
@@ -119,7 +121,7 @@
 
                    Grid.Row="3"
                    Grid.Column="2"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star3_B"
@@ -134,7 +136,7 @@
                    Source=""
                    Grid.Row="3"
                    Grid.Column="3"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star4_B"
@@ -150,7 +152,7 @@
 
                    Grid.Row="3"
                    Grid.Column="4"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star5_B"
@@ -166,7 +168,7 @@
 
                    Grid.Row="3"
                    Grid.Column="5"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star6_B"
@@ -182,7 +184,7 @@
 
                    Grid.Row="3"
                    Grid.Column="6"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star7_B"
@@ -196,9 +198,11 @@
             <Image x:Name="Star7_I"
                    Source=""
 
-                   Grid.Row="3"
-                   Grid.Column="7"
-                   IsEnabled="False"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star8_B"
@@ -214,7 +218,7 @@
 
                    Grid.Row="3"
                    Grid.Column="8"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star9_B"
@@ -230,7 +234,7 @@
 
                    Grid.Row="3"
                    Grid.Column="9"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
 
             <Button x:Name="Star10_B"
@@ -246,7 +250,7 @@
 
                    Grid.Row="3"
                    Grid.Column="10"
-                   IsEnabled="False"
+                   IsVisible="False"
                 />
             <!--#endregion-->
         </Grid>

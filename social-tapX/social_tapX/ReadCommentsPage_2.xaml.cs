@@ -11,28 +11,28 @@ using Xamarin.Forms.Xaml;
 namespace social_tapX
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class BarsList : ContentPage
+    public partial class ReadCommentsPage_2 : ContentPage
     {
 
         private int Count;
         private int Stop = 0;
-        private double Lat;
-        private double Long;
-        public BarsList(double Lat_, double Long_)
+        private Rated_Bar Bar;
+        public ReadCommentsPage_2(Rated_Bar bar)
         {
-            Lat = Lat_;
-            Long = Long_;
+            Bar = bar;
             InitializeComponent();
-            ListView.ItemsSource = App.WebSvc.GetListOfBars(999);
+            ListView.ItemsSource = App.WebSvc.GetListOfComments(Bar.Name ,999);
+
+
+
+
 
         }
-
-        void OnBarSelect(object sender, SelectedItemChangedEventArgs e)
+        void OnCommentSelect(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
             {
-                var Bar = e.SelectedItem as Rated_Bar;
-                Navigation.PushAsync(new BarMainPage(Bar));
+                
             }
         }
 

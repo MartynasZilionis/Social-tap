@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:social_tapX"
              x:Class="social_tapX.MainPage"
-             Title = "Title">
+             Title = "SocialTapX">
     <ContentPage.Content Title = "Title">
 
         <Grid ColumnSpacing="10" RowSpacing="10">
@@ -64,7 +64,34 @@
                     VerticalOptions="Center"
                     IsVisible="False"
                     Opacity="0"
+                    IsEnabled="False"
                     Pressed="NewBar_Pressed"
+                />
+            <Button x:Name="Feed_back"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    IsVisible="False"
+                    Pressed="Feedback_Pressed"
+                />
+            <Button x:Name="Rating"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="Rating_Pressed"
                 />
         </Grid>        
     </ContentPage.Content>

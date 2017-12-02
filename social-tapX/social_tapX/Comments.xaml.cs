@@ -15,32 +15,42 @@ namespace social_tapX
         private string barname;
         private string comment;
         private int Rating = 0;
-        
+        private Rated_Bar Bar;
         private Image[] Star;
         private int RatingFlag = 0;
         private int FocusFlag = 0;
 
-        public Comments ()
+        public Comments (Rated_Bar bar)
 		{
+            Bar = bar;
 			InitializeComponent ();
+            PrepareWindow();
+            //Backround.Source = "ratingstar.png";
             Backround.Source = MainPage.BackroundImage.Source;
             Star = new List<Image> { Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I }.ToArray();
-            
             foreach (Image S in Star)
             {
-                S.Source = "config\\ratingstar.png";
+                // S.Source = "config\\ratingstar.png";
+                //S.Source = ImageSource.FromFile("ratingstar.png");
+                S.Source = "ratingstar.png";
+                //S.Source = StarImage.Source;
+                S.IsVisible = true;
             }
         }
 
+        private void PrepareWindow()
+        {
+            BarName.Text = "Feedback for " + Bar.Name;
+            Comment.HeightRequest = 60;
+        }
         async private void OK_Pressed(object sender, EventArgs e)
         {
             if ((BarName.Text != "") && (Comment.Text != "") && (Comment.Text != "Please Enter Your Comment Here"))
             {
-                this.barname = BarName.Text;
+                this.barname = Bar.Name;
                 this.comment = Comment.Text;
                 SaveInfo();
                 BarName.IsVisible = false;
-                BarName.IsEnabled = false;
                 Comment.IsVisible = false;
                 Comment.IsEnabled = false;
                 OK.IsEnabled = false;
@@ -78,11 +88,6 @@ namespace social_tapX
                 {
                     //its all good here, just skip it
                 }
-            }
-            else if (BarName.Text == "")
-            {
-                BarName.PlaceholderColor = Color.Red;
-                BarName.Placeholder = "Please Enter Bar Name";                
             }
             else if (Rating != 0)
             {
