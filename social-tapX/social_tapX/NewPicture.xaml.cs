@@ -25,7 +25,7 @@ namespace social_tapX
 
         void GetBarName(string BarName)
         {
-            ShowBarName.Text = "Adding photo for bar " + BarName;
+            ShowBarName.Text = "Adding photo for bar\n" + BarName;
             ShowBarName.IsVisible = true;
         }
 
@@ -39,7 +39,7 @@ namespace social_tapX
 
         private async void FromCamera_Pressed(object sender, EventArgs e)
         {
-            ImageSource _photo = "ratingstar.png";
+            ImageSource _photo = null;
 
             var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
             if (photo != null)

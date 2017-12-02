@@ -188,9 +188,6 @@
     <AndroidResource Include="Resources\Drawable\ratingstar.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\backround.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ratingstar.png" />
   </ItemGroup>
   <Import Project="..\social_tapX\social_tapX.projitems" Label="Shared" Condition="Exists('..\social_tapX\social_tapX.projitems')" />
