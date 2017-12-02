@@ -13,12 +13,21 @@ namespace social_tapX
         private string Name = "";
         private int SamePhoto = 0;
         private Bitmap BM;
+        private string BarWithName;
 
-		public NewPicture ()
+		public NewPicture (string barWithName)
 		{
+            BarWithName = barWithName;
 			InitializeComponent ();
             Backround.Source = MainPage.BackroundImage.Source;
+            GetBarName(BarWithName);
 		}
+
+        void GetBarName(string BarName)
+        {
+            ShowBarName.Text = "Adding photo for bar " + BarName;
+            ShowBarName.IsVisible = true;
+        }
 
         void ExportBitmapAsPNG(Bitmap bitmap)
         {

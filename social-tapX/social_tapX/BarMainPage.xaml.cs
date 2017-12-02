@@ -8,35 +8,24 @@ using Xamarin.Forms;
 
 namespace social_tapX
 {
-    public partial class MainPage : ContentPage
-	{
-        public string Name;
-        public static Image BackroundImage;
-        public static int WidthIs = 0;
-        public static int HeightIs = 0;
-        private int timeout;
-        private double Lat;
-        private double Long;
+    public partial class BarMainPage : ContentPage
+    {
 
         //public object LabelGeolocation { get; private set; }
+        private string BarName;
 
-        public MainPage()
+        public BarMainPage(string barName)
         {
+            BarName = barName;
             InitializeComponent();
-
-            Feedback.DoneEvent += DoneHandler;
-
-            Page ForSize = new ContentPage();
-            WidthIs = (int)ForSize.Width;
-            HeightIs = (int)ForSize.Height;
-            ForSize = null;
-            GetImage();
-            Initialize();
+            Backround.Source = MainPage.BackroundImage.Source;
+            InitializeMainMenu();
         }
 
         async private void DoneHandler(object sender, EventArgs y)
         {
-            try {
+            try
+            {
                 await Navigation.PopAsync();
             }
             catch (ArgumentOutOfRangeException e)
@@ -45,54 +34,20 @@ namespace social_tapX
             }
         }
 
-        async void Initialize()
-        {
-            InitializeBackround();
-            await Task.Delay(5000);
-            InitializeMainMenu();
-        }
-
-        async void InitializeBackround()
-        {
-            Backround.Source = BackroundImage.Source;
-            
-            Backround.Opacity = 0;
-            Backround.IsVisible = true;
-            Backround.HeightRequest = HeightIs;
-            Backround.WidthRequest = WidthIs;
-
-            for (double i = 0; i < 1; i += 0.017)
-            {
-                Backround.Opacity = i;
-                 await Task.Delay(50);
-            }
-
-            for (double i = 1; i > 0.25; i -= 0.017)
-            {
-                Backround.Opacity = i;
-                await Task.Delay(50);
-            }
-        }
-
-        void GetImage()
-        {
-            BackroundImage = new Image { Source = "logo.jpg" };
-            BackroundImage.WidthRequest = WidthIs;
-            BackroundImage.HeightRequest = HeightIs;
-        }
-
-
         async void InitializeMainMenu()
         {
             Question.Text = "Would You Like To:";
             Question.IsVisible = true;
-            ExistingBar.Text = "Choose Bar";
-            NewBar.Text = "Add Bar";
-            Button[] Buttons = { ExistingBar, NewBar};
+            GetLocation.Text = "Get your location";
+            Picture.Text = "Take a Picture";
+            Comment.Text = "Comment";
+            Rating.Text = "View Top Rated";
+            Feed_back.Text = "Feedback :)";
+            Button[] Buttons = { Picture, Comment, Rating, Feed_back, GetLocation };
             foreach (Button B in Buttons)
-                {
-                    B.IsVisible = true;
-                }
+            {
+                B.IsVisible = true;
+            }
 
             for (double i = 0; i < 1; i += 0.017)
             {
@@ -127,8 +82,7 @@ namespace social_tapX
                 if (status == PermissionStatus.Granted)
                 {
                     var results = await CrossGeolocator.Current.GetPositionAsync(timeout);
-                    Lat = results.Latitude;
-                    Long = results.Longitude;
+                    LocationShow.Text = "Lat: " + results.Latitude + " Long: " + results.Longitude;
                 }
                 else if (status != PermissionStatus.Unknown)
                 {
@@ -138,20 +92,29 @@ namespace social_tapX
             catch (Exception ex)
             {
 
-                //Exeption log here
+                LocationShow.Text = "Error: " + ex;
             }
 
         }
 
-        private void ExistingBar_Pressed(object sender, EventArgs e)
+        private void Picture_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new BarsList());
+            Navigation.PushAsync(new NewPicture(BarName));
         }
 
-        private void NewBar_Pressed(object sender, EventArgs e)
+        private void Comment_Pressed(object sender, EventArgs e)
         {
-           
+            Navigation.PushAsync(new ChoseCommentsPage());
         }
 
+        private void Rating_Pressed(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Ratings());
+        }
+
+        private void Feedback_Pressed(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Feedback());
+        }
     }
 }
