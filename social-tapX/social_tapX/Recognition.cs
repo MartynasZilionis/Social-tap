@@ -100,7 +100,7 @@ namespace social_tapX
         //Alaus apacia
         private void BeerBottom(Image<Hsv, Byte> X)
         {
-            for (int x = 200; x > 0; x++)
+            for (int x = 200; x < 400; x++)
             {
                 if ((X.Data[x, 200, 0] <= CPlus[0] && X.Data[x, 200, 0] >= CMinus[0]) &&
                     (X.Data[x, 200, 1] <= CPlus[1] && X.Data[x, 200, 1] >= CMinus[1]) &&
