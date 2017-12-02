@@ -13,3 +13,4 @@ SocialTapServer.Tests/bin/
 UnitTest.Test/obj/
 UnitTest.Test/bin/
 *.user
+SocialTapServer/Properties/PublishProfiles/SocialTapX - Web Deploy.pubxml
