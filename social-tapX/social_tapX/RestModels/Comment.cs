@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,7 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Date when the comment was written.
         /// </summary>
+        [JsonIgnore]
         public DateTime Date { get; set; }
 
         /// <summary>
@@ -33,7 +35,6 @@ namespace social_tapX.RestModels
         {
             Author = "Nobody";
             Content = "Dummy comment";
-            Date = DateTime.UtcNow;
         }
     }
 }
