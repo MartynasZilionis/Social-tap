@@ -33,10 +33,10 @@ namespace social_tapX
             CreateBar.IsVisible = true;
             
         }
-        async private void UploadBar()
+         private void UploadBar()
         {
             Bar = new RestModels.Bar(barName, coords);
-            await App.WebSvc.UploadBar(Bar);
+            App.WebSvc.UploadBar(Bar);
         }
         private void AddBar_Pressed(object sender, EventArgs e)
         {

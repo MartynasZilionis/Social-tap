@@ -162,7 +162,7 @@ namespace social_tapX
         }
         private void Rating_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Ratings());
+            Navigation.PushAsync(new Ratings_2());
         }
 
     }

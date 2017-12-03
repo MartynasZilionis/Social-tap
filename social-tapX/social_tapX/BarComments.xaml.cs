@@ -60,7 +60,9 @@ namespace social_tapX
             int i = 0;
             foreach (Label L in Labels){
                 L.FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label));
+                //var comments = await App.WebSvc.GetComments(Guid.Parse(Bar_Name), 0, Count);
                 var comments = await App.WebSvc.GetComments(Guid.Parse(Bar_Name), 0, Count);
+
                 if (i < comments.Count())
                 {
                     L.Text = comments.ElementAt(i).Content;

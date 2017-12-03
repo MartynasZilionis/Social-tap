@@ -36,7 +36,8 @@ namespace social_tapX
             if (e.SelectedItem != null)
             {
                 RestModels.Bar Bar = e.SelectedItem as RestModels.Bar;
-                
+
+
                 Navigation.PushAsync(new BarMainPage(Bar));
             }
         }
