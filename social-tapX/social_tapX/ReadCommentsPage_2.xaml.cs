@@ -24,7 +24,7 @@ namespace social_tapX
         async private void Start()
         {
             IEnumerable<RestModels.Comment> Comments = await App.WebSvc.GetComments(Bar.Id, 0, 200);
-            ListView.ItemsSource = Comments.ToString();
+            ListView.ItemsSource = Comments;
         }
         void OnCommentSelect(object sender, SelectedItemChangedEventArgs e)
         {

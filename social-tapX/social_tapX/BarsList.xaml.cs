@@ -28,7 +28,7 @@ namespace social_tapX
         {
             IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars();
 
-            ListView.ItemsSource = Bars.ToString();
+            ListView.ItemsSource = Bars;
         }
 
         void OnBarSelect(object sender, SelectedItemChangedEventArgs e)
