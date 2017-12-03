@@ -21,6 +21,7 @@ namespace social_tapX
         private int Count;
         private int BackEnabled;
         private int Stop = 0;
+        private RestModels.Bar Bar;
 
         private void backisenabled(bool x)
         {
@@ -28,7 +29,7 @@ namespace social_tapX
             Back.IsVisible = x;
         }
 
-        public Ratings (int backenabled = 0, int count = 20)
+        public Ratings(int backenabled = 0, int count = 20)
 		{
             this.Count = count;
             this.BackEnabled = backenabled;
@@ -41,7 +42,7 @@ namespace social_tapX
             Name.Text = "Bar Name";
             Percent.Text = "%";
             Rating.Text = "Rating";
-
+            /*
             if (BackEnabled == 1)
             {
                 BE(true);
@@ -55,7 +56,7 @@ namespace social_tapX
 
             Next.Text = "Next";
             Back.Text = "Back";
-
+            */
             LoadInData();
             Update();
         }
@@ -67,7 +68,7 @@ namespace social_tapX
             BarRating.ItemsSource = Brating.Value.ToArray();
         }
 
-        void LoadInData()
+        private async void LoadInData()
         {
             SetData SD = delegate (string name, string percent, string rating)
             {
@@ -76,28 +77,17 @@ namespace social_tapX
                 Brating.Value.Add(rating);
             };
 
-            for (int i = 0; i < 20; i++)
+            IEnumerable<RestModels.Bar> Ratings = await App.WebSvc.GetAllBars();
+
+            foreach(RestModels.Bar r in Ratings)
             {
-                if (i < App.WebSvc.GetListOfBars(Count).Count)
-                {
-                    SD(App.WebSvc.GetListOfBars(Count).ElementAt(i).Name, App.WebSvc.GetListOfBars(Count).ElementAt(i).Percent, App.WebSvc.GetListOfBars(Count).ElementAt(i).Rating);
-                }
-                else
-                {
-                    SD("", "", "");
-                    Stop = 1;
-                }
-            }
-            if (Stop == 1)
-            {
-                Next.IsEnabled = false;
-                Next.IsVisible = false;
+                SD(r.Name, r.Score.ToString(), r.RatingsCount.ToString());
             }
         }
 
         private void Next_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new Ratings(1, Count + 20));
+            //Navigation.PushModalAsync(new Ratings(1, Count + 20));
         }
 
         private void Back_Pressed(object sender, EventArgs e)

@@ -61,5 +61,10 @@ namespace social_tapX.RestModels
             Name = name;
             Location = coord;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

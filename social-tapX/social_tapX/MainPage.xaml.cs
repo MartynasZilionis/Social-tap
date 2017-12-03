@@ -139,7 +139,6 @@ namespace social_tapX
             }
             catch (Exception ex)
             {
-
                 //Exeption log here
             }
 

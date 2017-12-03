@@ -12,8 +12,8 @@ namespace social_tapX
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ChoseCommentsPage : ContentPage
 	{
-        private Rated_Bar Bar;
-		public ChoseCommentsPage (Rated_Bar bar)
+        private RestModels.Bar Bar;
+		public ChoseCommentsPage (RestModels.Bar bar)
         {
             Bar = bar;
             InitializeComponent();

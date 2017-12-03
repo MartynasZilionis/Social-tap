@@ -15,26 +15,22 @@ namespace social_tapX
         private string barname;
         private string comment;
         private int Rating = 0;
-        private Rated_Bar Bar;
+        private RestModels.Bar Bar;
         private Image[] Star;
         private int RatingFlag = 0;
         private int FocusFlag = 0;
 
-        public Comments (Rated_Bar bar)
+        public Comments (RestModels.Bar bar)
 		{
             Bar = bar;
 			InitializeComponent ();
             PrepareWindow();
-            //Backround.Source = "ratingstar.png";
             Backround.Source = MainPage.BackroundImage.Source;
             Star = new Image[]{ Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I };
             
             foreach (Image S in Star)
             {
-                // S.Source = "config\\ratingstar.png";
-                //S.Source = ImageSource.FromFile("ratingstar.png");
                 S.Source = "ratingstar.png";
-                //S.Source = StarImage.Source;
                 S.IsVisible = true;
             }
         }
@@ -138,7 +134,9 @@ namespace social_tapX
 
         private void SaveInfo()
         {
-            App.WebSvc.Set_BarAndCommentsAndRating(barname, comment, Rating);
+            App.WebSvc.UploadComment(Bar.Id, new RestModels.Comment("", comment));
+            //KUR REITINGAI????
+            //App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating());
         }
 
         private void Star1_B_Pressed(object sender, EventArgs e)

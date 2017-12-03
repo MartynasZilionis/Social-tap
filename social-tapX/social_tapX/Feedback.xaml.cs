@@ -43,15 +43,6 @@ namespace social_tapX
             }
             ThankYou.IsVisible = false;
             DoneEvent?.Invoke(this, new EventArgs());
-
-            /*try
-            {
-                await Navigation.PopAsync();
-            }
-            catch (Exception e)
-            {
-                //its all good here, just skip it
-            }*/
         }
 
         private void Submit_Pressed(object sender, EventArgs e)
@@ -70,7 +61,7 @@ namespace social_tapX
                 Submit.IsVisible = false;
                 FeedBack = ComentOnUs.Text;
 
-                App.WebSvc.Set_FeedbackAndDate(FeedBack, DateTime.Now);
+                //App.WebSvc.Set_FeedbackAndDate(FeedBack, DateTime.Now);
 
                 Thankyou();
             }

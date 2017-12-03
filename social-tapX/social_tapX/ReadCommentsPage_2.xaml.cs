@@ -13,27 +13,22 @@ namespace social_tapX
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReadCommentsPage_2 : ContentPage
     {
-
-        private int Count;
-        private int Stop = 0;
-        private Rated_Bar Bar;
-        public ReadCommentsPage_2(Rated_Bar bar)
+        private RestModels.Bar Bar;
+        public ReadCommentsPage_2(RestModels.Bar bar)
         {
             Bar = bar;
             InitializeComponent();
-            ListView.ItemsSource = App.WebSvc.GetListOfComments(Bar.Name ,999);
+            Start();
+        }
 
-
-
-
-
+        async private void Start()
+        {
+            IEnumerable<RestModels.Comment> Comments = await App.WebSvc.GetComments(Bar.Id, 0, 200);
+            ListView.ItemsSource = Comments.ToString();
         }
         void OnCommentSelect(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem != null)
-            {
-                
-            }
+
         }
 
     }

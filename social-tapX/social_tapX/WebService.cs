@@ -16,46 +16,13 @@ namespace social_tapX
         Task UploadBar(Bar bar);
         Task UploadComment(Guid barId, Comment comment);
         Task UploadRating(Guid barId, Rating rating);
-
-        /// <summary>
-        /// DEPRECATED!!!
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="percent"></param>
-        void Set_BarAndPercent(string name, int percent);
-        /// <summary>
-        /// DEPRECATED!!!
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="comment"></param>
-        /// <param name="rating"></param>
-        void Set_BarAndCommentsAndRating(string name, string comment, int rating);
-        /// <summary>
-        /// DEPRECATED!!!
-        /// </summary>
-        /// <param name="feedback"></param>
-        /// <param name="date"></param>
-        void Set_FeedbackAndDate(string feedback, DateTime date);
-        /// <summary>
-        /// DEPRECATED!!!
-        /// </summary>
-        /// <param name="ToNumber"></param>
-        /// <returns></returns>
-        List<Rated_Bar> GetListOfBars(int ToNumber);
-        /// <summary>
-        /// DEPRECATED!!!
-        /// </summary>
-        /// <param name="Bar_Name"></param>
-        /// <param name="ToNumber"></param>
-        /// <returns></returns>
-        List<string> GetListOfComments(string Bar_Name, int ToNumber);
     }
 
     public class WebService : IWebService
     {
         private static HttpClient client = new HttpClient();
-        private static string serviceUrl = "http://localhost:53162/api";
-        //DĖL DEBUGINIMO PRIEŽASČIŲ BARP BARCR IR FBD YRA PUBLIC, ŠIAIP TURĖTŲ BŪT PRIVATE
+        private static string serviceUrl = "http://socialtapx.azurewebsites.net/api";
+
         #region old
 
         //Išsaugoma klasė kurioje yra ivertintas baras, tai yra pavadinimas ir procentai

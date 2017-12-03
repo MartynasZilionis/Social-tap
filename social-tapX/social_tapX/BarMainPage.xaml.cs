@@ -12,10 +12,10 @@ namespace social_tapX
     {
 
         //public object LabelGeolocation { get; private set; }
-        private Rated_Bar Bar;
+        private social_tapX.RestModels.Bar Bar;
         private string BarName;
 
-        public BarMainPage(Rated_Bar bar)
+        public BarMainPage(RestModels.Bar bar)
         {
             Bar = bar;
             InitializeComponent();
@@ -105,7 +105,7 @@ namespace social_tapX
 
         private void Picture_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new NewPicture(BarName));
+            Navigation.PushAsync(new NewPicture(Bar));
         }
 
         private void Comment_Pressed(object sender, EventArgs e)
