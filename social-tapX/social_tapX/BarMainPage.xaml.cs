@@ -20,13 +20,14 @@ namespace social_tapX
             Bar = bar;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
-            InitializeMainMenu();
             GetBarDetails();
+            InitializeMainMenu();
+            
         }
 
         private void GetBarDetails()
         {
-            BarName = Bar.Name;
+            Title = BarName;
         }
 
         async private void DoneHandler(object sender, EventArgs y)

@@ -64,7 +64,7 @@
                     VerticalOptions="Center"
                     IsVisible="False"
                     Opacity="0"
-                    IsEnabled="False"
+                    IsEnabled="True"
                     Pressed="NewBar_Pressed"
                 />
             <Button x:Name="Feed_back"

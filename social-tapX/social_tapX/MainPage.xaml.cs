@@ -153,6 +153,7 @@ namespace social_tapX
         private void NewBar_Pressed(object sender, EventArgs e)
         {
             GatherLocation();
+            Navigation.PushAsync(new AddBar(Lat, Long));
         }
 
         private void Feedback_Pressed(object sender, EventArgs e)
