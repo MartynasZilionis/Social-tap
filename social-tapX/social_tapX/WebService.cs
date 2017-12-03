@@ -198,12 +198,14 @@ namespace social_tapX
 
         private async Task<IEnumerable<T>> GetList<T>(string path)
         {
+            
             using (var response = await client.GetAsync(serviceUrl + path))
             {
                 if (!response.IsSuccessStatusCode)
                     throw new HttpRequestException(response.StatusCode.ToString());
                 return JsonConvert.DeserializeObject<List<T>>(await response.Content.ReadAsStringAsync());
             }
+            
         }
     }
     

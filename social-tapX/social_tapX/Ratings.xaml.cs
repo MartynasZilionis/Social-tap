@@ -42,7 +42,7 @@ namespace social_tapX
             Name.Text = "Bar Name";
             Percent.Text = "%";
             Rating.Text = "Rating";
-            /*
+            
             if (BackEnabled == 1)
             {
                 BE(true);
@@ -56,8 +56,13 @@ namespace social_tapX
 
             Next.Text = "Next";
             Back.Text = "Back";
-            */
-            LoadInData();
+
+            Start();
+        }
+
+        private async void Start()
+        {
+            await LoadInData();
             Update();
         }
 
@@ -68,7 +73,7 @@ namespace social_tapX
             BarRating.ItemsSource = Brating.Value.ToArray();
         }
 
-        private async void LoadInData()
+        private async Task LoadInData()
         {
             SetData SD = delegate (string name, string percent, string rating)
             {

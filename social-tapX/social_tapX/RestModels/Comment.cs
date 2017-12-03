@@ -38,11 +38,5 @@ namespace social_tapX.RestModels
             Author = author;
             Content = content;
         }
-
-        public override string ToString()
-        {
-            return Content;
-        }
-
     }
 }

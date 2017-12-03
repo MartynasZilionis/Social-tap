@@ -31,19 +31,19 @@ namespace social_tapX.RestModels
         /// The average mug fill percentage in this bar.
         /// </summary>
         [JsonIgnore]
-        public float? Score{ get; set; }
+        public float Score{ get; set; }
 
         /// <summary>
         /// The average beer price (EUR/l).
         /// </summary>
         [JsonIgnore]
-        public float? AveragePrice { get; set; }
+        public float AveragePrice { get; set; }
 
         /// <summary>
         /// Amount of comments uploaded for this bar.
         /// </summary>
         [JsonIgnore]
-        public int? CommentsCount { get; set; }
+        public int CommentsCount { get; set; }
 
         /// <summary>
         /// Amount of ratings uploaded for this bar.
@@ -60,11 +60,6 @@ namespace social_tapX.RestModels
         {
             Name = name;
             Location = coord;
-        }
-
-        public override string ToString()
-        {
-            return Name;
         }
     }
 }
