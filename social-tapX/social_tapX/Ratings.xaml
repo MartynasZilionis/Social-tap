@@ -5,26 +5,22 @@
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="AUto"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Image x:Name="Backround"
                    Source=""
                    IsVisible="true"
-                   Grid.ColumnSpan="5"
-                   Grid.RowSpan="5"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="3"
                    Opacity="0.25"
                    />
 
@@ -34,61 +30,75 @@
                    Font="Bold, Italic, Medium"
                    HorizontalOptions="Start"
                    VerticalOptions="CenterAndExpand"   
-                   Grid.Column="1"
-                   Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.Row="0"
                 />
 
             <Label x:Name="Percent"
                    Text=""
                    TextColor="#E65100"
                    Font="Bold, Italic, Medium"
-                   HorizontalOptions="Start"
+                   HorizontalOptions="End"
                    VerticalOptions="CenterAndExpand"   
-                   Grid.Column="2"
-                   Grid.Row="1"
+                   Grid.Column="1"
+                   Grid.Row="0"
                 />
 
             <Label x:Name="Rating"
                    Text=""
                    TextColor="#E65100"
                    Font="Bold, Italic, Medium"
-                   HorizontalOptions="Start"
+                   HorizontalOptions="End"
                    VerticalOptions="CenterAndExpand"   
-                   Grid.Column="3"
-                   Grid.Row="1"
+                   Grid.Column="2"
+                   Grid.Row="0"
                 />
-
-            <ListView x:Name="BarName"
-                      HorizontalOptions="CenterAndExpand"
-                      VerticalOptions="CenterAndExpand"   
-                      Grid.Column="1"
-                      Grid.Row="2"
-                      IsEnabled="False"
-                      SeparatorVisibility="Default"
-                      SeparatorColor="#E65100"
-                      />
-            <ListView x:Name="BarPercent"
-                      HorizontalOptions="CenterAndExpand"
-                      VerticalOptions="CenterAndExpand"   
-                      Grid.Column="2"
-                      Grid.Row="2"
-                      IsEnabled="False"
-                      SeparatorVisibility="Default"
-                      SeparatorColor="#E65100"
-                      />
-            <ListView x:Name="BarRating"
-                      HorizontalOptions="CenterAndExpand"
-                      VerticalOptions="CenterAndExpand"   
-                      Grid.Column="3"
-                      Grid.Row="2"
-                      IsEnabled="False"
-                      SeparatorVisibility="Default"
-                      SeparatorColor="#E65100"
-                      />
+            
+            <ListView x:Name="liste" 
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      Grid.Row="1"
+                      ItemsSource="Bprop">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid Padding="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Item1}"
+                                           XAlign="Center" YAlign="Center"
+                                           TextColor="Black"/>
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Item2}"
+                                           XAlign="Center"
+                                           YAlign="Center"
+                                           TextColor="Black"/>
+                                    <Label Grid.Column="2"
+                                           Text="{Binding Item3}"
+                                           XAlign="Center"
+                                           YAlign="Center"
+                                           TextColor="Black"/>
+                                    
+                                    <BoxView Color="Navy" HeightRequest="2" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <Button x:Name="Next"
-                    Grid.Column="3"
-                    Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.Row="2"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
                     Text=""
@@ -97,19 +107,6 @@
                     Pressed="Next_Pressed"
                     Font="Italic, Bold, Large"
                     />
-
-            <Button x:Name="Back"
-                    Grid.Column="2"
-                    Grid.Row="3"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand"
-                    Text=""
-                    TextColor="#FFF3E0"
-                    BackgroundColor="#EF6C00"
-                    Pressed="Back_Pressed"
-                    Font="Italic, Bold, Large"
-                    />
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

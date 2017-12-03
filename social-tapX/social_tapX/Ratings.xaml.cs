@@ -15,26 +15,19 @@ namespace social_tapX
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Ratings : ContentPage
     {
-        private Lazy<List<String>> Bname = new Lazy<List<String>> (() => new List<string>());
+        private Lazy<List<String>> Bname = new Lazy<List<String>>(() => new List<string>());
         private Lazy<List<String>> Bpercent = new Lazy<List<String>>(() => new List<string>());
         private Lazy<List<String>> Brating = new Lazy<List<String>>(() => new List<string>());
+        private List<Tuple<String, String, String>> Bprop = new List<Tuple<String, String, String>>();
+        
         private int Count;
-        private int BackEnabled;
         private int Stop = 0;
-
-        private void backisenabled(bool x)
-        {
-            Back.IsEnabled = x;
-            Back.IsVisible = x;
-        }
-
+        private int load = 0;
+        
         public Ratings (int backenabled = 0, int count = 20)
 		{
             this.Count = count;
-            this.BackEnabled = backenabled;
-
-            BackEnabled BE = backisenabled;
-
+            
             InitializeComponent ();
             Backround.Source = MainPage.BackroundImage.Source;
 
@@ -42,49 +35,30 @@ namespace social_tapX
             Percent.Text = "%";
             Rating.Text = "Rating";
 
-            if (BackEnabled == 1)
-            {
-                BE(true);
-            }
-            else
-            {
-                BE(false);
-            }
             Next.IsVisible = true;
             Next.IsEnabled = true;
 
-            Next.Text = "Next";
-            Back.Text = "Back";
-
-            LoadInData();
+            Next.Text = "More";
+            LoadInData(load);
             Update();
         }
 
         void Update()
         {
-            BarName.ItemsSource = Bname.Value.ToArray();
-            BarPercent.ItemsSource = Bpercent.Value.ToArray();
-            BarRating.ItemsSource = Brating.Value.ToArray();
+            liste.ItemsSource = null;
+            liste.ItemsSource = Bprop;
         }
-
-        void LoadInData()
+        
+        void LoadInData(int count)
         {
-            SetData SD = delegate (string name, string percent, string rating)
+            for (int i = 0; i < 10; i++)
             {
-                Bname.Value.Add(name);
-                Bpercent.Value.Add(percent);
-                Brating.Value.Add(rating);
-            };
-
-            for (int i = 0; i < 20; i++)
-            {
-                if (i < App.WebSvc.GetListOfBars(Count).Count)
+                if (i+count < App.WebSvc.GetListOfBars(Count).Count)
                 {
-                    SD(App.WebSvc.GetListOfBars(Count).ElementAt(i).Name, App.WebSvc.GetListOfBars(Count).ElementAt(i).Percent, App.WebSvc.GetListOfBars(Count).ElementAt(i).Rating);
+                    Bprop.Add(Tuple.Create(App.WebSvc.GetListOfBars(Count).ElementAt(i+count).Name, App.WebSvc.GetListOfBars(Count).ElementAt(i+count).Percent, App.WebSvc.GetListOfBars(Count).ElementAt(i+count).Rating));
                 }
                 else
                 {
-                    SD("", "", "");
                     Stop = 1;
                 }
             }
@@ -94,15 +68,12 @@ namespace social_tapX
                 Next.IsVisible = false;
             }
         }
-
+        
         private void Next_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new Ratings(1, Count + 20));
-        }
-
-        private void Back_Pressed(object sender, EventArgs e)
-        {
-            Navigation.PopModalAsync();
+            load += 10;
+            LoadInData(load);
+            Update();
         }
     }
 }
