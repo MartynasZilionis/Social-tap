@@ -10,6 +10,7 @@ namespace social_tapX
     public interface IWebService
     {
         Task<IEnumerable<Bar>> GetAllBars();
+        Task<IEnumerable<Bar>> GetNearestBars(Coordinate loc, int n);
         Task<IEnumerable<Comment>> GetComments(Guid barId, int from, int count);
         Task<IEnumerable<Rating>> GetRatings(Guid barId, int from, int count);
         Task UploadBar(Bar bar);
@@ -173,6 +174,17 @@ namespace social_tapX
         }
 
         /// <summary>
+        /// Gets <see cref="Bar">Bars</see> near a location.
+        /// </summary>
+        /// <param name="loc">Set of coordinates.</param>
+        /// <param name="n">How many bars to get.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Bar>> GetNearestBars(Coordinate loc, int n)
+        {
+            return await GetList<Bar>(String.Format("/GetBars/{0};{1}/{2}", loc.Latitude, loc.Longitude, n));
+        }
+
+        /// <summary>
         /// Gets <see cref="count"/> comments about a <see cref="Bar"/>.
         /// </summary>
         /// <param name="barId">Id of the <see cref="Bar"/>.</param>
@@ -181,12 +193,12 @@ namespace social_tapX
         /// <returns></returns>
         public async Task<IEnumerable<Comment>> GetComments(Guid barId, int from, int count)
         {
-            return await GetList<Comment>(string.Format("/Comment/{1}/{2}/{3}", barId, from, count));
+            return await GetList<Comment>(string.Format("/Comment/{0}/{1}/{2}", barId, from, count));
         }
 
         public async Task<IEnumerable<Rating>> GetRatings(Guid barId, int from, int count)
         {
-            return await GetList<Rating>(string.Format("/Rating/{1}/{2}/{3}", barId, from, count));
+            return await GetList<Rating>(string.Format("/Rating/{0}/{1}/{2}", barId, from, count));
         }
 
         public async Task UploadBar(Bar bar)

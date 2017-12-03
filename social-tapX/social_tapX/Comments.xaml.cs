@@ -27,7 +27,8 @@ namespace social_tapX
             PrepareWindow();
             //Backround.Source = "ratingstar.png";
             Backround.Source = MainPage.BackroundImage.Source;
-            Star = new List<Image> { Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I }.ToArray();
+            Star = new Image[]{ Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I };
+            
             foreach (Image S in Star)
             {
                 // S.Source = "config\\ratingstar.png";
@@ -84,7 +85,7 @@ namespace social_tapX
                 {
                     await Navigation.PopAsync();
                 }
-                catch (Exception y)
+                catch (Exception)
                 {
                     //its all good here, just skip it
                 }
