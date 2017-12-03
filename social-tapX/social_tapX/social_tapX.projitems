@@ -12,8 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)BarAndCommentsAndRating.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BarAndPercent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BarComments.xaml.cs">
       <DependentUpon>BarComments.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -38,7 +36,6 @@
       <DependentUpon>Feedback.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)FeedbackAndDate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImageBitmapHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -47,7 +44,6 @@
       <DependentUpon>NewPicture.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Rated_Bar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ratings.xaml.cs">
       <DependentUpon>Ratings.xaml</DependentUpon>
       <SubType>Code</SubType>
