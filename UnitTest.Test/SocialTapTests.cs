@@ -53,7 +53,7 @@ namespace social_tapX.Test
         {
             Xamarin.Forms.Mocks.MockForms.Init();
             new App();
-            Comments testComments = new Comments();
+            Comments testComments = new Comments(new Rated_Bar("d", 1, 1));
             Assert.IsNotNull(testComments);
         }
         [TestMethod]

@@ -15,7 +15,7 @@ namespace SocialTapServer.Controllers.Tests
     public class RatingControllerTests
     {
         [TestMethod()]
-        public void RatingGetTest()
+        public async void RatingGetTest()
         {
             // Arrange
             Bar bar = new Bar();
@@ -27,7 +27,7 @@ namespace SocialTapServer.Controllers.Tests
             controller.Post(rating, id);
 
             // Act
-            IHttpActionResult actionResult = controller.Get(id);
+            IHttpActionResult actionResult = await controller.Get(id);
             var contentResult = actionResult as OkNegotiatedContentResult<Rating>;
 
             // Assert
@@ -38,7 +38,7 @@ namespace SocialTapServer.Controllers.Tests
 
         [TestMethod()]
         [Route("api/Rating/{id}/{index}/{count}")]
-        public void RatingGet3Test()
+        public async void RatingGet3Test()
         {
             // Arrange
             Bar bar = new Bar();
@@ -53,7 +53,7 @@ namespace SocialTapServer.Controllers.Tests
             Console.WriteLine(id);
 
             // Act
-            IHttpActionResult actionResult = controller.Get(id, index, count);
+            IHttpActionResult actionResult = await controller.Get(id, index, count);
 
             // Assert
             Assert.IsNotNull(actionResult);
