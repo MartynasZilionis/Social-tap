@@ -66,42 +66,22 @@ namespace SocialTapServer.Models
         [JsonIgnore]
         public List<Rating> Ratings { get; set; }
 
-        public int CommentsCount {
-            get
-            {
-                return Comments.Count;
-            }
-        }
+        public int CommentsCount { get; set; }
 
-        public int RatingsCount
-        {
-            get
-            {
-                return Ratings.Count;
-            }
-        }
+        public int RatingsCount { get; set; }
 
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0), new List<Comment>(), new List<Rating>()) { }
+        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0)) { }
 
-        //[JsonIgnore]
-        //private List<Comment> comments = new List<Comment>();
-        //[JsonIgnore]
-        //private List<Rating> ratings = new List<Rating>();
-        [JsonIgnore]
-        private object commentsLock = new object();
-        [JsonIgnore]
-        private object ratingsLock = new object();
-
-        public Bar(Guid id, string name, Coordinate location, IEnumerable<Comment> comments, IEnumerable<Rating> ratings)
+        public Bar(Guid id, string name, Coordinate location)
         {
-            Ratings = new List<Rating>(ratings);
-            Comments = new List<Comment>(comments);
             Id = id;
             Name = name;
             Location = location;
+            Comments = new List<Comment>();
+            Ratings = new List<Rating>();
         }
     }
 }

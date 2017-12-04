@@ -29,7 +29,7 @@ namespace social_tapX.RestModels
         /// <summary>
         /// The average mug fill percentage in this bar.
         /// </summary>
-        public float Score{ get; set; }
+        public float AverageFill{ get; set; }
 
         /// <summary>
         /// The average beer price (EUR/l).

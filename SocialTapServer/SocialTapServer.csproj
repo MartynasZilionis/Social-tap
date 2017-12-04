@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201711301952396_a.Designer.cs">
       <DependentUpon>201711301952396_a.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712041706035_n.cs" />
+    <Compile Include="Migrations\201712041706035_n.Designer.cs">
+      <DependentUpon>201712041706035_n.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\BarProfile.cs" />
@@ -153,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301952396_a.resx">
       <DependentUpon>201711301952396_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712041706035_n.resx">
+      <DependentUpon>201712041706035_n.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

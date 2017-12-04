@@ -41,7 +41,7 @@ namespace social_tapX
             IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars();
             if (!IsNullOrEmpty<RestModels.Bar>(Bars))
             {
-                var SortedBars = Bars.OrderByDescending(c => c.Score);
+                var SortedBars = Bars.OrderByDescending(c => c.AverageFill);
                 ListView.IsVisible = true;
                 ListView.IsEnabled = true;
                 ListView.ItemsSource = SortedBars;
@@ -104,7 +104,7 @@ namespace social_tapX
             {
                 RestModels.Bar Bar = e.SelectedItem as RestModels.Bar;
                 String AveragePrice = "Average Price in Bar: " + Bar.AveragePrice;
-                String Score = "\n Bar Score: " + Bar.Score;
+                String Score = "\n Bar Score: " + Bar.AverageFill;
                 String CommentCount = "\n Total Comments: " + Bar.CommentsCount;
                 String RatingCount = "\n Total Ratings: " + Bar.RatingsCount;
                 String BarInfo = AveragePrice + Score + CommentCount + RatingCount;
