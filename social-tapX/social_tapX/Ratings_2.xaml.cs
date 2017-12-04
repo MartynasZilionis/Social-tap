@@ -34,29 +34,55 @@ namespace social_tapX
         {
             BarName.Text = "Bar Name";
             BarScore.Text = "Bar Score";
-            ListView.IsVisible = true;
-            ListView.IsEnabled = true;
             DeviceWidth = Application.Current.MainPage.Width;
             DeviceHeight = Application.Current.MainPage.Height;
             BarName.WidthRequest = DeviceWidth * 2 / 3;
             BarScore.WidthRequest = DeviceWidth / 3;
             IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars();
-            var SortedBars = Bars.OrderByDescending(c => c.Score);
-            ListView.ItemsSource = SortedBars;
+            if (!IsNullOrEmpty<RestModels.Bar>(Bars))
+            {
+                var SortedBars = Bars.OrderByDescending(c => c.Score);
+                ListView.IsVisible = true;
+                ListView.IsEnabled = true;
+                ListView.ItemsSource = SortedBars;
+            }
+            else
+            {
+                EmptyList.Text = "There are currently bars with raiting";
+                EmptyList.IsEnabled = true;
+                EmptyList.IsVisible = true;
+            }
         }
         async private void StartOneBar()
         {
             BarName.Text = "Rated date";
             BarScore.Text = "Percentage Filled";
-            ListViewBar.IsVisible = true;
-            ListViewBar.IsEnabled = true;
             DeviceWidth = Application.Current.MainPage.Width;
             DeviceHeight = Application.Current.MainPage.Height;
             BarName.WidthRequest = DeviceWidth * 2 / 3;
             BarScore.WidthRequest = DeviceWidth / 3;
-            IEnumerable<RestModels.Rating> Ratings = await App.WebSvc.GetRatings(Bar.Id, 0, 200);
-            var SortedBars = Ratings.OrderByDescending(c => c.Date);
-            ListViewBar.ItemsSource = SortedBars;
+            try
+            {
+                IEnumerable<RestModels.Rating> Ratings = await App.WebSvc.GetRatings(Bar.Id, 0, 200);
+
+                if (!IsNullOrEmpty<RestModels.Rating>(Ratings))
+                {
+                    ListViewBar.IsVisible = true;
+                    ListViewBar.IsEnabled = true;
+                    var SortedBars = Ratings.OrderByDescending(c => c.Date);
+                    ListViewBar.ItemsSource = SortedBars;
+                }
+                else
+                {
+                    EmptyList.Text = "There are currently no ratings for this bar";
+                    EmptyList.IsEnabled = true;
+                    EmptyList.IsVisible = true;
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("{0} Exception caughtt.", e);
+            }
         }
         private void OnRatingSelect(object sender, SelectedItemChangedEventArgs e)
         {
@@ -84,6 +110,17 @@ namespace social_tapX
                 String BarInfo = AveragePrice + Score + CommentCount + RatingCount;
                 DisplayAlert(Bar.Name, BarInfo, "OK");
             }
+        }
+        private static bool IsNullOrEmpty<T>(IEnumerable<T> source)
+        {
+            if (source != null)
+            {
+                foreach (T obj in source)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
     }

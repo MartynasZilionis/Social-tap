@@ -21,9 +21,21 @@
                                
                      />
         </StackLayout>
-        <ListView x:Name="ListView" ItemSelected="OnBarSelect">
-
-                <ListView.ItemTemplate>
+        <Label    
+                x:Name="EmptyList" 
+                Text="" 
+                HorizontalTextAlignment="Center"
+                HorizontalOptions="Center"
+                FontSize="Medium"                             
+                FontAttributes="Bold"
+                IsEnabled="False"
+                IsVisible="False"
+                     
+                               
+                     />
+        <ListView x:Name="ListView" ItemSelected="OnBarSelect" IsEnabled="False" IsVisible="False">
+            
+            <ListView.ItemTemplate>
                            
                     <DataTemplate>
                         <ViewCell>
@@ -53,7 +65,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        <ListView x:Name="ListViewBar" ItemSelected="OnRatingSelect">
+        <ListView x:Name="ListViewBar" ItemSelected="OnRatingSelect" IsEnabled="False" IsVisible="False">
 
             <ListView.ItemTemplate>
 

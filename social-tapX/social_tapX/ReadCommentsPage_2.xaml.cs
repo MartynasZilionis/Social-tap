@@ -23,8 +23,15 @@ namespace social_tapX
 
         async private void Start()
         {
-            IEnumerable<RestModels.Comment> Comments = await App.WebSvc.GetComments(Bar.Id, 0, 200);
-            ListView.ItemsSource = Comments;
+            try
+            {
+                IEnumerable<RestModels.Comment> Comments = await App.WebSvc.GetComments(Bar.Id, 0, 200);
+                ListView.ItemsSource = Comments;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("{0} Exception caughtt.", e);
+            }
         }
         void OnCommentSelect(object sender, SelectedItemChangedEventArgs e)
         {
