@@ -235,7 +235,10 @@ namespace social_tapX
             {
                 if (!response.IsSuccessStatusCode)
                     throw new HttpRequestException(response.StatusCode.ToString());
-                return JsonConvert.DeserializeObject<List<T>>(await response.Content.ReadAsStringAsync());
+                var json = await response.Content.ReadAsStringAsync();
+                
+                var res = JsonConvert.DeserializeObject<List<T>>(json);
+                return res;
             }
         }
     }
