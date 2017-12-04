@@ -17,6 +17,7 @@ namespace social_tapX
         private int Rating = 0;
         private RestModels.Bar Bar;
         private Image[] Star;
+        private Button[] StarB;
         private int RatingFlag = 0;
         private int FocusFlag = 0;
         private double DeviceWidth;
@@ -29,15 +30,25 @@ namespace social_tapX
 			InitializeComponent ();
             PrepareWindow();
             Star = new Image[]{ Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I };
-            
+            StarB = new Button[] { Star1_B, Star2_B, Star3_B, Star4_B, Star5_B, Star6_B, Star7_B, Star8_B, Star9_B, Star10_B };
             foreach (Image S in Star)
             {
                 S.Source = "ratingstar.png";
                 S.HeightRequest = StarSize;
                 S.WidthRequest = StarSize;
-                S.Margin = 10;
                 S.BackgroundColor = Color.Red;
-                S.IsVisible = true;
+                S.IsVisible = false;
+                S.IsEnabled = false;
+
+            }
+            foreach (Button B in StarB)
+            {
+                B.Opacity = 1;
+                B.HeightRequest = StarSize;
+                B.WidthRequest = StarSize;
+                B.BackgroundColor = Color.Red;
+                B.IsVisible = true;
+                B.IsEnabled = true;
 
             }
         }

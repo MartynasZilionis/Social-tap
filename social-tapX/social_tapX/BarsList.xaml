@@ -2,7 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="social_tapX.BarsList">
-    <ListView x:Name="ListView" ItemSelected="OnBarSelect">
+    <StackLayout Orientation="Vertical" Padding="30">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="30">
+            <Label    x:Name="BarName" 
+                  Text="Choose a bar from the list" 
+                  FontAttributes="Bold"
+                  FontSize="Medium"
+                  HorizontalTextAlignment="Center"
+                  HorizontalOptions="CenterAndExpand"                             
+                     />
+        </StackLayout>
+        <ListView x:Name="ListView" ItemSelected="OnBarSelect">
     
         <ListView.ItemTemplate>
         <DataTemplate>
@@ -11,10 +21,16 @@
                              Orientation="Horizontal">
                         <Label Text="{Binding Name}" 
                            HorizontalTextAlignment="Start"
-                     />
-                    </StackLayout>
+                               HorizontalOptions="StartAndExpand"
+                               VerticalOptions="Center"
+                               TextColor="#E65100"
+                               FontSize="Medium"                          
+                               FontAttributes="Bold" 
+                         />
+                </StackLayout>
             </ViewCell>
         </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+    </StackLayout>
 </ContentPage>

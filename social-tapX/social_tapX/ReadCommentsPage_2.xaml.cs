@@ -28,7 +28,15 @@ namespace social_tapX
         }
         void OnCommentSelect(object sender, SelectedItemChangedEventArgs e)
         {
-
+            if (e.SelectedItem != null)
+            {
+                RestModels.Comment Comment = e.SelectedItem as RestModels.Comment;
+                String Author = "Author " + Comment.Author;
+                String FullComment = "\n " + Comment.Content;
+                String Date = "\n Date: " + Comment.Date;
+                String BarInfo = FullComment + Date;
+                DisplayAlert(Author, BarInfo, "OK");
+            }
         }
 
     }

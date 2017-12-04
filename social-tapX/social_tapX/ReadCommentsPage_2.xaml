@@ -9,6 +9,7 @@
                     <StackLayout Padding="5"
                              Orientation="Horizontal">
                         <Label Text="{Binding Content}" 
+                               
                    Style="{DynamicResource ListItemTextStyle}" />
                     </StackLayout>
                 </ViewCell>
