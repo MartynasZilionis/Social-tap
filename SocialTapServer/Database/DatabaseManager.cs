@@ -149,7 +149,7 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Comment>> GetComments(Guid barId, int index, int count)
         {
-            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Comments).First().Skip(index).Take(count).ToList());
+            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Comments).First().OrderByDescending(x=>x.Date).Skip(index).Take(count).ToList());
             //return await Execute(() => db.Bars.Find(barId).Comments.Skip(index).Take(count));
             //return cache.GetComments(barId, index, count);
         }
