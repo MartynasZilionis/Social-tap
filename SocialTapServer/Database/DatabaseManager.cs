@@ -47,7 +47,7 @@ namespace SocialTapServer.Database
 
         private async Task<T> Execute<T>(Func<T> fnc)
         {
-            return await Task.Factory.StartNew(fnc, new System.Threading.CancellationToken(), TaskCreationOptions.None, scheduler);
+            return await Task.Factory.StartNew(fnc, new CancellationToken(), TaskCreationOptions.None, scheduler);
             //var tsk = new Task<T>(fnc);
             //await tsk.Start(scheduler);
             //return tsk.Result;
@@ -132,7 +132,7 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Rating>> GetRatings(Guid barId, int index, int count)
         {
-            return (await Execute(() => db.Bars.Find(barId))).Ratings.Skip(index).Take(count);
+            return await Execute(() => db.Bars.Find(barId).Ratings.Skip(index).Take(count));
             //return cache.GetRatings(barId, index, count);
         }
 
@@ -143,20 +143,20 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Comment>> GetComments(Guid barId, int index, int count)
         {
-            return (await Execute(() => db.Bars.Find(barId))).Comments.Skip(index).Take(count);
+            return await Execute(() => db.Bars.Find(barId).Comments.Skip(index).Take(count));
             //return cache.GetComments(barId, index, count);
         }
 
         public async Task AddRating(Guid barId, Rating rating)
         {
-            (await Execute(() => db.Bars.Find(barId))).Ratings.Add(rating);
+            await Execute(() => db.Bars.Find(barId).Ratings.Add(rating));
             await db.SaveChangesAsync();
             //cache.AddRating(barId, rating);
         }
 
         public async Task AddComment(Guid barId, Comment comment)
         {
-            (await Execute(() => db.Bars.Find(barId))).Comments.Add(comment);
+            (await Execute(() => db.Bars.Find(barId).Comments)).Add(comment);
             //db.Bars.Where(x => x.Id == barId).FirstOrDefault().Comments.Add(comment);
             await db.SaveChangesAsync();
             //cache.AddComment(barId, comment);

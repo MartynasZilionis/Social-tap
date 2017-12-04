@@ -31,7 +31,7 @@ namespace SocialTapServer.Controllers.Tests
         }
 
         [TestMethod()]
-        public void BarGetTest1()
+        public async void BarGetTest1()
         {
             // Arrange
             Bar bar = new Bar();
@@ -40,7 +40,7 @@ namespace SocialTapServer.Controllers.Tests
             Guid id = bar.Id;
 
             // Act
-            IHttpActionResult actionResult = controller.Get(id);
+            IHttpActionResult actionResult = await controller.Get(id);
             var contentResult = actionResult as OkNegotiatedContentResult<Bar>;
 
             // Assert

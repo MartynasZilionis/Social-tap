@@ -14,7 +14,7 @@ namespace UnitTest.Test
 
             SocialTapServer.Models.Bar testBar = new SocialTapServer.Models.Bar();
             Guid id = testBar.Id;
-            testBar.AddRating(new SocialTapServer.Models.Rating());
+            //testBar.AddRating(new SocialTapServer.Models.Rating());
 
         }
     }

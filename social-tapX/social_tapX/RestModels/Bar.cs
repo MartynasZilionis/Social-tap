@@ -14,7 +14,6 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Unique ID of the bar.
         /// </summary>
-        [JsonIgnore]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -30,25 +29,21 @@ namespace social_tapX.RestModels
         /// <summary>
         /// The average mug fill percentage in this bar.
         /// </summary>
-        [JsonIgnore]
         public float Score{ get; set; }
 
         /// <summary>
         /// The average beer price (EUR/l).
         /// </summary>
-        [JsonIgnore]
         public float AveragePrice { get; set; }
 
         /// <summary>
         /// Amount of comments uploaded for this bar.
         /// </summary>
-        [JsonIgnore]
         public int CommentsCount { get; set; }
 
         /// <summary>
         /// Amount of ratings uploaded for this bar.
         /// </summary>
-        [JsonIgnore]
         public int RatingsCount { get; set; }
 
         /// <summary>

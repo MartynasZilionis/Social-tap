@@ -15,7 +15,7 @@ namespace SocialTapServer.Controllers.Tests
     public class CommentControllerTests
     {
         [TestMethod()]
-        public void CommentGetTest()
+        public async void CommentGetTest()
         {
             // Arrange
             Bar bar = new Bar();
@@ -29,7 +29,7 @@ namespace SocialTapServer.Controllers.Tests
             int count = 1;
 
             // Act
-            IHttpActionResult actionResult = controller.Get(id, index, count);
+            IHttpActionResult actionResult = await controller.Get(id, index, count);
 
             // Assert
             Assert.IsNotNull(actionResult);
