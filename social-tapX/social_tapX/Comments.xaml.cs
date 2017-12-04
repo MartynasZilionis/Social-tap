@@ -15,39 +15,66 @@ namespace social_tapX
         private string barname;
         private string comment;
         private int Rating = 0;
-        private Rated_Bar Bar;
+        private RestModels.Bar Bar;
         private Image[] Star;
+        private Button[] StarB;
         private int RatingFlag = 0;
         private int FocusFlag = 0;
-
-        public Comments (Rated_Bar bar)
+        private double DeviceWidth;
+        private double DeviceHeight;
+        private double StarSize;
+        private string author;
+        public Comments (RestModels.Bar bar)
 		{
             Bar = bar;
 			InitializeComponent ();
             PrepareWindow();
-            //Backround.Source = "ratingstar.png";
-            Backround.Source = MainPage.BackroundImage.Source;
             Star = new Image[]{ Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I };
-            
+            StarB = new Button[] { Star1_B, Star2_B, Star3_B, Star4_B, Star5_B, Star6_B, Star7_B, Star8_B, Star9_B, Star10_B };
             foreach (Image S in Star)
             {
-                // S.Source = "config\\ratingstar.png";
-                //S.Source = ImageSource.FromFile("ratingstar.png");
                 S.Source = "ratingstar.png";
-                //S.Source = StarImage.Source;
-                S.IsVisible = true;
+                S.HeightRequest = StarSize;
+                S.WidthRequest = StarSize;
+                S.BackgroundColor = Color.Red;
+                S.IsVisible = false;
+                S.IsEnabled = false;
+
+            }
+            foreach (Button B in StarB)
+            {
+                B.Opacity = 1;
+                B.HeightRequest = StarSize;
+                B.WidthRequest = StarSize;
+                B.BackgroundColor = Color.Red;
+                B.IsVisible = true;
+                B.IsEnabled = true;
+
             }
         }
 
         private void PrepareWindow()
         {
             BarName.Text = "Feedback for " + Bar.Name;
-            Comment.HeightRequest = 60;
+            DeviceWidth = Application.Current.MainPage.Width;
+            DeviceHeight = Application.Current.MainPage.Height;
+            Comment.HeightRequest = DeviceHeight / 3;
+            StarSize = DeviceWidth / 10 - 110;
+
+
         }
         async private void OK_Pressed(object sender, EventArgs e)
         {
             if ((BarName.Text != "") && (Comment.Text != "") && (Comment.Text != "Please Enter Your Comment Here"))
             {
+                if(Author.Text != "")
+                {
+                    author = Author.Text;
+                }
+                else
+                {
+                    author = "Anonymous";
+                }
                 this.barname = Bar.Name;
                 this.comment = Comment.Text;
                 SaveInfo();
@@ -56,6 +83,7 @@ namespace social_tapX
                 Comment.IsEnabled = false;
                 OK.IsEnabled = false;
                 OK.IsVisible = false;
+                Author.IsVisible = false;
                 
                 foreach (Image S in Star)
                 {
@@ -138,7 +166,9 @@ namespace social_tapX
 
         private void SaveInfo()
         {
-            App.WebSvc.Set_BarAndCommentsAndRating(barname, comment, Rating);
+            App.WebSvc.UploadComment(Bar.Id, new RestModels.Comment(author, comment));
+            //KUR REITINGAI????
+            //App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating());
         }
 
         private void Star1_B_Pressed(object sender, EventArgs e)

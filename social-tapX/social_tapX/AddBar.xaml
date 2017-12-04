@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="social_tapX.AddBar">
+    <ContentPage.Content Title = "AddNewBar">
+        <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+           
+                <Label x:Name="Question"
+                   Text=""
+                   TextColor="#E65100"
+                   Opacity="1"
+                   Margin="20"
+                   IsVisible="true"
+                   Font="Bold, Italic, Large"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Start"
+                   HorizontalTextAlignment="Center"
+                   />
+                <Entry x:Name="BarName"
+                    Placeholder="Enter Bar name"
+                    Text=""
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center"
+                    HorizontalTextAlignment="Center"
+                    IsVisible="False"
+                />
+                <Button x:Name="CreateBar"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="End"
+                    IsVisible="False"
+                    Pressed="AddBar_Pressed"
+                />
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

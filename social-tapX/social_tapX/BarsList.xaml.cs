@@ -13,25 +13,29 @@ namespace social_tapX
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BarsList : ContentPage
     {
-
-        private int Count;
-        private int Stop = 0;
         private double Lat;
         private double Long;
+
         public BarsList(double Lat_, double Long_)
         {
             Lat = Lat_;
             Long = Long_;
             InitializeComponent();
-            ListView.ItemsSource = App.WebSvc.GetListOfBars(999);
+            Start();
+        }
 
+        async private void Start()
+        {
+            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars();
+
+            ListView.ItemsSource = Bars;
         }
 
         void OnBarSelect(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
             {
-                var Bar = e.SelectedItem as Rated_Bar;
+                RestModels.Bar Bar = e.SelectedItem as RestModels.Bar;
                 Navigation.PushAsync(new BarMainPage(Bar));
             }
         }

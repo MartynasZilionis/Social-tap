@@ -12,21 +12,22 @@ namespace social_tapX
     {
 
         //public object LabelGeolocation { get; private set; }
-        private Rated_Bar Bar;
+        private social_tapX.RestModels.Bar Bar;
         private string BarName;
 
-        public BarMainPage(Rated_Bar bar)
+        public BarMainPage(RestModels.Bar bar)
         {
             Bar = bar;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
-            InitializeMainMenu();
             GetBarDetails();
+            InitializeMainMenu();
+            
         }
 
         private void GetBarDetails()
         {
-            BarName = Bar.Name;
+            Title = BarName;
         }
 
         async private void DoneHandler(object sender, EventArgs y)
@@ -105,7 +106,7 @@ namespace social_tapX
 
         private void Picture_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new NewPicture(BarName));
+            Navigation.PushAsync(new NewPicture(Bar));
         }
 
         private void Comment_Pressed(object sender, EventArgs e)
@@ -115,7 +116,7 @@ namespace social_tapX
 
         private void Rating_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Ratings());
+            Navigation.PushAsync(new Ratings_2(Bar));
         }
     }
 }

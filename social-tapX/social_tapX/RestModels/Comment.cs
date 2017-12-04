@@ -31,10 +31,12 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Comment()
+        public Comment() : this("Nobody", "Dummy comment") { }
+
+        public Comment(string author, string content)
         {
-            Author = "Nobody";
-            Content = "Dummy comment";
+            Author = author;
+            Content = content;
         }
     }
 }

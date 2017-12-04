@@ -3,60 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="social_tapX.Comments">
     <ContentPage.Content>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Image x:Name="Backround"
-                   Source=""
-                   IsVisible="true"
-                   Grid.ColumnSpan="14"
-                   Grid.RowSpan="6"
-                   Opacity="0.25"
-                   />
-
-            <Button x:Name="OK"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Grid.ColumnSpan="12"
-                    Text="OK"
-                    TextColor="#FFF3E0"
-                    Font="Bold, Italic, Large"
-                    BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    IsVisible="true"
-                    IsEnabled="true"
-                    Opacity="1"   
-                    Pressed="OK_Pressed"
-                />
+        <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
 
             <Label x:Name="BarName"
-                   Grid.Row="1"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="12"
                    Text=""
                    Opacity="1"
                    IsVisible="true"
@@ -69,190 +18,145 @@
 
             <Editor x:Name="Comment"
                     Text=""
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Grid.RowSpan="1"
-                    Grid.ColumnSpan="12"
                     FontSize="Medium"  
                     Focused="Comment_Focused"
                     IsVisible="True"
                     />
-            
+            <Entry x:Name="Author"
+                    Text=""
+                    FontSize="Medium"  
+                    Placeholder="Author Name"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Center"
+                    IsVisible="True"
+                    />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="0">
+                <!--#region Rating In Stars-->
+                <Button x:Name="Star1_B"
+                    Opacity="0"
+                    Pressed="Star1_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star1_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star2_B"
+                    Opacity="0"
+                    Pressed="Star2_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star2_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star3_B"
+                    Opacity="0"
+                    Pressed="Star3_B_Pressed"
+
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star3_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star4_B"
+                    Opacity="0"
+                    Pressed="Star4_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star4_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star5_B"
+                    Opacity="0"
+                    Pressed="Star5_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star5_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star6_B"
+                    Opacity="0"
+                    Pressed="Star6_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star6_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star7_B"
+                    Opacity="0"
+                    Pressed="Star7_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star7_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star8_B"
+                    Opacity="0"
+                    Pressed="Star8_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star8_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star9_B"
+                    Opacity="0"
+                    Pressed="Star9_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star9_I"
+                   Source=""
+                   IsVisible="False"
+                />
+
+                <Button x:Name="Star10_B"
+                    Opacity="0"
+                    Pressed="Star10_B_Pressed"
+                    IsEnabled="True"
+                />
+                <Image x:Name="Star10_I"
+                   Source=""
+                   IsVisible="False"
+                />
+            </StackLayout>
+            <Button x:Name="OK"
+                    Text="OK"
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    IsVisible="true"
+                    IsEnabled="true"
+                    Opacity="1"   
+                    Pressed="OK_Pressed"
+                />
+
             <Label x:Name="ThankYou"
                    Text=""
                    TextColor="#E65100"
                    Opacity="0"
-                   IsVisible="false"
-                   Grid.Row="2"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="12"
                    Font="Bold, Italic, Large"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    />
-            <!--#region Rating In Stars-->
-            <Button x:Name="Star1_B"
-                    Opacity="0"
-                    Pressed="Star1_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star1_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="1"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star2_B"
-                    Opacity="0"
-                    Pressed="Star2_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="2"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star2_I"
-                   Source=""
-
-
-                   Grid.Row="3"
-                   Grid.Column="2"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star3_B"
-                    Opacity="0"
-                    Pressed="Star3_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="3"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star3_I"
-                   Source=""
-                   Grid.Row="3"
-                   Grid.Column="3"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star4_B"
-                    Opacity="0"
-                    Pressed="Star4_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="4"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star4_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="4"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star5_B"
-                    Opacity="0"
-                    Pressed="Star5_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="5"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star5_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="5"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star6_B"
-                    Opacity="0"
-                    Pressed="Star6_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="6"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star6_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="6"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star7_B"
-                    Opacity="0"
-                    Pressed="Star7_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="7"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star7_I"
-                   Source=""
-
-                   Grid.Row="1"
-                   Grid.Column="1"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star8_B"
-                    Opacity="0"
-                    Pressed="Star8_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="8"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star8_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="8"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star9_B"
-                    Opacity="0"
-                    Pressed="Star9_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="9"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star9_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="9"
-                   IsVisible="False"
-                />
-
-            <Button x:Name="Star10_B"
-                    Opacity="0"
-                    Pressed="Star10_B_Pressed"
-
-                    Grid.Row="3"
-                    Grid.Column="10"
-                    IsEnabled="True"
-                />
-            <Image x:Name="Star10_I"
-                   Source=""
-
-                   Grid.Row="3"
-                   Grid.Column="10"
-                   IsVisible="False"
-                />
             <!--#endregion-->
-        </Grid>
+        </StackLayout>
+
+        
     </ContentPage.Content>
 </ContentPage>

@@ -3,19 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="social_tapX.ReadCommentsPage_2">
     <ListView x:Name="ListView" ItemSelected="OnCommentSelect">
-<!--
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <StackLayout Padding="5"
                              Orientation="Horizontal">
-                        <Label Text="{Binding Name}" 
+                        <Label Text="{Binding Content}" 
+                               
                    Style="{DynamicResource ListItemTextStyle}" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-          -->
     </ListView>
       
 </ContentPage>

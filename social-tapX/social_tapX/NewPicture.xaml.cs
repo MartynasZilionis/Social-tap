@@ -13,19 +13,19 @@ namespace social_tapX
         private string Name = "";
         private int SamePhoto = 0;
         private Bitmap BM;
-        private string BarWithName;
+        private social_tapX.RestModels.Bar Bar;
 
-		public NewPicture (string barWithName)
+        public NewPicture (social_tapX.RestModels.Bar bar)
 		{
-            BarWithName = barWithName;
 			InitializeComponent ();
+            Bar = bar;
             Backround.Source = MainPage.BackroundImage.Source;
-            GetBarName(BarWithName);
+            GetBarName(Bar.Name);
 		}
 
         void GetBarName(string BarName)
         {
-            ShowBarName.Text = "Adding photo for bar " + BarName;
+            ShowBarName.Text = "Adding photo for bar\n" + BarName;
             ShowBarName.IsVisible = true;
         }
 
@@ -39,7 +39,7 @@ namespace social_tapX
 
         private async void FromCamera_Pressed(object sender, EventArgs e)
         {
-            ImageSource _photo = "ratingstar.png";
+            ImageSource _photo = null;
 
             var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
             if (photo != null)
@@ -78,14 +78,14 @@ namespace social_tapX
                 social_tapX.Recognition RC = social_tapX.Recognition.GetRecognition();
                 RC.Recognize(BM, 60);
                 int percent = RC.Proc;
-                 
+                
                 BM = RC.BITMAP;
 
                 ExportBitmapAsPNG(BM);
 
                 Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
 
-                App.WebSvc.Set_BarAndPercent(BarName.Text, percent);
+                App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating(percent, 0, 0));
                 BarName.IsVisible = true;
                 BarName.Text = "There Is " + percent + "% Beer In The Mug!";
                 SamePhoto = 1;
