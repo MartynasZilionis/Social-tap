@@ -32,28 +32,14 @@ namespace SocialTapServer.Models
         /// <summary>
         /// The average mug fill percentage in this bar.
         /// </summary>
-        public float AverageFill
-        {
-            get
-            {
-                if (Ratings.Count == 0)
-                    return 0;
-                return (from r in Ratings select r.FillPercentage).Average();
-            }
-        }
+        [NotMapped]
+        public float AverageFill { get; set; }
 
         /// <summary>
         /// The average beer price (EUR/l).
         /// </summary>
-        public float AveragePrice
-        {
-            get
-            {
-                if (Ratings.Count == 0)
-                    return 0;
-                return (from r in Ratings select ((r.MugPrice / r.MugSize) * 1000)).Average();
-            }
-        }
+        [NotMapped]
+        public float AveragePrice { get; set; }
 
         /// <summary>
         /// Comments uploaded for this bar.
@@ -76,15 +62,19 @@ namespace SocialTapServer.Models
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0)) { }
+        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0), 0, 0, 0f, 0f) { }
 
-        public Bar(Guid id, string name, Coordinate location)
+        public Bar(Guid id, string name, Coordinate location, int comments, int ratings, float price, float fill)
         {
             Id = id;
             Name = name;
             Location = location;
             Comments = new List<Comment>();
             Ratings = new List<Rating>();
+            CommentsCount = comments;
+            RatingsCount = ratings;
+            AveragePrice = price;
+            AverageFill = fill;
         }
     }
 }

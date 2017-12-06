@@ -28,7 +28,7 @@ namespace SocialTapServer.Controllers
         }
 
         // POST: api/Rating/00000000-0000-0000-0000-000000000000
-        public async void Post([FromBody]Rating value, Guid id)
+        public async Task Post([FromBody]Rating value, Guid id)
         {
             await DatabaseManager.Instance.AddRating(id, value);
         }

@@ -21,7 +21,11 @@ namespace SocialTapServer
                     guid,
                     new Bar(guid,
                     "Dummy Bar",
-                    new Coordinate(0,0))
+                    new Coordinate(0,0),
+                    0,
+                    0,
+                    0f,
+                    0f)
                 }
             };
         }
