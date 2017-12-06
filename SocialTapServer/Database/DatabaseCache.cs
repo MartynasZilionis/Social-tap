@@ -22,14 +22,10 @@ namespace SocialTapServer
                     new Bar(guid,
                     "Dummy Bar",
                     new Coordinate(0,0),
-                    new List<Comment>
-                    {
-                        new Comment()
-                    },
-                    new List<Rating>
-                    {
-                        new Rating()
-                    })
+                    0,
+                    0,
+                    0f,
+                    0f)
                 }
             };
         }

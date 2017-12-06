@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,12 @@ namespace SocialTapServer.Models
         public string Content { get; set; }
 
         /// <summary>
+        /// How many stars the user has given for the bar.
+        /// </summary>
+        [NotMapped]
+        public int Stars { get; set; }
+
+        /// <summary>
         /// Date when the comment was written.
         /// </summary>
         public DateTime Date { get; set; }
@@ -46,6 +53,7 @@ namespace SocialTapServer.Models
             Author = "Nobody";
             Content = "Dummy comment";
             Date = DateTime.UtcNow;
+            Stars = 0;
         }
     }
 }

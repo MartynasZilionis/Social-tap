@@ -3,6 +3,7 @@ using social_tapX.RestModels;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace social_tapX
@@ -106,8 +107,8 @@ namespace social_tapX
 
         private async Task Upload(object obj, string path)
         {
-            var json = JsonConvert.SerializeObject(obj);
-            using (var content = new StringContent(json))
+            var json = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
+            using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
             {
                 using (var response = await client.PostAsync(serviceUrl + path, content))
                 {
