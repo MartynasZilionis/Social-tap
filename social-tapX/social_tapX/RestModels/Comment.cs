@@ -25,7 +25,6 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Date when the comment was written.
         /// </summary>
-        [JsonIgnore]
         public DateTime Date { get; set; }
 
         /// <summary>

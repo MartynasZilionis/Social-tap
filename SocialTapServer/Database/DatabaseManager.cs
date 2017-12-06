@@ -67,6 +67,9 @@ namespace SocialTapServer.Database
             });
             tsk.Start();
             tsk.Wait();
+            #if DEBUG
+            db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            #endif
             //InitializeFile();
             //_connection = new SQLiteConnection(String.Format("Data Source={0};Version=3;", _dbFileName));
             //_connection.Open();
@@ -137,7 +140,7 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Rating>> GetRatings(Guid barId, int index, int count)
         {
-            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Ratings).First().Skip(index).Take(count).ToList());
+            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Ratings).First().OrderByDescending(x => x.Date).Skip(index).Take(count).ToList());
             //return await Execute(() => db.Bars.Find(barId).Ratings.Skip(index).Take(count));
             //return cache.GetRatings(barId, index, count);
         }
@@ -149,7 +152,8 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Comment>> GetComments(Guid barId, int index, int count)
         {
-            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Comments).First().OrderByDescending(x=>x.Date).Skip(index).Take(count).ToList());
+            var res = await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Comments).First().OrderByDescending(x=>x.Date).Skip(index).Take(count));
+            return res.ToList();
             //return await Execute(() => db.Bars.Find(barId).Comments.Skip(index).Take(count));
             //return cache.GetComments(barId, index, count);
         }
