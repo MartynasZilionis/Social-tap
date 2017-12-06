@@ -12,7 +12,7 @@ namespace social_tapX
     {
 
         //public object LabelGeolocation { get; private set; }
-        private social_tapX.RestModels.Bar Bar;
+        private RestModels.Bar Bar;
         private string BarName;
 
         public BarMainPage(RestModels.Bar bar)
@@ -42,28 +42,19 @@ namespace social_tapX
             }
         }
 
-        async void InitializeMainMenu()
+        void InitializeMainMenu()
         {
             Question.Text = "Would You Like To:";
             Question.IsVisible = true;
             GetLocation.Text = "Get your location";
             Picture.Text = "Take a Picture";
             Comment.Text = "Comment";
-            Rating.Text = "View Top Rated";
+            Rating.Text = "View Top Ratings";
             Button[] Buttons = { Picture, Comment, Rating};
             foreach (Button B in Buttons)
             {
                 B.IsVisible = true;
-            }
-
-            for (double i = 0; i < 1; i += 0.017)
-            {
-                Question.Opacity = i;
-                foreach (Button B in Buttons)
-                {
-                    B.Opacity = i;
-                }
-                await Task.Delay(25);
+                B.Opacity = 1;
             }
         }
 

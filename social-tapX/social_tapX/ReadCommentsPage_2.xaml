@@ -2,19 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="social_tapX.ReadCommentsPage_2">
-    <ListView x:Name="ListView" ItemSelected="OnCommentSelect">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout Padding="5"
-                             Orientation="Horizontal">
-                        <Label Text="{Binding Content}" 
-                               
-                   Style="{DynamicResource ListItemTextStyle}" />
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Image x:Name="Backround"
+                   Source=""
+                   IsVisible="true"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="5"
+                   Opacity="0.25"
+                   AbsoluteLayout.LayoutBounds="1,1,1,1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   />
+        <ListView x:Name="ListView" ItemSelected="OnCommentSelect">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="5"
+                                 Orientation="Horizontal">
+                            <Label Text="{Binding Content}" 
+                               TextColor="Black"
+                       Style="{DynamicResource ListItemTextStyle}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </AbsoluteLayout>
       
 </ContentPage>

@@ -47,7 +47,7 @@
                    Grid.ColumnSpan="1"
                    Grid.Row="3"
                    IsVisible="False"
-                   
+                   TextColor="#E65100"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"
                    FontSize="Medium"

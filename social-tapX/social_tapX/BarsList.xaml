@@ -2,35 +2,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="social_tapX.BarsList">
-    <StackLayout Orientation="Vertical" Padding="30">
+
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Image x:Name="Backround"
+                   Source=""
+                   IsVisible="true"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="5"
+                   Opacity="0.25"
+                   AbsoluteLayout.LayoutBounds="1,1,1,1"
+                   AbsoluteLayout.LayoutFlags="All"
+                   />
+        
         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="30">
             <Label    x:Name="BarName" 
-                  Text="Choose a bar from the list" 
+                  Text="" 
                   FontAttributes="Bold"
                   FontSize="Medium"
                   HorizontalTextAlignment="Center"
-                  HorizontalOptions="CenterAndExpand"                             
+                  HorizontalOptions="CenterAndExpand"   
+                  TextColor="#E65100"
                      />
         </StackLayout>
-        <ListView x:Name="ListView" ItemSelected="OnBarSelect">
+        
+        <ListView x:Name="ListView" 
+                  ItemSelected="OnBarSelect"
+                  >
     
         <ListView.ItemTemplate>
-        <DataTemplate>
-            <ViewCell>
-                <StackLayout Padding="5"
+            <DataTemplate>
+                <ViewCell>
+                        <StackLayout Padding="5"
                              Orientation="Horizontal">
-                        <Label Text="{Binding Name}" 
+                            <Label Text="{Binding Name}" 
                            HorizontalTextAlignment="Start"
                                HorizontalOptions="StartAndExpand"
                                VerticalOptions="Center"
-                               TextColor="#E65100"
+                               TextColor="Black"
                                FontSize="Medium"                          
                                FontAttributes="Bold" 
                          />
-                </StackLayout>
-            </ViewCell>
-        </DataTemplate>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
-    </StackLayout>
+        </ListView>
+    </AbsoluteLayout>
 </ContentPage>

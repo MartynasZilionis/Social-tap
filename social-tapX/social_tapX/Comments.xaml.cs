@@ -20,52 +20,40 @@ namespace social_tapX
         private Button[] StarB;
         private int RatingFlag = 0;
         private int FocusFlag = 0;
-        private double DeviceWidth;
-        private double DeviceHeight;
-        private double StarSize;
         private string author;
+        private static ImageSource star;
+        private static ImageSource beer;
+
         public Comments (RestModels.Bar bar)
 		{
             Bar = bar;
+            star = "ratingstar.png";
+            beer = "beerrating.png";
 			InitializeComponent ();
-            PrepareWindow();
+            Backround.Source = MainPage.BackroundImage.Source;
+
+            BarName.Text = "Feedback for " + Bar.Name;
+
             Star = new Image[]{ Star1_I, Star2_I, Star3_I, Star4_I, Star5_I, Star6_I, Star7_I, Star8_I, Star9_I, Star10_I };
             StarB = new Button[] { Star1_B, Star2_B, Star3_B, Star4_B, Star5_B, Star6_B, Star7_B, Star8_B, Star9_B, Star10_B };
-            foreach (Image S in Star)
-            {
-                S.Source = "ratingstar.png";
-                S.HeightRequest = StarSize;
-                S.WidthRequest = StarSize;
-                S.BackgroundColor = Color.Red;
-                S.IsVisible = false;
-                S.IsEnabled = false;
-
-            }
             foreach (Button B in StarB)
             {
-                B.Opacity = 1;
-                B.HeightRequest = StarSize;
-                B.WidthRequest = StarSize;
-                B.BackgroundColor = Color.Red;
+                B.BackgroundColor = Color.Orange;
+                B.Opacity = 0.5;
                 B.IsVisible = true;
-                B.IsEnabled = true;
-
+            }
+            foreach (Image S in Star)
+            {
+                S.Source = star;
+                S.IsVisible = true;
+                S.IsEnabled = false;
+                S.IsOpaque = true;
             }
         }
-
-        private void PrepareWindow()
-        {
-            BarName.Text = "Feedback for " + Bar.Name;
-            DeviceWidth = Application.Current.MainPage.Width;
-            DeviceHeight = Application.Current.MainPage.Height;
-            Comment.HeightRequest = DeviceHeight / 3;
-            StarSize = DeviceWidth / 10 - 110;
-
-
-        }
+        
         async private void OK_Pressed(object sender, EventArgs e)
         {
-            if ((BarName.Text != "") && (Comment.Text != "") && (Comment.Text != "Please Enter Your Comment Here"))
+            if ((Comment.Text != "") && (Comment.Text != "Please Enter Your Comment Here") && Rating != 0)
             {
                 if(Author.Text != "")
                 {
@@ -75,9 +63,11 @@ namespace social_tapX
                 {
                     author = "Anonymous";
                 }
-                this.barname = Bar.Name;
-                this.comment = Comment.Text;
+
+                barname = Bar.Name;
+                comment = Comment.Text;
                 SaveInfo();
+
                 BarName.IsVisible = false;
                 Comment.IsVisible = false;
                 Comment.IsEnabled = false;
@@ -127,29 +117,29 @@ namespace social_tapX
             else 
             {
                 OK.Text = "Please Leave a Rating :)";
-                OK.TextColor = Color.Red;
+                OK.TextColor = Color.Black;
                 RatingFlag = 1;
             }
         }
-
+        
         void ChangeRating(int x)
         {
             Rating = x;
             for(int i = 0; i < x; i++)
             {
-                Star[i].Source = "beerrating.png";
+                Star[i].Source = beer;
             }
 
             for (int i = x; i < 10; i++)
             {
-                Star[i].Source = "ratingstar.png";
+                Star[i].Source = star;
             }
         }
 
         private void Rated()
         {
             OK.Text = "OK";
-            OK.TextColor = Color.OrangeRed;
+            OK.TextColor = Color.White;
             RatingFlag = 0;
         }
 
