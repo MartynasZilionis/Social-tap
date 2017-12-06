@@ -29,7 +29,7 @@ namespace social_tapX
 
         private void ReadComment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new ReadCommentsPage_2(Bar));
+            Navigation.PushAsync(new ReadCommentsPage_2(Bar));
         }
     }
 }

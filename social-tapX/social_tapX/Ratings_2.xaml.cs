@@ -20,6 +20,7 @@ namespace social_tapX
         public Ratings_2()
         {
             InitializeComponent();
+            Backround.Source = MainPage.BackroundImage.Source;
             StartAllBars();
 
         }

@@ -2,100 +2,108 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="social_tapX.Ratings_2">
+            
+        <Image x:Name="Backround"
+                   Source=""
+                   IsVisible="true"
+                   Opacity="0.25"
+                   />
+
     <StackLayout Orientation="Vertical" Padding="30">
-    <StackLayout Orientation="Horizontal">
-        <Label    x:Name="BarName" 
-                  Text="BarName" 
-                  HorizontalTextAlignment="Start"
-                  HorizontalOptions="Start"
-                  FontSize="Medium"                             
-                  FontAttributes="Bold"
+    
+        <StackLayout Orientation="Horizontal">
+            <Label    x:Name="BarName" 
+                      Text="BarName" 
+                      HorizontalTextAlignment="Start"
+                      HorizontalOptions="Start"
+                      FontSize="Medium"                             
+                      FontAttributes="Bold"
                                
-                     />
-        <Label    x:Name="BarScore" 
-                  Text="Bar Score" 
-                  HorizontalTextAlignment="End"
-                  HorizontalOptions="End"
-                  FontSize="Medium"                             
-                  FontAttributes="Bold"
+                         />
+            <Label    x:Name="BarScore" 
+                      Text="Bar Score" 
+                      HorizontalTextAlignment="End"
+                      HorizontalOptions="End"
+                      FontSize="Medium"                             
+                      FontAttributes="Bold"
                                
-                     />
-        </StackLayout>
-        <Label    
-                x:Name="EmptyList" 
-                Text="" 
-                HorizontalTextAlignment="Center"
-                HorizontalOptions="Center"
-                FontSize="Medium"                             
-                FontAttributes="Bold"
-                IsEnabled="False"
-                IsVisible="False"
+                         />
+            </StackLayout>
+            <Label    
+                    x:Name="EmptyList" 
+                    Text="" 
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"                             
+                    FontAttributes="Bold"
+                    IsEnabled="False"
+                    IsVisible="False"
                      
                                
-                     />
-        <ListView x:Name="ListView" ItemSelected="OnBarSelect" IsEnabled="False" IsVisible="False">
+                         />
+            <ListView x:Name="ListView" ItemSelected="OnBarSelect" IsEnabled="False" IsVisible="False">
             
-            <ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                            
-                    <DataTemplate>
-                        <ViewCell>
-                        <StackLayout Orientation="Horizontal" HeightRequest="50" Padding="5">
-
-                        <StackLayout Padding="5" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="Start">
-                            <Label 
-                            Text="{Binding Name}" 
-                               HorizontalOptions="StartAndExpand"
-                               VerticalOptions="Center"
-                               TextColor="#E65100"
-                               FontSize="Medium"                          
-                               FontAttributes="Bold"                             
-                            />
-                        </StackLayout>
-                        <StackLayout Padding="5" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                             <Label 
-                                Text="{Binding Score}" 
-                                FontAttributes="Bold"
-                                FontSize="Medium"
-                                TextColor="#E65100"
-                                HorizontalOptions="End"
-                            />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        <ListView x:Name="ListViewBar" ItemSelected="OnRatingSelect" IsEnabled="False" IsVisible="False">
-
-            <ListView.ItemTemplate>
-
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" HeightRequest="50" Padding="5">
+                        <DataTemplate>
+                            <ViewCell>
+                            <StackLayout Orientation="Horizontal" HeightRequest="50" Padding="5">
 
                             <StackLayout Padding="5" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="Start">
                                 <Label 
-                            Text="{Binding Date}" 
-                               HorizontalOptions="StartAndExpand"
-                               VerticalOptions="Center"
-                               TextColor="#E65100"
-                               FontSize="Medium"                          
-                               FontAttributes="Bold"                             
-                            />
+                                Text="{Binding Name}" 
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"
+                                   TextColor="#E65100"
+                                   FontSize="Medium"                          
+                                   FontAttributes="Bold"                             
+                                />
                             </StackLayout>
                             <StackLayout Padding="5" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                <Label 
-                                Text="{Binding FillPercentage}" 
-                                FontAttributes="Bold"
-                                FontSize="Medium"
-                                TextColor="#E65100"
-                                HorizontalOptions="End"
-                            />
+                                 <Label 
+                                    Text="{Binding Score}" 
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    TextColor="#E65100"
+                                    HorizontalOptions="End"
+                                />
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                        </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            <ListView x:Name="ListViewBar" ItemSelected="OnRatingSelect" IsEnabled="False" IsVisible="False">
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HeightRequest="50" Padding="5">
+
+                                <StackLayout Padding="5" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="Start">
+                                    <Label 
+                                Text="{Binding Date}" 
+                                   HorizontalOptions="StartAndExpand"
+                                   VerticalOptions="Center"
+                                   TextColor="#E65100"
+                                   FontSize="Medium"                          
+                                   FontAttributes="Bold"                             
+                                />
+                                </StackLayout>
+                                <StackLayout Padding="5" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                    <Label 
+                                    Text="{Binding FillPercentage}" 
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    TextColor="#E65100"
+                                    HorizontalOptions="End"
+                                />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
 </ContentPage>

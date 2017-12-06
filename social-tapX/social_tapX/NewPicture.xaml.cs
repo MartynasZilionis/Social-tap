@@ -79,11 +79,11 @@ namespace social_tapX
                 RC.Recognize(BM, 60);
                 int percent = RC.Proc;
                 
-                BM = RC.BITMAP;
+                //BM = RC.BITMAP;
 
-                ExportBitmapAsPNG(BM);
+                //ExportBitmapAsPNG(BM);
 
-                Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
+                //Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
 
                 App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating(percent, 0, 0));
                 BarName.IsVisible = true;

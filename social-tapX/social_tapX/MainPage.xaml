@@ -9,7 +9,7 @@
         <Grid ColumnSpacing="10" RowSpacing="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -22,6 +22,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
             <Image x:Name="Backround"
                    Source=""
                    Opacity="0"
@@ -37,8 +38,8 @@
                    Grid.Row="1"
                    Grid.Column="1"
                    Font="Bold, Italic, Large"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                    />
             <Button x:Name="ExistingBar"
                     Grid.Row="2"
@@ -47,8 +48,8 @@
                     TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
                     BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                     IsVisible="False"
                     Opacity="0"
                     Pressed="ExistingBar_Pressed"
@@ -60,8 +61,8 @@
                     TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
                     BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                     IsVisible="False"
                     Opacity="0"
                     IsEnabled="True"
@@ -74,8 +75,8 @@
                     TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
                     BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                     IsVisible="False"
                     Pressed="Feedback_Pressed"
                 />
@@ -86,8 +87,8 @@
                     TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
                     BackgroundColor="#EF6C00"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                     
                     IsVisible="False"
                     Opacity="0"

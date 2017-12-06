@@ -149,7 +149,7 @@ namespace SocialTapServer.Database
 
         public async Task AddRating(Guid barId, Rating rating)
         {
-            await Execute(() => db.Bars.Find(barId).Ratings.Add(rating));
+            //await Execute(() => db.Bars.Find(barId).Ratings.Add(rating));
             await db.SaveChangesAsync();
             //cache.AddRating(barId, rating);
         }

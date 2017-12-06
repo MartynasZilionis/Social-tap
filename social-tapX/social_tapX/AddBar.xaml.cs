@@ -22,6 +22,7 @@ namespace social_tapX
             Lat = Lat_;
             Long = Long_;
 			InitializeComponent ();
+            Backround.Source = MainPage.BackroundImage.Source;
             SetInterface();
 		}
         private void SetInterface()

@@ -18,6 +18,7 @@ namespace social_tapX
         {
             Bar = bar;
             InitializeComponent();
+            Backround.Source = MainPage.BackroundImage.Source;
             Start();
         }
 

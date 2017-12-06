@@ -6,7 +6,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -31,8 +31,8 @@
                     TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
                     BackgroundColor="#EF6C00"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                     IsVisible="True"
                     Pressed="NewComment_Pressed"
                     Grid.ColumnSpan="3"
@@ -50,8 +50,8 @@
                     TextColor="#FFF3E0"
                     Font="Bold, Italic, Large"
                     BackgroundColor="#EF6C00"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
                     IsVisible="True"
                     Pressed="ReadComment_Pressed"
                     Grid.ColumnSpan="3"
