@@ -107,7 +107,7 @@ namespace social_tapX
             }
         }
 
-        private async void GatherLocation()
+        private async Task GatherLocation()
         {
             TimeSpan timeout = new TimeSpan(0, 0, 10);
             try
@@ -144,16 +144,16 @@ namespace social_tapX
 
         }
 
-        private void ExistingBar_Pressed(object sender, EventArgs e)
+        private async void ExistingBar_Pressed(object sender, EventArgs e)
         {
-            GatherLocation();
-            Navigation.PushAsync(new BarsList(Lat, Long));
+            await GatherLocation();
+            await Navigation.PushAsync(new BarsList(Lat, Long));
         }
 
-        private void NewBar_Pressed(object sender, EventArgs e)
+        private async void NewBar_Pressed(object sender, EventArgs e)
         {
-            GatherLocation();
-            Navigation.PushAsync(new AddBar(Lat, Long));
+            await GatherLocation();
+            await Navigation.PushAsync(new AddBar(Lat, Long));
         }
 
         private void Feedback_Pressed(object sender, EventArgs e)

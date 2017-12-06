@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialTapServer.Models
 {
@@ -66,8 +67,10 @@ namespace SocialTapServer.Models
         [JsonIgnore]
         public List<Rating> Ratings { get; set; }
 
+        [NotMapped]
         public int CommentsCount { get; set; }
 
+        [NotMapped]
         public int RatingsCount { get; set; }
 
         /// <summary>
