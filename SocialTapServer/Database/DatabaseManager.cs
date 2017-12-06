@@ -124,8 +124,28 @@ namespace SocialTapServer.Database
                 AverageFill = bar.Ratings.Select(r => r.FillPercentage).DefaultIfEmpty(0f).Average(),
                 AveragePrice = bar.Ratings.Select(r => r.MugPrice / r.MugSize * 1000).DefaultIfEmpty(0f).Average(),
                 CommentsCount = bar.Comments.Count(),
-                RatingsCount = bar.Ratings.Count()
-            }).Take(count).ToList().Select(x => new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill)));
+                RatingsCount = bar.Ratings.Count(),
+                AverageStars = (float) bar.Comments.Select(c => c.Stars).DefaultIfEmpty(0).Average()
+            }).Take(count).ToList().Select(x => new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill, x.AverageStars)));
+        }
+
+        public async Task<IEnumerable<Bar>> GetTopBars(int index, int count)
+        {
+            return await Execute(() =>
+            (
+            from bar in db.Bars
+            orderby bar.Comments.Select(c=>c.Stars).DefaultIfEmpty(0).Average() descending
+            select new
+            {
+                Id = bar.Id,
+                Name = bar.Name,
+                Location = bar.Location,
+                AverageFill = bar.Ratings.Select(r => r.FillPercentage).DefaultIfEmpty(0f).Average(),
+                AveragePrice = bar.Ratings.Select(r => r.MugPrice / r.MugSize * 1000).DefaultIfEmpty(0f).Average(),
+                CommentsCount = bar.Comments.Count(),
+                RatingsCount = bar.Ratings.Count(),
+                AverageStars = (float)bar.Comments.Select(c => c.Stars).DefaultIfEmpty(0).Average()
+            }).Take(count).ToList().Select(x => new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill, x.AverageStars)));
         }
         
         public async Task<Bar> GetBar(Guid id)
@@ -141,9 +161,10 @@ namespace SocialTapServer.Database
                     AverageFill = bar.Ratings.Select(r => r.FillPercentage).DefaultIfEmpty(0f).Average(),
                     AveragePrice = bar.Ratings.Select(r => r.MugPrice / r.MugSize * 1000).DefaultIfEmpty(0f).Average(),
                     CommentsCount = bar.Comments.Count(),
-                    RatingsCount = bar.Ratings.Count()
+                    RatingsCount = bar.Ratings.Count(),
+                    AverageStars = (float) bar.Comments.Select(c => c.Stars).DefaultIfEmpty(0).Average()
                 }
-                ).ToList().Select(x=> new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill)).First());
+                ).ToList().Select(x=> new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill, x.AverageStars)).First());
             //Bar res = await Execute(() => db.Bars.Find(id));
             //return cache.GetBar(id);
         }

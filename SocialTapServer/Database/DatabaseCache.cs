@@ -25,6 +25,7 @@ namespace SocialTapServer
                     0,
                     0,
                     0f,
+                    0f,
                     0f)
                 }
             };

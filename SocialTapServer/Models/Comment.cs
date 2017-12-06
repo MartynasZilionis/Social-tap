@@ -33,7 +33,6 @@ namespace SocialTapServer.Models
         /// <summary>
         /// How many stars the user has given for the bar.
         /// </summary>
-        [NotMapped]
         public int Stars { get; set; }
 
         /// <summary>

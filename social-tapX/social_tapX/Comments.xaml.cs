@@ -156,7 +156,7 @@ namespace social_tapX
 
         private void SaveInfo()
         {
-            App.WebSvc.UploadComment(Bar.Id, new RestModels.Comment(author, comment));
+            App.WebSvc.UploadComment(Bar.Id, new RestModels.Comment(author, comment, Rating));
             //KUR REITINGAI????
             //App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating());
         }

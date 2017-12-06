@@ -28,6 +28,13 @@ namespace SocialTapServer.Controllers
             }
         }
 
+        // GET: api/GetTopBars/0/10
+        [Route("api/GetTopBars/{index}/{count}")]
+        public async Task<IHttpActionResult> GetTop(int index, int count)
+        {
+            return Ok(await DatabaseManager.Instance.GetTopBars(index, count));
+        }
+
         // GET: api/Bar (WIP)
         public async Task<IHttpActionResult> Get()
         {

@@ -53,18 +53,30 @@ namespace SocialTapServer.Models
         [JsonIgnore]
         public List<Rating> Ratings { get; set; }
 
+        /// <summary>
+        /// Amount of comments uploaded for this bar.
+        /// </summary>
         [NotMapped]
         public int CommentsCount { get; set; }
 
+        /// <summary>
+        /// Amount of ratings uploaded for this bar.
+        /// </summary>
         [NotMapped]
         public int RatingsCount { get; set; }
 
         /// <summary>
+        /// The average star rating in this bar's comments.
+        /// </summary>
+        [NotMapped]
+        public float AverageStars { get; set; }
+
+        /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0), 0, 0, 0f, 0f) { }
+        public Bar() : this(Guid.NewGuid(), "Dummy Bar", new Coordinate(0, 0), 0, 0, 0f, 0f, 0f) { }
 
-        public Bar(Guid id, string name, Coordinate location, int comments, int ratings, float price, float fill)
+        public Bar(Guid id, string name, Coordinate location, int comments, int ratings, float price, float fill, float stars)
         {
             Id = id;
             Name = name;
@@ -75,6 +87,7 @@ namespace SocialTapServer.Models
             RatingsCount = ratings;
             AveragePrice = price;
             AverageFill = fill;
+            AverageStars = stars;
         }
     }
 }
