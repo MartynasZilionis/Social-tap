@@ -67,6 +67,9 @@ namespace SocialTapServer.Database
             });
             tsk.Start();
             tsk.Wait();
+            #if DEBUG
+            db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+            #endif
             //InitializeFile();
             //_connection = new SQLiteConnection(String.Format("Data Source={0};Version=3;", _dbFileName));
             //_connection.Open();
@@ -106,20 +109,63 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Bar>> GetBars(Coordinate location, int count)
         {
-            var tmp = await Execute(() => db.Bars);
-            //neklauskit kaip veikia. kazkaip.
-            var tmp2 = tmp.OrderBy(x => 12742 * SqlFunctions.Asin(SqlFunctions.SquareRoot(SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (x.Location.Latitude - location.Latitude)) / 2) * SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (x.Location.Latitude - location.Latitude)) / 2) +
-                                    SqlFunctions.Cos((SqlFunctions.Pi() / 180) * location.Latitude) * SqlFunctions.Cos((SqlFunctions.Pi() / 180) * (x.Location.Latitude)) *
-                                    SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (x.Location.Longitude - location.Longitude)) / 2) * SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (x.Location.Longitude - location.Longitude)) / 2))));
-            //var tmp2 = tmp.OrderBy(x => x.Location.GetDistanceTo(location)).ToList();
-            return tmp2.Take(count);
-            //return (await Execute(() => db.Bars)).OrderBy(x => x.Location.GetDistanceTo(location)).Take(count);
-            //return cache.GetBars(location, count);
+            return await Execute(() =>
+            (//neklauskit kaip veikia. kazkaip.
+            from bar in db.Bars orderby 12742 * SqlFunctions.Asin(SqlFunctions.SquareRoot(SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (bar.Location.Latitude - location.Latitude)) / 2) *
+                                                SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (bar.Location.Latitude - location.Latitude)) / 2) +
+                                                SqlFunctions.Cos((SqlFunctions.Pi() / 180) * location.Latitude) * SqlFunctions.Cos((SqlFunctions.Pi() / 180) * (bar.Location.Latitude)) *
+                                                SqlFunctions.Sin(((SqlFunctions.Pi() / 180) * (bar.Location.Longitude - location.Longitude)) / 2) * SqlFunctions.Sin(((SqlFunctions.Pi() / 180) *
+                                                (bar.Location.Longitude - location.Longitude)) / 2)))
+            select new
+            {
+                Id = bar.Id,
+                Name = bar.Name,
+                Location = bar.Location,
+                AverageFill = bar.Ratings.Select(r => r.FillPercentage).DefaultIfEmpty(0f).Average(),
+                AveragePrice = bar.Ratings.Select(r => r.MugPrice / r.MugSize * 1000).DefaultIfEmpty(0f).Average(),
+                CommentsCount = bar.Comments.Count(),
+                RatingsCount = bar.Ratings.Count(),
+                AverageStars = (float) bar.Comments.Select(c => c.Stars).DefaultIfEmpty(0).Average()
+            }).Take(count).ToList().Select(x => new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill, x.AverageStars)));
+        }
+
+        public async Task<IEnumerable<Bar>> GetTopBars(int index, int count)
+        {
+            return await Execute(() =>
+            (
+            from bar in db.Bars
+            orderby bar.Comments.Select(c=>c.Stars).DefaultIfEmpty(0).Average() descending
+            select new
+            {
+                Id = bar.Id,
+                Name = bar.Name,
+                Location = bar.Location,
+                AverageFill = bar.Ratings.Select(r => r.FillPercentage).DefaultIfEmpty(0f).Average(),
+                AveragePrice = bar.Ratings.Select(r => r.MugPrice / r.MugSize * 1000).DefaultIfEmpty(0f).Average(),
+                CommentsCount = bar.Comments.Count(),
+                RatingsCount = bar.Ratings.Count(),
+                AverageStars = (float)bar.Comments.Select(c => c.Stars).DefaultIfEmpty(0).Average()
+            }).Take(count).ToList().Select(x => new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill, x.AverageStars)));
         }
         
         public async Task<Bar> GetBar(Guid id)
         {
-            return await Execute(() => db.Bars.Find(id));
+            return await Execute(() =>
+                (
+                from bar in db.Bars where bar.Id == id select
+                new
+                {
+                    Id = bar.Id,
+                    Name = bar.Name,
+                    Location = bar.Location,
+                    AverageFill = bar.Ratings.Select(r => r.FillPercentage).DefaultIfEmpty(0f).Average(),
+                    AveragePrice = bar.Ratings.Select(r => r.MugPrice / r.MugSize * 1000).DefaultIfEmpty(0f).Average(),
+                    CommentsCount = bar.Comments.Count(),
+                    RatingsCount = bar.Ratings.Count(),
+                    AverageStars = (float) bar.Comments.Select(c => c.Stars).DefaultIfEmpty(0).Average()
+                }
+                ).ToList().Select(x=> new Bar(x.Id, x.Name, x.Location, x.CommentsCount, x.RatingsCount, x.AveragePrice, x.AverageFill, x.AverageStars)).First());
+            //Bar res = await Execute(() => db.Bars.Find(id));
             //return cache.GetBar(id);
         }
 
@@ -137,7 +183,7 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Rating>> GetRatings(Guid barId, int index, int count)
         {
-            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Ratings).First().Skip(index).Take(count).ToList());
+            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Ratings).First().OrderByDescending(x => x.Date).Skip(index).Take(count).ToList());
             //return await Execute(() => db.Bars.Find(barId).Ratings.Skip(index).Take(count));
             //return cache.GetRatings(barId, index, count);
         }
@@ -149,7 +195,8 @@ namespace SocialTapServer.Database
 
         public async Task<IEnumerable<Comment>> GetComments(Guid barId, int index, int count)
         {
-            return await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Comments).First().OrderByDescending(x=>x.Date).Skip(index).Take(count).ToList());
+            var res = await Execute(() => (from bar in db.Bars where bar.Id == barId select bar.Comments).First().OrderByDescending(x=>x.Date).Skip(index).Take(count));
+            return res.ToList();
             //return await Execute(() => db.Bars.Find(barId).Comments.Skip(index).Take(count));
             //return cache.GetComments(barId, index, count);
         }

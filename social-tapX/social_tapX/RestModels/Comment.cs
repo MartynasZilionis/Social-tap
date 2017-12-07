@@ -25,18 +25,23 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Date when the comment was written.
         /// </summary>
-        [JsonIgnore]
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// How many stars the user has given for the bar.
+        /// </summary>
+        public int Stars { get; set; }
 
         /// <summary>
         /// Default constructor. Fills the object with default values.
         /// </summary>
-        public Comment() : this("Nobody", "Dummy comment") { }
+        public Comment() : this("Nobody", "Dummy comment", 0) { }
 
-        public Comment(string author, string content)
+        public Comment(string author, string content, int stars)
         {
             Author = author;
             Content = content;
+            Stars = stars;
         }
     }
 }

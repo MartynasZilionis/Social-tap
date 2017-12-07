@@ -30,7 +30,6 @@ namespace social_tapX.RestModels
         /// <summary>
         /// Date when the rating was uploaded.
         /// </summary>
-        [JsonIgnore]
         public DateTime Date { get; set; }
 
         /// <summary>

@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201711301952396_a.Designer.cs">
       <DependentUpon>201711301952396_a.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712061922596_wat2.cs" />
+    <Compile Include="Migrations\201712061922596_wat2.Designer.cs">
+      <DependentUpon>201712061922596_wat2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\BarProfile.cs" />
@@ -153,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711301952396_a.resx">
       <DependentUpon>201711301952396_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712061922596_wat2.resx">
+      <DependentUpon>201712061922596_wat2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

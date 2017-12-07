@@ -37,6 +37,11 @@ namespace social_tapX.RestModels
         public float AveragePrice { get; set; }
 
         /// <summary>
+        /// The average star rating in this bar's comments.
+        /// </summary>
+        public float AverageStars { get; set; }
+
+        /// <summary>
         /// Amount of comments uploaded for this bar.
         /// </summary>
         public int CommentsCount { get; set; }

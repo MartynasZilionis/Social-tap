@@ -17,6 +17,14 @@ namespace social_tapX
         Task<IEnumerable<Bar>> GetAllBars();
 
         /// <summary>
+        /// Gets <see cref="count"/> top-rated <see cref="Bar">Bars</see> based on stars given in <see cref="Comment">Comments</see>
+        /// </summary>
+        /// <param name="from">From which <see cref="Bar"/> to start (skips bars before that)?</param>
+        /// <param name="count">How many <see cref="Bar">Bars</see> to get?</param>
+        /// <returns></returns>
+        Task<IEnumerable<Bar>> GetTopBars(int from, int count);
+
+        /// <summary>
         /// Gets <see cref="Bar">Bars</see> near a location.
         /// </summary>
         /// <param name="loc">Set of coordinates.</param>
@@ -73,6 +81,11 @@ namespace social_tapX
         public async Task<IEnumerable<Bar>> GetAllBars()
         {
             return await GetList<Bar>("/Bar");
+        }
+
+        public async Task<IEnumerable<Bar>> GetTopBars(int from, int count)
+        {
+            return await GetList<Bar>(String.Format("/GetTopBars/{0}/{1}", from, count));
         }
 
         public async Task<IEnumerable<Bar>> GetNearestBars(Coordinate loc, int n)
