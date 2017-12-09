@@ -13,7 +13,8 @@ namespace social_tapX
 	public partial class FacebookProfilePage : ContentPage
 	{
         private string ClientId = "246497305885398";
-        private FacebookProfile facebookProfile;
+        public enum Role { Anonymous, User, Admin };
+
         public FacebookProfilePage()
         {
             InitializeComponent();
@@ -43,16 +44,8 @@ namespace social_tapX
             {
                 var facebookServices = new FacebookServices();
 
-                    RestModels.User user = await facebookServices.GetFacebookProfileAsync(accessToken);
-                if (user.IsVerified == true)
-                {
-                    await Navigation.PushAsync(new MainPage(user, 2));
-                }
-                else if (user.IsVerified == false)
-                {
-                    await Navigation.PushAsync(new MainPage(user, 1));
-                }
-                else await Navigation.PushAsync(new MainPage(null, 0));
+                 var role = await facebookServices.ValidateUser(accessToken);
+                //await Navigation.PushAsync(new MainPage(role, accessToken));
             }
         }
 

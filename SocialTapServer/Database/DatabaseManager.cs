@@ -215,6 +215,21 @@ namespace SocialTapServer.Database
             await db.SaveChangesAsync();
             //cache.AddComment(barId, comment);
         }
+        //To be implemented
+       
+        public async Task<bool> GetUser(string Id)
+        {
+            bool res = true; // await from DB
+            return res; // <- Grąžina ar useris Adminas; 
+        }
+
+        public async Task AddUser(string Id, string name)
+        {
+            //await -> adds user to DB;
+        }
+            
+
+        
 
         ~DatabaseManager()
         {
