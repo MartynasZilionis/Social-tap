@@ -72,6 +72,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -102,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="FBAuthorization.cs" />
     <Compile Include="InvalidIdException.cs" />
     <Compile Include="Database\DatabaseCache.cs" />
     <Compile Include="Controllers\BarController.cs" />

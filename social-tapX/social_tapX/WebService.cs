@@ -172,23 +172,3 @@ namespace social_tapX
     }
     
 }
-public enum Role { Anonymous, User, Admin };
-/*
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-public class FBAuthorization : AuthorizationFilterAttribute
-{
-    private Role[] allowedRoles;
-    public FBAuthorization(params Role[] roles)
-    {
-        allowedRoles = roles;
-    }
-
-    public override void OnAuthorization(HttpActionContext filterContext)
-    {
-        //filterContext.Request.Headers.SingleOrDefault(x => x.Key == "Token"); <-- tokenas
-        //allowedRoles <-- is cia gauni roles, kurios turi access
-        //[...]
-        filterContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden); // <-- meti toki, jei tokenas neteisingas arba neatitinka role
-    }
-}
-*/
