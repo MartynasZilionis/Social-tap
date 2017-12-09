@@ -2,6 +2,7 @@
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -17,15 +18,25 @@ namespace social_tapX
         private int timeout;
         private double Lat;
         private double Long;
+        private RestModels.User User;
+        private int Auth;
 
         //public object LabelGeolocation { get; private set; }
 
-        public MainPage()
+        public MainPage(RestModels.User user, int auth)
         {
+            User = user;
+            Auth = auth;
             InitializeComponent();
-
+            if (Auth == 0 || Auth == 1)
+            {
+                NewBar.IsEnabled = false;
+            }
+            else if (Auth == 2)
+            {
+                NewBar.IsEnabled = true;
+            }
             Feedback.DoneEvent += DoneHandler;
-
             Page ForSize = new ContentPage();
             WidthIs = (int)ForSize.Width;
             HeightIs = (int)ForSize.Height;
@@ -33,6 +44,8 @@ namespace social_tapX
             GetImage();
             Initialize();
         }
+        
+
 
         async private void DoneHandler(object sender, EventArgs y)
         {
@@ -93,7 +106,15 @@ namespace social_tapX
             Button[] Buttons = { ExistingBar, NewBar, Feed_back, Rating};
             foreach (Button B in Buttons)
                 {
+                if (B == NewBar && Auth == 2)
+                {
                     B.IsVisible = true;
+                }
+                else if (B == NewBar && Auth != 2)
+                {
+                    B.IsVisible = false;
+                }
+                else B.IsVisible = true;
                 }
 
             for (double i = 0; i < 1; i += 0.017)

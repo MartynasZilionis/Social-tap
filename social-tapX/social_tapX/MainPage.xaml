@@ -65,7 +65,7 @@
                     VerticalOptions="FillAndExpand"
                     IsVisible="False"
                     Opacity="0"
-                    IsEnabled="True"
+                    IsEnabled="False"
                     Pressed="NewBar_Pressed"
                 />
             <Button x:Name="Feed_back"

@@ -3,6 +3,7 @@ using social_tapX.RestModels;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ namespace social_tapX
 {
     public interface IWebService
     {
+
+        List<User> GetListOfUsers(int ToNumber);
+
         /// <summary>
         /// Gets bars in the database. Not guaranteed to get all of them, might be limited to the first few.
         /// </summary>
@@ -78,6 +82,27 @@ namespace social_tapX
     {
         private static HttpClient client = new HttpClient();
         private static string serviceUrl = "http://socialtapx.azurewebsites.net/api";
+
+        // FB
+        public List<User> GetListOfUsers(int toNumber)
+        {
+            List<User> ListOfUsers = new List<User>
+            {
+                new User("1805613166138493", "Arūnas", true),
+                new User("12313231231313123", "Arūnas", false),
+                new User("123123123123", "Arūnas", false),
+                new User("148415886123134950593", "Arūnas", false),
+                new User("148415881231364950593", "Arūnas", false),
+                new User("1484158123864950593", "Arūnas", false),
+                new User("148415138864950593", "Arūnas", false),
+                new User("148411358864950593", "Arūnas", false),
+                new User("1484112358864950593", "Arūnas", false),
+                new User("1484112358864950593", "Arūnas", false),
+            };
+
+            return ListOfUsers;
+        }
+        // END OF FB
         public async Task<IEnumerable<Bar>> GetAllBars()
         {
             return await GetList<Bar>("/Bar");
@@ -147,3 +172,23 @@ namespace social_tapX
     }
     
 }
+public enum Role { Anonymous, User, Admin };
+/*
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+public class FBAuthorization : AuthorizationFilterAttribute
+{
+    private Role[] allowedRoles;
+    public FBAuthorization(params Role[] roles)
+    {
+        allowedRoles = roles;
+    }
+
+    public override void OnAuthorization(HttpActionContext filterContext)
+    {
+        //filterContext.Request.Headers.SingleOrDefault(x => x.Key == "Token"); <-- tokenas
+        //allowedRoles <-- is cia gauni roles, kurios turi access
+        //[...]
+        filterContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden); // <-- meti toki, jei tokenas neteisingas arba neatitinka role
+    }
+}
+*/

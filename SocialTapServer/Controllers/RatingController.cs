@@ -13,6 +13,7 @@ namespace SocialTapServer.Controllers
     public class RatingController : ApiController
     {
         // GET: api/Rating/00000000-0000-0000-0000-000000000000
+        //[FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
         public async Task<IHttpActionResult> Get(Guid id)
         {
             var bar = await DatabaseManager.Instance.GetBar(id);
@@ -22,12 +23,14 @@ namespace SocialTapServer.Controllers
 
         // GET: api/Rating/00000000-0000-0000-0000-000000000000/0/10
         [Route("api/Rating/{id}/{index}/{count}")]
+       // [FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
         public async Task<IHttpActionResult> Get(Guid id, int index, int count)
         {
             return Ok(await DatabaseManager.Instance.GetRatings(id, index, count));
         }
 
         // POST: api/Rating/00000000-0000-0000-0000-000000000000
+        //[FBAuthorizationRole.Anonymous, Role.User, Role.Admin)]
         public async Task Post([FromBody]Rating value, Guid id)
         {
             await DatabaseManager.Instance.AddRating(id, value);

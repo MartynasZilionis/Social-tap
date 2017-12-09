@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="social_tapX.LoginPage"
+                Title = "SocialTapX">
+    <ContentPage.Content Title = "LoginPage">
+        <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image x:Name="Backround"
+                   Source=""
+                   Opacity="0"
+                   IsVisible="False"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="7"
+                   />
+                <Label x:Name="Question"
+                   Text=""
+                   TextColor="#E65100"
+                   Opacity="1"
+                   IsVisible="true"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Font="Bold, Italic, Large"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                   />
+                <Button x:Name="Login"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Opacity="0"
+                    Pressed="LoginPressed"
+                />
+                <Button x:Name="DoNotLogIn"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text=""
+                    TextColor="#FFF3E0"
+                    Font="Bold, Italic, Large"
+                    BackgroundColor="#EF6C00"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Opacity="0"
+                    IsEnabled="True"
+                    Pressed="DoNotLogInPressed"
+                />
+            </Grid>
+        </ContentPage.Content>
+</ContentPage>
