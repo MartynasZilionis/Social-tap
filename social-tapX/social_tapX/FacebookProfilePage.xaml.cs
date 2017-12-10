@@ -45,6 +45,11 @@ namespace social_tapX
                 var facebookServices = new FacebookServices();
 
                  var role = await facebookServices.ValidateUser(accessToken);
+                if (role != null)
+                {
+                    await Navigation.PushAsync(new MainPage(new RestModels.User(), 1));
+                }
+                else await Navigation.PushAsync(new MainPage(new RestModels.User(), 0));
                 //await Navigation.PushAsync(new MainPage(role, accessToken));
             }
         }

@@ -22,7 +22,28 @@ namespace SocialTapServer
             allowedRoles = roles;
         }
 
-        public async Task ValidateUser(string authToken)
+        public override async void OnAuthorization(HttpActionContext filterContext)
+        {
+            string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
+            if (await isLoggedIn(authToken)/*validuojasi su fb*/)
+            {
+                if (allowedRoles.Contains(Role.User)) return; //praleidziam
+                if (allowedRoles.Contains(Role.Admin) /*&& useris yra adminas (bus funkcija DatabaseManager klasej)*/) return; //praleidziam
+            }
+            else if (allowedRoles.Contains(Role.Anonymous)) return; //praleidziam
+            //jei dar nepraleidom, reiskia kazkas netaip:
+            filterContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden); // <-- meti toki, jei tokenas neteisingas arba neatitinka role
+                                                                                        //allowedRoles <-- is cia gauni roles, kurios turi access
+                                                                                        //[...]
+
+        }
+
+        public async Task<bool> isLoggedIn(string token)
+        {
+            return await ValidateUser(token);
+        }
+
+        public async Task<bool> ValidateUser(string authToken)
         {
             var requestUrl =
                 "https://graph.facebook.com/debug_token?input_token="
@@ -35,10 +56,13 @@ namespace SocialTapServer
             string isValid = obj.data.is_valid;
             if (isValid == "true")
             {
-                await GetFacebookProfileAsync(authToken);
+                return true;
+                //return await GetFacebookProfileAsync(authToken);
             }
+            else return false;
         }
-        public async Task<Role> GetFacebookProfileAsync(string accessToken)
+        //Sita funkcija gauna info apie vartotoja.
+        public async Task<bool> GetFacebookProfileAsync(string accessToken)
         {
             var requestUrl =
                 "https://graph.facebook.com/v2.7/me/?fields=first_name&access_token="
@@ -49,16 +73,16 @@ namespace SocialTapServer
             dynamic obj = JsonConvert.DeserializeObject(userJson);
             string Id = obj.id;
             string firstName = obj.first_name;
-            var user = true; // <- Gets user from DB
-            if (user == false)
+            var isAdmin = true; // <- Gets userRights from DB
+            if (isAdmin == false)
             {
-                return Role.Anonymous;
+                return false;
             }
-            else if (user == true)
+            else if (isAdmin == true)
             {
-                return Role.Admin;
+                return true;
             }
-            else return Role.Anonymous;
+            else return false;
         }
     }
 }
