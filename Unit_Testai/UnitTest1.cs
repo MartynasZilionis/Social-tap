@@ -2,6 +2,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Moq;
+using System.Threading.Tasks;
 
 namespace Unit_Testai
 {
@@ -256,10 +258,25 @@ namespace Unit_Testai
         }
 
         [TestMethod]
-        public async System.Threading.Tasks.Task TestBitmapHandler()
+        public async System.Threading.Tasks.Task TestUploadBar()
         {
+            social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
+            var mock = new Mock<System.Net.Http.HttpClient>();
+            mock.Setup(framework => framework.PostAsync(It.IsAny<String>(), It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
 
+            social_tapX.WebService.client = mock.Object;
+            social_tapX.WebService ws = new social_tapX.WebService();
+
+            try
+            {
+                await ws.UploadBar(bar);
+            }
+            catch (Exception e)
+            {
+
+            }
+            
 
         }
     }

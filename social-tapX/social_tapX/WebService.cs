@@ -76,7 +76,7 @@ namespace social_tapX
 
     public class WebService : IWebService
     {
-        private static HttpClient client = new HttpClient();
+        public static HttpClient client = new HttpClient();
         private static string serviceUrl = "http://socialtapx.azurewebsites.net/api";
         public async Task<IEnumerable<Bar>> GetAllBars()
         {
