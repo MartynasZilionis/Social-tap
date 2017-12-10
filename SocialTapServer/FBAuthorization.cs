@@ -26,6 +26,7 @@ namespace SocialTapServer
         {
             string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
             bool logged = Task.Run(async () => await ValidateUser(authToken)).Result;
+            Task.WaitAll();
             if (logged)/*validuojasi su fb*/
             {
                 if (allowedRoles.Contains(Role.User)) return; //praleidziam
