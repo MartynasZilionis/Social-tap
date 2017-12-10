@@ -14,3 +14,5 @@ UnitTest.Test/obj/
 UnitTest.Test/bin/
 *.user
 SocialTapServer/Properties/PublishProfiles/SocialTapX - Web Deploy.pubxml
+Unit_Testai/bin/
+Unit_Testai/obj/
