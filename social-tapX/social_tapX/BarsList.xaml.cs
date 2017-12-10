@@ -27,7 +27,7 @@ namespace social_tapX
 
         async private void Start()
         {
-            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars();
+            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetNearestBars(new RestModels.Coordinate(Lat, Long), 50);
 
             ListView.ItemsSource = Bars;
         }
