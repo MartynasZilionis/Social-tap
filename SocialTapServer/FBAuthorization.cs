@@ -22,10 +22,11 @@ namespace SocialTapServer
             allowedRoles = roles;
         }
 
-        public override async void OnAuthorization(HttpActionContext filterContext)
+        public override void OnAuthorization(HttpActionContext filterContext)
         {
             string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
-            if (await isLoggedIn(authToken)/*validuojasi su fb*/)
+            bool logged = Task.Run(async () => await ValidateUser(authToken)).Result;
+            if (logged)/*validuojasi su fb*/
             {
                 if (allowedRoles.Contains(Role.User)) return; //praleidziam
                 if (allowedRoles.Contains(Role.Admin) /*&& useris yra adminas (bus funkcija DatabaseManager klasej)*/) return; //praleidziam
