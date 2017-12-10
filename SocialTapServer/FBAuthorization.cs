@@ -24,17 +24,22 @@ namespace SocialTapServer
 
         public override void OnAuthorization(HttpActionContext filterContext)
         {
-            string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
-            bool logged = Task.Run(async () => await ValidateUser(authToken)).Result;
-            Task.WaitAll();
-            if (logged)/*validuojasi su fb*/
+            try
             {
-                if (allowedRoles.Contains(Role.User)) return; //praleidziam
-                if (allowedRoles.Contains(Role.Admin) /*&& useris yra adminas (bus funkcija DatabaseManager klasej)*/) return; //praleidziam
+                string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
+                var logged = Task.Run(async () => await ValidateUser(authToken)).Result;
+                Task.WaitAll();
+                if (logged)/*validuojasi su fb*/
+                {
+                    if (allowedRoles.Contains(Role.User)) return; //praleidziam
+                    if (allowedRoles.Contains(Role.Admin) /*&& useris yra adminas (bus funkcija DatabaseManager klasej)*/) return; //praleidziam
+                }
             }
-            else if (allowedRoles.Contains(Role.Anonymous)) return; //praleidziam
-            //jei dar nepraleidom, reiskia kazkas netaip:
-            filterContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden); // <-- meti toki, jei tokenas neteisingas arba neatitinka role
+            catch { }
+            
+                if (allowedRoles.Contains(Role.Anonymous)) return; //praleidziam
+                                                                   //jei dar nepraleidom, reiskia kazkas netaip:
+                filterContext.Response = new HttpResponseMessage(HttpStatusCode.Forbidden);// <-- meti toki, jei tokenas neteisingas arba neatitinka role
                                                                                         //allowedRoles <-- is cia gauni roles, kurios turi access
                                                                                         //[...]
 
@@ -56,7 +61,7 @@ namespace SocialTapServer
             var userJson = await httpClient.GetStringAsync(requestUrl);
             dynamic obj = JsonConvert.DeserializeObject(userJson);
             string isValid = obj.data.is_valid;
-            if (isValid == "true")
+            if (isValid == "True")
             {
                 return true;
                 //return await GetFacebookProfileAsync(authToken);

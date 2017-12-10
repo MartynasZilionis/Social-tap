@@ -13,8 +13,10 @@ namespace social_tapX
 	public partial class ChoseCommentsPage : ContentPage
 	{
         private RestModels.Bar Bar;
-		public ChoseCommentsPage (RestModels.Bar bar)
+        private string AuthToken;
+		public ChoseCommentsPage (RestModels.Bar bar, string authToken = null)
         {
+            AuthToken = authToken;
             Bar = bar;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
@@ -24,12 +26,12 @@ namespace social_tapX
 
         private void NewComment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Comments(Bar));
+            Navigation.PushAsync(new Comments(Bar, AuthToken));
         }
 
         private void ReadComment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ReadCommentsPage_2(Bar));
+            Navigation.PushAsync(new ReadCommentsPage_2(Bar, AuthToken));
         }
     }
 }

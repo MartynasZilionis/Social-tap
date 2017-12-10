@@ -23,9 +23,11 @@ namespace social_tapX
         private string author;
         private static ImageSource star;
         private static ImageSource beer;
+        private string AuthToken;
 
-        public Comments (RestModels.Bar bar)
+        public Comments (RestModels.Bar bar, string authToken = null)
 		{
+            AuthToken = authToken;
             Bar = bar;
             star = "ratingstar.png";
             beer = "beerrating.png";
@@ -156,7 +158,7 @@ namespace social_tapX
 
         private void SaveInfo()
         {
-            App.WebSvc.UploadComment(Bar.Id, new RestModels.Comment(author, comment, Rating));
+            App.WebSvc.UploadComment(Bar.Id, new RestModels.Comment(author, comment, Rating), AuthToken);
             //KUR REITINGAI????
             //App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating());
         }

@@ -13,7 +13,7 @@ namespace social_tapX
     {
 
         List<User> GetListOfUsers(int ToNumber);
-
+        Task<int> GetRole(string authToken);
         /// <summary>
         /// Gets bars in the database. Not guaranteed to get all of them, might be limited to the first few.
         /// </summary>
@@ -102,11 +102,17 @@ namespace social_tapX
 
             return ListOfUsers;
         }
+
+        public async Task<int> GetRole(string authToken)
+        {
+            return 0;// <- 0 - annonymous, 1 - user, 2 - admin;
+        }
         // END OF FB
         public async Task<IEnumerable<Bar>> GetAllBars(string authToken = null)
         {
             return await GetList<Bar>("/Bar", authToken);
         }
+
 
         public async Task<IEnumerable<Bar>> GetTopBars(int from, int count, string authToken = null)
         {

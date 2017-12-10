@@ -31,7 +31,7 @@ namespace SocialTapServer.Controllers
         // GET: api/GetTopBars/0/10
         [Route("api/GetTopBars/{index}/{count}")]
 
-        //[FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
+        [FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
 
         public async Task<IHttpActionResult> GetTop(int index, int count)
         {
@@ -39,7 +39,7 @@ namespace SocialTapServer.Controllers
         }
 
         // GET: api/Bar (WIP)
-        //[FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
+        [FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
         public async Task<IHttpActionResult> Get()
         {
             IEnumerable<Bar> answer = new List<Bar>();
@@ -55,7 +55,7 @@ namespace SocialTapServer.Controllers
         }
 
         // GET: api/Bar/00000000-0000-0000-0000-000000000000 (WIP)
-        //[FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
+        [FBAuthorization(Role.Anonymous, Role.User, Role.Admin)]
         public async Task<IHttpActionResult> Get(Guid id)
         {
             try
@@ -69,7 +69,7 @@ namespace SocialTapServer.Controllers
         }
 
         // POST: api/Bar
-        //[FBAuthorization(Role.Admin)]
+        [FBAuthorization(Role.Admin)]
         public async Task Post([FromBody]Bar value)
         {
             //TODO: retard-proof everything.

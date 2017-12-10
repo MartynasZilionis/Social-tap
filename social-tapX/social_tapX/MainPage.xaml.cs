@@ -18,21 +18,17 @@ namespace social_tapX
         private int timeout;
         private double Lat;
         private double Long;
-        private RestModels.User User;
-        private int Auth;
+        private string AuthToken;
+        private int Role;
 
         //public object LabelGeolocation { get; private set; }
 
-        public MainPage(RestModels.User user, int auth)
+        public MainPage(int role, string authToken = null)
         {
-            User = user;
-            Auth = auth;
+            AuthToken = authToken;
+            Role = role;
             InitializeComponent();
-            if (Auth == 0 || Auth == 1)
-            {
-                NewBar.IsEnabled = false;
-            }
-            else if (Auth == 2)
+            if (Role != 2)
             {
                 NewBar.IsEnabled = true;
             }
@@ -105,19 +101,24 @@ namespace social_tapX
             Rating.Text = "Top Rated Bars";
             Button[] Buttons = { ExistingBar, NewBar, Feed_back, Rating};
             foreach (Button B in Buttons)
+            {
+                if (Role == 0 && (B == NewBar || B == Feed_back))
                 {
-                if (B == NewBar && Auth == 2)
+                    B.IsVisible = false;
+                    B.IsEnabled = false;
+                }
+                else if (Role == 1 && B == NewBar)
+                {
+                    B.IsEnabled = false;
+                    B.IsVisible = false;
+                }
+                else
                 {
                     B.IsVisible = true;
                 }
-                else if (B == NewBar && Auth != 2)
-                {
-                    B.IsVisible = false;
-                }
-                else B.IsVisible = true;
-                }
+            }
 
-            for (double i = 0; i < 1; i += 0.017)
+                for (double i = 0; i < 1; i += 0.017)
             {
                 Question.Opacity = i;
                 foreach (Button B in Buttons)
@@ -168,22 +169,22 @@ namespace social_tapX
         private async void ExistingBar_Pressed(object sender, EventArgs e)
         {
             await GatherLocation();
-            await Navigation.PushAsync(new BarsList(Lat, Long));
+            await Navigation.PushAsync(new BarsList(Lat, Long, Role, AuthToken));
         }
 
         private async void NewBar_Pressed(object sender, EventArgs e)
         {
             await GatherLocation();
-            await Navigation.PushAsync(new AddBar(Lat, Long));
+            await Navigation.PushAsync(new AddBar(Lat, Long, Role, AuthToken));
         }
 
         private void Feedback_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Feedback());
+            Navigation.PushAsync(new Feedback(AuthToken));
         }
         private void Rating_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Ratings_2());
+            Navigation.PushAsync(new Ratings_2(AuthToken));
         }
 
     }

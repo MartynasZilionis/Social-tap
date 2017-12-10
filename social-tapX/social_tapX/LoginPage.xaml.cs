@@ -91,7 +91,7 @@ namespace social_tapX
         }
         private void DoNotLogInPressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new MainPage(null, 0));
+            Navigation.PushAsync(new MainPage(0));
         }
 
     }

@@ -39,19 +39,14 @@ namespace social_tapX
         {
 
             var accessToken = ExtractAccessTokenFromUrl(e.Url);
-
+            int role;
             if (accessToken != "")
             {
-                var facebookServices = new FacebookServices();
 
-                 var role = await facebookServices.ValidateUser(accessToken);
-                if (role != null)
-                {
-                    await Navigation.PushAsync(new MainPage(new RestModels.User(), 1));
-                }
-                else await Navigation.PushAsync(new MainPage(new RestModels.User(), 0));
-                //await Navigation.PushAsync(new MainPage(role, accessToken));
+                role = await App.WebSvc.GetRole(accessToken);
             }
+            else role = 0;
+            await Navigation.PushAsync(new MainPage(role, accessToken));
         }
 
         private string ExtractAccessTokenFromUrl(string url)
