@@ -31,6 +31,7 @@ namespace social_tapX
 
         async private void Start()
         {
+
             IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars(AuthToken);
 
             ListView.ItemsSource = Bars;

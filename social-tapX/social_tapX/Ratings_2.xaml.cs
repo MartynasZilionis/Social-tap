@@ -42,7 +42,7 @@ namespace social_tapX
             DeviceHeight = Application.Current.MainPage.Height;
             BarName.WidthRequest = DeviceWidth * 2 / 3;
             BarScore.WidthRequest = DeviceWidth / 3;
-            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars();
+            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetTopBars(0, 20);
             if (!IsNullOrEmpty<RestModels.Bar>(Bars))
             {
                 var SortedBars = Bars.OrderByDescending(c => c.AverageFill);

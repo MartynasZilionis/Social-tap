@@ -78,9 +78,33 @@ namespace social_tapX
         Task UploadRating(Guid barId, Rating rating, string authToken = null);
     }
 
+
+    public interface IHttpClient
+    {
+        Task<HttpResponseMessage> IPostAsync(String absolutePath, StringContent Content);
+
+        Task<HttpResponseMessage> IGetAsync(String absolutePath);
+    }
+
+    public class IHttpClientHandler : IHttpClient
+    {
+        private HttpClient _client =  new HttpClient();
+        
+        public virtual Task<HttpResponseMessage> IGetAsync(string absolutePath)
+        {
+            return  _client.GetAsync(absolutePath);            
+        }
+
+        public virtual Task<HttpResponseMessage> IPostAsync(string absolutePath, StringContent Content)
+        {
+            return _client.PostAsync(absolutePath, Content);
+        }
+    }
+
+
     public class WebService : IWebService
     {
-        private static HttpClient client = new HttpClient();
+        public static IHttpClientHandler client = new IHttpClientHandler();
         private static string serviceUrl = "http://socialtapx.azurewebsites.net/api";
 
         // FB
