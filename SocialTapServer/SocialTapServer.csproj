@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="FBAuthorization.cs" />
     <Compile Include="InvalidIdException.cs" />
