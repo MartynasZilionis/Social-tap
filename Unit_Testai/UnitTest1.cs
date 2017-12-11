@@ -97,7 +97,7 @@ namespace Unit_Testai
             bar = B.First();
             Guid id = bar.Id;
 
-            X = await ws.GetNearestBars(id, 0, 5);
+            X = await ws.GetComments(id, 0, 5);
 
             Assert.IsNotNull(X);
         }
@@ -111,7 +111,7 @@ namespace Unit_Testai
             bar = B.First();
             Guid id = bar.Id;
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(new Guid(), -1, 5));
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetComments(new Guid(), -1, 5));
         }
 
         [TestMethod]
@@ -123,7 +123,7 @@ namespace Unit_Testai
             bar = B.First();
             Guid id = bar.Id;
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(new Guid(), 0, -5));
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetComments(new Guid(), 0, -5));
         }
 
         [TestMethod]
@@ -131,7 +131,7 @@ namespace Unit_Testai
         {
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(new Guid(), 0, 5));
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetComments(new Guid(), 0, 5));
         }
 
         [TestMethod]
