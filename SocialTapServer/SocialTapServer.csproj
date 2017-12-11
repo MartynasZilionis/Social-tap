@@ -72,6 +72,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -102,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
+    <Compile Include="FBAuthorization.cs" />
     <Compile Include="InvalidIdException.cs" />
     <Compile Include="Database\DatabaseCache.cs" />
     <Compile Include="Controllers\BarController.cs" />
@@ -123,6 +125,10 @@
     <Compile Include="Migrations\201712061922596_wat2.Designer.cs">
       <DependentUpon>201712061922596_wat2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712101855444_testmig.cs" />
+    <Compile Include="Migrations\201712101855444_testmig.Designer.cs">
+      <DependentUpon>201712101855444_testmig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\BarProfile.cs" />
@@ -130,6 +136,7 @@
     <Compile Include="Models\Coordinate.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -160,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712061922596_wat2.resx">
       <DependentUpon>201712061922596_wat2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712101855444_testmig.resx">
+      <DependentUpon>201712101855444_testmig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

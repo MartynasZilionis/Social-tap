@@ -14,8 +14,10 @@ namespace social_tapX
     public partial class ReadCommentsPage_2 : ContentPage
     {
         private RestModels.Bar Bar;
-        public ReadCommentsPage_2(RestModels.Bar bar)
+        private string AuthToken;
+        public ReadCommentsPage_2(RestModels.Bar bar, string authToken = null)
         {
+            AuthToken = authToken;
             Bar = bar;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
@@ -26,7 +28,7 @@ namespace social_tapX
         {
             try
             {
-                IEnumerable<RestModels.Comment> Comments = await App.WebSvc.GetComments(Bar.Id, 0, 200);
+                IEnumerable<RestModels.Comment> Comments = await App.WebSvc.GetComments(Bar.Id, 0, 200, AuthToken);
                 ListView.ItemsSource = Comments;
             }
             catch(Exception e)

@@ -14,7 +14,7 @@ namespace social_tapX
 		{
 			InitializeComponent();
             WebSvc = new WebService();
-			MainPage = new NavigationPage (new social_tapX.MainPage());
+			MainPage = new NavigationPage (new social_tapX.LoginPage());
 		}
 
 

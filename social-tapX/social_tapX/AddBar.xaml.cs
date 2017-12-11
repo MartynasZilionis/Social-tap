@@ -17,8 +17,12 @@ namespace social_tapX
         String barName;
         RestModels.Bar Bar;
         RestModels.Coordinate coords;
-		public AddBar (double Lat_, double Long_)
+        private string AuthToken;
+        private int Role;
+		public AddBar (double Lat_, double Long_, int role, string authToken = null)
 		{
+            Role = role;
+            AuthToken = authToken;
             Lat = Lat_;
             Long = Long_;
 			InitializeComponent ();
@@ -37,7 +41,7 @@ namespace social_tapX
          private void UploadBar()
         {
             Bar = new RestModels.Bar(barName, coords);
-            App.WebSvc.UploadBar(Bar);
+            App.WebSvc.UploadBar(Bar, AuthToken);
         }
         private void AddBar_Pressed(object sender, EventArgs e)
         {
@@ -46,7 +50,7 @@ namespace social_tapX
                 barName = BarName.Text;
                 coords = new RestModels.Coordinate(Lat, Long);
                 UploadBar();
-                Navigation.PushAsync(new BarMainPage(Bar));
+                Navigation.PushAsync(new BarMainPage(Bar, Role, AuthToken));
             }
             else
             {
