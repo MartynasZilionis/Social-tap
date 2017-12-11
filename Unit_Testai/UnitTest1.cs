@@ -5,6 +5,7 @@ using System.Linq;
 using Moq;
 using System.Threading.Tasks;
 using social_tapX;
+using System.Net.Http;
 
 namespace Unit_Testai
 {
@@ -43,32 +44,17 @@ namespace Unit_Testai
             int from = -1;
             int to = 1;
 
-            try
-            {
-                X = await ws.GetTopBars(from, to);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            X = await ws.GetTopBars(from, to);            
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetTopBars3()
         {
-            IEnumerable<social_tapX.RestModels.Bar> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             int from = 0;
             int to = -1;
 
-            try
-            {
-                X = await ws.GetTopBars(from, to);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetTopBars(from, to));
         }
 
         [TestMethod]
@@ -90,30 +76,15 @@ namespace Unit_Testai
             social_tapX.WebService ws = new social_tapX.WebService();
             social_tapX.RestModels.Coordinate c = new social_tapX.RestModels.Coordinate(0, 0);
 
-            try
-            {
-                X = await ws.GetNearestBars(c, -1);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(c, -1));
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetNearestBars3()
         {
-            IEnumerable<social_tapX.RestModels.Bar> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            try
-            {
-                X = await ws.GetNearestBars(null, 1);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<NullReferenceException>(() => ws.GetNearestBars(null, 1));
         }
 
         [TestMethod]
@@ -126,7 +97,7 @@ namespace Unit_Testai
             bar = B.First();
             Guid id = bar.Id;
 
-            X = await ws.GetComments(id, 0, 5);
+            X = await ws.GetNearestBars(id, 0, 5);
 
             Assert.IsNotNull(X);
         }
@@ -134,57 +105,33 @@ namespace Unit_Testai
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetComments2()
         {
-            IEnumerable<social_tapX.RestModels.Comment> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            try
-            {
-                X = await ws.GetComments(id, -1, 5);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(new Guid(), -1, 5));
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetComments3()
         {
-            IEnumerable<social_tapX.RestModels.Comment> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            try
-            {
-                X = await ws.GetComments(id, 0, -5);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(new Guid(), 0, -5));
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetComments4()
         {
-            IEnumerable<social_tapX.RestModels.Comment> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            try
-            {
-                X = await ws.GetComments(new Guid(), 0, 5);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetNearestBars(new Guid(), 0, 5));
         }
 
         [TestMethod]
@@ -205,57 +152,33 @@ namespace Unit_Testai
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetRatings2()
         {
-            IEnumerable<social_tapX.RestModels.Rating> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            try
-            {
-                X = await ws.GetRatings(id, -1, 5);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(id, -1, 5));
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetRatings3()
         {
-            IEnumerable<social_tapX.RestModels.Rating> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            try
-            {
-                X = await ws.GetRatings(id, 0, -5);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(id, 0, -5));
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetRatings4()
         {
-            IEnumerable<social_tapX.RestModels.Rating> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            try
-            {
-                X = await ws.GetRatings(new Guid(), 0, 5);
-            }
-            catch
-            {
-                Assert.IsNull(X);
-            }
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(new Guid(), 0, -5));
         }
 
         [TestMethod]
@@ -276,19 +199,12 @@ namespace Unit_Testai
         public async System.Threading.Tasks.Task TestUploadBar2()
         {
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Bar", It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Bar", It.IsAny<System.Net.Http.StringContent>())).Throws(new ArgumentNullException());
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            try
-            {
-                await ws.UploadBar(null);
-            }
-            catch
-            {
-                Assert.IsNotNull(null);
-            }
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => ws.UploadBar(null));
         }
 
         [TestMethod]
@@ -313,19 +229,12 @@ namespace Unit_Testai
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Comment/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
 
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Comment/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Throws(new ArgumentNullException());
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            try
-            {
-                await ws.UploadComment(bar.Id, c);
-            }
-            catch
-            {
-                Assert.IsNotNull(null);
-            }
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => ws.UploadComment(bar.Id, c));
         }
 
         [TestMethod]
@@ -350,19 +259,12 @@ namespace Unit_Testai
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Rating/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Rating/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Throws(new ArgumentNullException());
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            try
-            {
-                await ws.UploadRating(bar.Id, r);
-            }
-            catch
-            {
-                Assert.IsNotNull(null);
-            }
+            await Assert.ThrowsExceptionAsync<ArgumentNullException>(() => ws.UploadRating(bar.Id, r));
         }
     }
 }
