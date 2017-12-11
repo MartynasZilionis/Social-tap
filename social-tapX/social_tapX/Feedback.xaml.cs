@@ -16,9 +16,11 @@ namespace social_tapX
         public static event ThisIsDone DoneEvent = delegate { };
 
         private string FeedBack;
+        private string AuthToken;
 
-		public Feedback ()
+		public Feedback (string authToken = null)
 		{
+            AuthToken = authToken;
 			InitializeComponent ();
             Backround.Source = MainPage.BackroundImage.Source;
 

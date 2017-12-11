@@ -17,15 +17,18 @@ namespace social_tapX
         private double DeviceWidth;
         private double DeviceHeight;
         private RestModels.Bar Bar;
-        public Ratings_2()
+        private string AuthToken;
+        public Ratings_2(string authToken = null)
         {
+            AuthToken = authToken;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
             StartAllBars();
 
         }
-        public Ratings_2(RestModels.Bar bar)
+        public Ratings_2(RestModels.Bar bar, string authToken = null)
         {
+            AuthToken = authToken;
             Bar = bar;
             InitializeComponent();
             StartOneBar();
@@ -64,7 +67,7 @@ namespace social_tapX
             BarScore.WidthRequest = DeviceWidth / 3;
             try
             {
-                IEnumerable<RestModels.Rating> Ratings = await App.WebSvc.GetRatings(Bar.Id, 0, 200);
+                IEnumerable<RestModels.Rating> Ratings = await App.WebSvc.GetRatings(Bar.Id, 0, 200, AuthToken);
 
                 if (!IsNullOrEmpty<RestModels.Rating>(Ratings))
                 {

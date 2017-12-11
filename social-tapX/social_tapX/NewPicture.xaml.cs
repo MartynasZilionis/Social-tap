@@ -14,9 +14,11 @@ namespace social_tapX
         private int SamePhoto = 0;
         private Bitmap BM;
         private social_tapX.RestModels.Bar Bar;
+        private string AuthToken;
 
-        public NewPicture (social_tapX.RestModels.Bar bar)
+        public NewPicture (social_tapX.RestModels.Bar bar, string authToken = null)
 		{
+            AuthToken = authToken;
 			InitializeComponent ();
             Bar = bar;
             Backround.Source = MainPage.BackroundImage.Source;
@@ -85,7 +87,7 @@ namespace social_tapX
 
                 //Photo.Source = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "pvz.jpg");
 
-                App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating(percent, 0, 0));
+                App.WebSvc.UploadRating(Bar.Id, new RestModels.Rating(percent, 0, 0), AuthToken);
                 BarName.IsVisible = true;
                 BarName.Text = "There Is " + percent + "% Beer In The Mug!";
                 SamePhoto = 1;

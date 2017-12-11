@@ -2,6 +2,7 @@
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -17,15 +18,21 @@ namespace social_tapX
         private int timeout;
         private double Lat;
         private double Long;
+        private string AuthToken;
+        private int Role;
 
         //public object LabelGeolocation { get; private set; }
 
-        public MainPage()
+        public MainPage(int role, string authToken = null)
         {
+            AuthToken = authToken;
+            Role = role;
             InitializeComponent();
-
+            if (Role != 2)
+            {
+                NewBar.IsEnabled = true;
+            }
             Feedback.DoneEvent += DoneHandler;
-
             Page ForSize = new ContentPage();
             WidthIs = (int)ForSize.Width;
             HeightIs = (int)ForSize.Height;
@@ -33,6 +40,8 @@ namespace social_tapX
             GetImage();
             Initialize();
         }
+        
+
 
         async private void DoneHandler(object sender, EventArgs y)
         {
@@ -92,11 +101,24 @@ namespace social_tapX
             Rating.Text = "Top Rated Bars";
             Button[] Buttons = { ExistingBar, NewBar, Feed_back, Rating};
             foreach (Button B in Buttons)
+            {
+                if (Role == 0 && (B == NewBar || B == Feed_back))
+                {
+                    B.IsVisible = false;
+                    B.IsEnabled = false;
+                }
+                else if (Role == 1 && B == NewBar)
+                {
+                    B.IsEnabled = false;
+                    B.IsVisible = false;
+                }
+                else
                 {
                     B.IsVisible = true;
                 }
+            }
 
-            for (double i = 0; i < 1; i += 0.017)
+                for (double i = 0; i < 1; i += 0.017)
             {
                 Question.Opacity = i;
                 foreach (Button B in Buttons)
@@ -147,22 +169,22 @@ namespace social_tapX
         private async void ExistingBar_Pressed(object sender, EventArgs e)
         {
             await GatherLocation();
-            await Navigation.PushAsync(new BarsList(Lat, Long));
+            await Navigation.PushAsync(new BarsList(Lat, Long, Role, AuthToken));
         }
 
         private async void NewBar_Pressed(object sender, EventArgs e)
         {
             await GatherLocation();
-            await Navigation.PushAsync(new AddBar(Lat, Long));
+            await Navigation.PushAsync(new AddBar(Lat, Long, Role, AuthToken));
         }
 
         private void Feedback_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Feedback());
+            Navigation.PushAsync(new Feedback(AuthToken));
         }
         private void Rating_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Ratings_2());
+            Navigation.PushAsync(new Ratings_2(AuthToken));
         }
 
     }

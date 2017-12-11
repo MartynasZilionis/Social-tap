@@ -14,15 +14,18 @@ namespace social_tapX
         //public object LabelGeolocation { get; private set; }
         private RestModels.Bar Bar;
         private string BarName;
+        private string AuthToken;
+        private int Role;
 
-        public BarMainPage(RestModels.Bar bar)
+        public BarMainPage(RestModels.Bar bar, int role, string authToken = null)
         {
+            AuthToken = authToken;
+            Role = role;
             Bar = bar;
             InitializeComponent();
             Backround.Source = MainPage.BackroundImage.Source;
             GetBarDetails();
             InitializeMainMenu();
-            
         }
 
         private void GetBarDetails()
@@ -53,8 +56,17 @@ namespace social_tapX
             Button[] Buttons = { Picture, Comment, Rating};
             foreach (Button B in Buttons)
             {
-                B.IsVisible = true;
-                B.Opacity = 1;
+                if (Role == 0 && (B == Picture))
+                {
+                    B.IsEnabled = false;
+                    B.IsVisible = false;
+                }
+                else
+                {
+                    B.IsVisible = true;
+                    B.Opacity = 1;
+                }
+
             }
         }
 
@@ -97,17 +109,17 @@ namespace social_tapX
 
         private void Picture_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new NewPicture(Bar));
+            Navigation.PushAsync(new NewPicture(Bar, AuthToken));
         }
 
         private void Comment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ChoseCommentsPage(Bar));
+            Navigation.PushAsync(new ChoseCommentsPage(Bar, AuthToken));
         }
 
         private void Rating_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new Ratings_2(Bar));
+            Navigation.PushAsync(new Ratings_2(Bar, AuthToken));
         }
     }
 }

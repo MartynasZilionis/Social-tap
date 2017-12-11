@@ -15,9 +15,13 @@ namespace social_tapX
     {
         private double Lat;
         private double Long;
+        private string AuthToken;
+        private int Role;
 
-        public BarsList(double Lat_, double Long_)
+        public BarsList(double Lat_, double Long_, int role, string authToken = null)
         {
+            Role = role;
+            AuthToken = authToken;
             Lat = Lat_;
             Long = Long_;
             InitializeComponent();
@@ -27,7 +31,8 @@ namespace social_tapX
 
         async private void Start()
         {
-            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetNearestBars(new RestModels.Coordinate(Lat, Long), 50);
+
+            IEnumerable<RestModels.Bar> Bars = await App.WebSvc.GetAllBars(AuthToken);
 
             ListView.ItemsSource = Bars;
         }
@@ -37,7 +42,7 @@ namespace social_tapX
             if (e.SelectedItem != null)
             {
                 RestModels.Bar Bar = e.SelectedItem as RestModels.Bar;
-                Navigation.PushAsync(new BarMainPage(Bar));
+                Navigation.PushAsync(new BarMainPage(Bar, Role, AuthToken));
             }
         }
 
