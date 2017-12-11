@@ -173,6 +173,11 @@ namespace social_tapX
             await Upload(rating, "/Rating/" + barId, authToken);
         }
 
+        public async Task UploadFeedback(string feedback)
+        {
+            await Upload(feedback, "/Feedback");
+        }
+
         private async Task Upload(object obj, string path, string authToken = null)
         {
             var json = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
