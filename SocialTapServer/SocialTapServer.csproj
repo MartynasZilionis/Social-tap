@@ -113,22 +113,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201711301909356_InitialCreate.cs" />
-    <Compile Include="Migrations\201711301909356_InitialCreate.Designer.cs">
-      <DependentUpon>201711301909356_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711301952396_a.cs" />
-    <Compile Include="Migrations\201711301952396_a.Designer.cs">
-      <DependentUpon>201711301952396_a.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712061922596_wat2.cs" />
-    <Compile Include="Migrations\201712061922596_wat2.Designer.cs">
-      <DependentUpon>201712061922596_wat2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712101855444_testmig.cs" />
-    <Compile Include="Migrations\201712101855444_testmig.Designer.cs">
-      <DependentUpon>201712101855444_testmig.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Bar.cs" />
     <Compile Include="Models\BarProfile.cs" />
@@ -157,20 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711301909356_InitialCreate.resx">
-      <DependentUpon>201711301909356_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711301952396_a.resx">
-      <DependentUpon>201711301952396_a.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712061922596_wat2.resx">
-      <DependentUpon>201712061922596_wat2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712101855444_testmig.resx">
-      <DependentUpon>201712101855444_testmig.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
