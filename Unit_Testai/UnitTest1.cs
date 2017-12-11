@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Moq;
 using System.Threading.Tasks;
+using social_tapX;
 
 namespace Unit_Testai
 {
@@ -46,10 +47,10 @@ namespace Unit_Testai
             {
                 X = await ws.GetTopBars(from, to);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
-            }            
+            }
         }
 
         [TestMethod]
@@ -64,7 +65,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetTopBars(from, to);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -93,7 +94,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetNearestBars(c, -1);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -109,7 +110,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetNearestBars(null, 1);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -144,10 +145,10 @@ namespace Unit_Testai
             {
                 X = await ws.GetComments(id, -1, 5);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
-            }            
+            }
         }
 
         [TestMethod]
@@ -164,7 +165,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetComments(id, 0, -5);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -180,7 +181,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetComments(new Guid(), 0, 5);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -215,7 +216,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetRatings(id, -1, 5);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -235,7 +236,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetRatings(id, 0, -5);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -251,7 +252,7 @@ namespace Unit_Testai
             {
                 X = await ws.GetRatings(new Guid(), 0, 5);
             }
-            catch (Exception e)
+            catch
             {
                 Assert.IsNull(X);
             }
@@ -262,22 +263,106 @@ namespace Unit_Testai
         {
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
-            var mock = new Mock<System.Net.Http.HttpClient>();
-            mock.Setup(framework => framework.PostAsync(It.IsAny<String>(), It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+            var mock = new Mock<IHttpClientHandler>();
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Bar", It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+
+            social_tapX.WebService.client = mock.Object;
+            social_tapX.WebService ws = new social_tapX.WebService();
+
+            await ws.UploadBar(bar);
+        }
+
+        [TestMethod]
+        public async System.Threading.Tasks.Task TestUploadBar2()
+        {
+            var mock = new Mock<IHttpClientHandler>();
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Bar", It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
 
             try
             {
-                await ws.UploadBar(bar);
+                await ws.UploadBar(null);
             }
-            catch (Exception e)
+            catch
             {
-
+                Assert.IsNotNull(null);
             }
-            
+        }
 
+        [TestMethod]
+        public async System.Threading.Tasks.Task TestUploadComment()
+        {
+            social_tapX.RestModels.Comment c = new social_tapX.RestModels.Comment("Test", "Test", 10);
+            social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
+
+            var mock = new Mock<IHttpClientHandler>();
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Comment/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+
+            social_tapX.WebService.client = mock.Object;
+            social_tapX.WebService ws = new social_tapX.WebService();
+
+            await ws.UploadComment(bar.Id, c);
+        }
+
+        [TestMethod]
+        public async System.Threading.Tasks.Task TestUploadComment2()
+        {
+            social_tapX.RestModels.Comment c = null;
+            social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
+
+            var mock = new Mock<IHttpClientHandler>();
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Comment/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+
+            social_tapX.WebService.client = mock.Object;
+            social_tapX.WebService ws = new social_tapX.WebService();
+
+            try
+            {
+                await ws.UploadComment(bar.Id, c);
+            }
+            catch
+            {
+                Assert.IsNotNull(null);
+            }
+        }
+
+        [TestMethod]
+        public async System.Threading.Tasks.Task TestUploadRating()
+        {
+            social_tapX.RestModels.Rating r = new social_tapX.RestModels.Rating(89, 1, 1);
+            social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
+
+            var mock = new Mock<IHttpClientHandler>();
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Rating/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+
+            social_tapX.WebService.client = mock.Object;
+            social_tapX.WebService ws = new social_tapX.WebService();
+
+            await ws.UploadRating(bar.Id, r);
+        }
+
+        [TestMethod]
+        public async System.Threading.Tasks.Task TestUploadRating2()
+        {
+            social_tapX.RestModels.Rating r = null;
+            social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
+
+            var mock = new Mock<IHttpClientHandler>();
+            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Rating/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+
+            social_tapX.WebService.client = mock.Object;
+            social_tapX.WebService ws = new social_tapX.WebService();
+
+            try
+            {
+                await ws.UploadRating(bar.Id, r);
+            }
+            catch
+            {
+                Assert.IsNotNull(null);
+            }
         }
     }
 }

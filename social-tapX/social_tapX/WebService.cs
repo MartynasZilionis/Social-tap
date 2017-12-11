@@ -74,9 +74,33 @@ namespace social_tapX
         Task UploadRating(Guid barId, Rating rating);
     }
 
+
+    public interface IHttpClient
+    {
+        Task<HttpResponseMessage> IPostAsync(String absolutePath, StringContent Content);
+
+        Task<HttpResponseMessage> IGetAsync(String absolutePath);
+    }
+
+    public class IHttpClientHandler : IHttpClient
+    {
+        private HttpClient _client =  new HttpClient();
+        
+        public virtual Task<HttpResponseMessage> IGetAsync(string absolutePath)
+        {
+            return  _client.GetAsync(absolutePath);            
+        }
+
+        public virtual Task<HttpResponseMessage> IPostAsync(string absolutePath, StringContent Content)
+        {
+            return _client.PostAsync(absolutePath, Content);
+        }
+    }
+
+
     public class WebService : IWebService
     {
-        public static HttpClient client = new HttpClient();
+        public static IHttpClientHandler client = new IHttpClientHandler();
         private static string serviceUrl = "http://socialtapx.azurewebsites.net/api";
         public async Task<IEnumerable<Bar>> GetAllBars()
         {
@@ -123,7 +147,7 @@ namespace social_tapX
             var json = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
             using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
             {
-                using (var response = await client.PostAsync(serviceUrl + path, content))
+                using (var response = await client.IPostAsync(serviceUrl + path, content))
                 {
                     if (!response.IsSuccessStatusCode)
                         throw new HttpRequestException(response.StatusCode.ToString());
@@ -134,7 +158,7 @@ namespace social_tapX
         private async Task<IEnumerable<T>> GetList<T>(string path)
         {
             
-            using (var response = await client.GetAsync(serviceUrl + path))
+            using (var response = await client.IGetAsync(serviceUrl + path))
             {
                 if (!response.IsSuccessStatusCode)
                     throw new HttpRequestException(response.StatusCode.ToString());

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "social_tapX.Android", "soci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialTapServer", "SocialTapServer\SocialTapServer.csproj", "{13CAD83B-1BAE-4BCB-84C8-D852533AD599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit_Testai", "Unit_Testai\Unit_Testai.csproj", "{7018287B-D1C7-4AF1-B178-08C4EF50BE53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit_Testai", "Unit_Testai\Unit_Testai.csproj", "{7018287B-D1C7-4AF1-B178-08C4EF50BE53}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
