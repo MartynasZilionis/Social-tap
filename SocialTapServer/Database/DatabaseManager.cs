@@ -9,6 +9,8 @@ using System.Device.Location;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Data.Entity.SqlServer;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace SocialTapServer.Database
 {
@@ -38,7 +40,11 @@ namespace SocialTapServer.Database
         }
 
         #endregion Singleton
-
+        #if DEBUG
+            private static string conStr = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=master;Integrated Security=True;Connect Timeout=5;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        #else
+            private static string conStr = @"Server=tcp:soctapserv.database.windows.net,1433;Initial Catalog=SocialTapDb;Persist Security Info=False;User ID={USERNAME};Password={PASSWORD};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        #endif
         private DatabaseContext db = new DatabaseContext();
         //private SQLiteConnection _connection;
         //private string _dbFileName = "SocialTap.sqlite";
@@ -70,41 +76,53 @@ namespace SocialTapServer.Database
             #if DEBUG
             db.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             #endif
-            //InitializeFile();
-            //_connection = new SQLiteConnection(String.Format("Data Source={0};Version=3;", _dbFileName));
-            //_connection.Open();
-            //InitializeDatabase();
         }
-        /// <summary>
-        /// Checks if the database exists. If not, initializes a new database file.
-        /// </summary>
-        private void InitializeFile()
-        {
-            /*
-            if(!File.Exists(_dbFileName))
-            {
-                SQLiteConnection.CreateFile(_dbFileName);
-            }
-            */
-        }
-
         /// <summary>
         /// Generates tables that weren't in the previous build. Upgrade scripts (e.g. table/column rename, add new column, etc.) should also go here.
         /// </summary>
         private void InitializeDatabase()
         {
-            /*
-            //Initialize (create new tables)
-            using (SQLiteCommand command = new SQLiteCommand(File.ReadAllText("Initialize.sql"), _connection))
+            using(var conn = new SqlConnection(conStr))
+            using (SqlCommand cmd = new SqlCommand
+               (
+                   @"IF OBJECT_ID('Feedback') IS NULL
+                        CREATE TABLE [Feedback](
+                            [Id] uniqueidentifier default newid(),
+                            [Text] varchar(8000) not null,
+                            [Date] datetime not null
+                        )", conn))
             {
-                command.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
             }
-            //Upgrade (add/rename columns, rename tables, etc.)
-            using (SQLiteCommand command = new SQLiteCommand(File.ReadAllText("Upgrade.sql"), _connection))
+        }
+
+        public async Task AddFeedback(string value)
+        {
+            using (SqlConnection conn = new SqlConnection(conStr))
             {
-                command.ExecuteNonQuery();
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("INSERT INTO Feedback (Text, Date) VALUES (@txt, @date)", conn);
+                command.Parameters.Add(new SqlParameter("@txt", SqlDbType.VarChar, 8000, "Text"));
+                command.Parameters.Add(new SqlParameter("@date", SqlDbType.DateTime, 0, "Date"));
+
+                using (SqlDataAdapter da = new SqlDataAdapter("Select Id, Text, Date from Feedback", conn))
+                {
+                    da.InsertCommand = command;
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, "Feedback");
+
+                    DataRow newRow = ds.Tables[0].NewRow();
+                    newRow["Text"] = value;
+                    newRow["Date"] = DateTime.UtcNow;
+                    ds.Tables[0].Rows.Add(newRow);
+
+                    da.Update(ds.Tables[0]);
+                    conn.Close();
+                }
             }
-            */
+            //await command.ExecuteNonQueryAsync();
         }
 
         public async Task<IEnumerable<Bar>> GetBars(Coordinate location, int count)
