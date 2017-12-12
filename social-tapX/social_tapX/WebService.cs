@@ -78,29 +78,15 @@ namespace social_tapX
         Task UploadRating(Guid barId, Rating rating, string authToken = null);
     }
 
-
-    public interface IHttpClient
-    {
-        Task<HttpResponseMessage> IPostAsync(String absolutePath, StringContent Content);
-
-        Task<HttpResponseMessage> IGetAsync(String absolutePath);
-    }
-
-    public class IHttpClientHandler : IHttpClient
+    public class IHttpClientHandler
     {
         private HttpClient _client =  new HttpClient();
         
-        public virtual Task<HttpResponseMessage> IGetAsync(string absolutePath)
+        public virtual Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
-            return  _client.GetAsync(absolutePath);            
-        }
-
-        public virtual Task<HttpResponseMessage> IPostAsync(string absolutePath, StringContent Content)
-        {
-            return _client.PostAsync(absolutePath, Content);
+            return  _client.SendAsync(request);            
         }
     }
-
 
     public class WebService : IWebService
     {
@@ -136,7 +122,6 @@ namespace social_tapX
         {
             return await GetList<Bar>("/Bar", authToken);
         }
-
 
         public async Task<IEnumerable<Bar>> GetTopBars(int from, int count, string authToken = null)
         {
@@ -181,12 +166,12 @@ namespace social_tapX
         private async Task Upload(object obj, string path, string authToken = null)
         {
             var json = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { DefaultValueHandling = DefaultValueHandling.Ignore });
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, serviceUrl + path);
-            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-            request.Headers.Add("authToken", authToken);
-            //using (var content = new StringContent(json, Encoding.UTF8, "application/json"))
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, serviceUrl + path)
             {
-                //using (var response = await client.PostAsync(serviceUrl + path, content))
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            request.Headers.Add("authToken", authToken);
+            {
                 using (var response = await client.SendAsync(request)) 
                 {
                     if (!response.IsSuccessStatusCode)
@@ -199,7 +184,6 @@ namespace social_tapX
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, serviceUrl + path);
             request.Headers.Add("authToken", authToken);
-            //using (var response = await client.GetAsync(serviceUrl + path))
             using (var response = await client.SendAsync(request)) 
             {
                 if (!response.IsSuccessStatusCode)

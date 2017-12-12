@@ -6,6 +6,8 @@ using Moq;
 using System.Threading.Tasks;
 using social_tapX;
 using System.Net.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Unit_Testai
 {
@@ -105,25 +107,31 @@ namespace Unit_Testai
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetComments2()
         {
+            IEnumerable<social_tapX.RestModels.Comment> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetComments(new Guid(), -1, 5));
+            X = await ws.GetComments(id, -1, 5);
+
+            Assert.IsNotNull(X);
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetComments3()
         {
+            IEnumerable<social_tapX.RestModels.Comment> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetComments(new Guid(), 0, -5));
+            X = await ws.GetComments(id, 0, -5);
+
+            Assert.IsNotNull(X);
         }
 
         [TestMethod]
@@ -152,25 +160,31 @@ namespace Unit_Testai
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetRatings2()
         {
+            IEnumerable<social_tapX.RestModels.Rating> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(id, -1, 5));
+            X = await  ws.GetRatings(id, -1, 5);
+
+            Assert.IsNotNull(X);
         }
 
         [TestMethod]
         public async System.Threading.Tasks.Task TestGetRatings3()
         {
+            IEnumerable<social_tapX.RestModels.Rating> X = null;
             social_tapX.WebService ws = new social_tapX.WebService();
             IEnumerable<social_tapX.RestModels.Bar> B = await ws.GetAllBars();
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar();
             bar = B.First();
             Guid id = bar.Id;
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(id, 0, -5));
+            X = await  ws.GetRatings(id, 0, -5);
+
+            Assert.IsNotNull(X);
         }
 
         [TestMethod]
@@ -178,7 +192,7 @@ namespace Unit_Testai
         {
             social_tapX.WebService ws = new social_tapX.WebService();
 
-            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(new Guid(), 0, -5));
+            await Assert.ThrowsExceptionAsync<HttpRequestException>(() => ws.GetRatings(new Guid(), 0, 5));
         }
 
         [TestMethod]
@@ -187,19 +201,21 @@ namespace Unit_Testai
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Bar", It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+
+            mock.Setup(framework => framework.SendAsync(It.IsAny<HttpRequestMessage>())).Returns(Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK)));
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
 
             await ws.UploadBar(bar);
         }
-
+        
         [TestMethod]
         public async System.Threading.Tasks.Task TestUploadBar2()
         {
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Bar", It.IsAny<System.Net.Http.StringContent>())).Throws(new ArgumentNullException());
+
+            mock.Setup(framework => framework.SendAsync(It.IsAny<HttpRequestMessage>())).Throws(new ArgumentNullException());
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
@@ -214,7 +230,7 @@ namespace Unit_Testai
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Comment/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+            mock.Setup(framework => framework.SendAsync(It.IsAny<HttpRequestMessage>())).Returns(Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK)));
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
@@ -230,7 +246,8 @@ namespace Unit_Testai
 
             var mock = new Mock<IHttpClientHandler>();
 
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Comment/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Throws(new ArgumentNullException());
+            mock.Setup(framework => framework.SendAsync(It.IsAny<HttpRequestMessage>())).Throws(new ArgumentNullException());
+
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
 
@@ -244,7 +261,7 @@ namespace Unit_Testai
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Rating/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Returns(Task.FromResult(new System.Net.Http.HttpResponseMessage(System.Net.HttpStatusCode.OK)));
+            mock.Setup(framework => framework.SendAsync(It.IsAny<HttpRequestMessage>())).Returns(Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK)));
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
@@ -259,7 +276,8 @@ namespace Unit_Testai
             social_tapX.RestModels.Bar bar = new social_tapX.RestModels.Bar("Test", new social_tapX.RestModels.Coordinate(0, 0));
 
             var mock = new Mock<IHttpClientHandler>();
-            mock.Setup(framework => framework.IPostAsync("http://socialtapx.azurewebsites.net/api" + "/Rating/" + bar.Id, It.IsAny<System.Net.Http.StringContent>())).Throws(new ArgumentNullException());
+
+            mock.Setup(framework => framework.SendAsync(It.IsAny<HttpRequestMessage>())).Throws(new ArgumentNullException());
 
             social_tapX.WebService.client = mock.Object;
             social_tapX.WebService ws = new social_tapX.WebService();
