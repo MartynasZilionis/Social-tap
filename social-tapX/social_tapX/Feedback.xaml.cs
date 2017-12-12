@@ -63,7 +63,7 @@ namespace social_tapX
                 Submit.IsVisible = false;
                 FeedBack = ComentOnUs.Text;
 
-                //App.WebSvc.Set_FeedbackAndDate(FeedBack, DateTime.Now);
+                App.WebSvc.UploadFeedback(FeedBack);
 
                 Thankyou();
             }

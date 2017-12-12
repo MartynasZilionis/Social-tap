@@ -28,7 +28,7 @@ namespace social_tapX
             AuthToken = authToken;
             Role = role;
             InitializeComponent();
-            if (Role != 2)
+            if (Role == 2)
             {
                 NewBar.IsEnabled = true;
             }

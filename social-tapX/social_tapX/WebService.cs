@@ -11,7 +11,7 @@ namespace social_tapX
 {
     public interface IWebService
     {
-
+        Task UploadFeedback(string feedBack);
         List<User> GetListOfUsers(int ToNumber);
         Task<int> GetRole(string authToken);
         /// <summary>
@@ -115,7 +115,8 @@ namespace social_tapX
 
         public async Task<int> GetRole(string authToken)
         {
-            return 0;// <- 0 - annonymous, 1 - user, 2 - admin;
+            if (authToken == null) return 0;
+            else return 2;// <- 0 - annonymous, 1 - user, 2 - admin; Kol kas testavimui 2 uzdetas
         }
         // END OF FB
         public async Task<IEnumerable<Bar>> GetAllBars(string authToken = null)

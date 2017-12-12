@@ -44,6 +44,7 @@ namespace social_tapX
             {
 
                 role = await App.WebSvc.GetRole(accessToken);
+                Task.WaitAll();
             }
             else role = 0;
             await Navigation.PushAsync(new MainPage(role, accessToken));
