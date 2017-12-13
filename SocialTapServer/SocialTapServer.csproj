@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\UserDataController.cs" />
     <Compile Include="Database\DatabaseContext.cs" />
     <Compile Include="FBAuthorization.cs" />
     <Compile Include="InvalidIdException.cs" />
@@ -119,9 +120,11 @@
     <Compile Include="Models\BarProfile.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Coordinate.cs" />
+    <Compile Include="Models\FbUser.cs" />
     <Compile Include="Models\Rating.cs" />
+    <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

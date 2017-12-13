@@ -18,8 +18,8 @@ namespace social_tapX
         RestModels.Bar Bar;
         RestModels.Coordinate coords;
         private string AuthToken;
-        private int Role;
-		public AddBar (double Lat_, double Long_, int role, string authToken = null)
+        private Role Role;
+		public AddBar (double Lat_, double Long_, Role role, string authToken = null)
 		{
             Role = role;
             AuthToken = authToken;

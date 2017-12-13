@@ -13,7 +13,6 @@ namespace social_tapX
 	public partial class FacebookProfilePage : ContentPage
 	{
         private string ClientId = "246497305885398";
-        public enum Role { Anonymous, User, Admin };
 
         public FacebookProfilePage()
         {
@@ -39,13 +38,13 @@ namespace social_tapX
         {
 
             var accessToken = ExtractAccessTokenFromUrl(e.Url);
-            int role;
+            Role role;
             if (accessToken != "")
             {
 
                 role = await App.WebSvc.GetRole(accessToken);
             }
-            else role = 0;
+            else role = Role.Anonymous;
             await Navigation.PushAsync(new MainPage(role, accessToken));
         }
 

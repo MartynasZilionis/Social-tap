@@ -19,16 +19,16 @@ namespace social_tapX
         private double Lat;
         private double Long;
         private string AuthToken;
-        private int Role;
+        private Role Role;
 
         //public object LabelGeolocation { get; private set; }
 
-        public MainPage(int role, string authToken = null)
+        public MainPage(Role role, string authToken = null)
         {
             AuthToken = authToken;
             Role = role;
             InitializeComponent();
-            if (Role != 2)
+            if (Role != Role.Admin)
             {
                 NewBar.IsEnabled = true;
             }
@@ -48,7 +48,7 @@ namespace social_tapX
             try {
                 await Navigation.PopAsync();
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 //its all good here, just skip it
             }
@@ -102,12 +102,12 @@ namespace social_tapX
             Button[] Buttons = { ExistingBar, NewBar, Feed_back, Rating};
             foreach (Button B in Buttons)
             {
-                if (Role == 0 && (B == NewBar || B == Feed_back))
+                if (Role == Role.Anonymous && (B == NewBar || B == Feed_back))
                 {
                     B.IsVisible = false;
                     B.IsEnabled = false;
                 }
-                else if (Role == 1 && B == NewBar)
+                else if (Role == Role.User && B == NewBar)
                 {
                     B.IsEnabled = false;
                     B.IsVisible = false;
@@ -159,7 +159,7 @@ namespace social_tapX
                     await DisplayAlert("Location Denied", "Can not continue, try again.", "OK");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //Exeption log here
             }

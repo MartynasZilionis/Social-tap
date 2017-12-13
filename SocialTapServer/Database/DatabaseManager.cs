@@ -234,19 +234,33 @@ namespace SocialTapServer.Database
         }
         //To be implemented
        
-        public async Task<bool> GetUser(string Id)
+        public async Task<User> GetUser(FbUser usr)
         {
-            bool res = true; // await from DB
-            return res; // <- Grąžina ar useris Adminas; 
+            User user = await Execute(() => db.Users.Find(usr.id));
+            if (usr != null)
+                return user;
+            await AddUser(usr.id, usr.first_name);
+            await db.SaveChangesAsync();
+            return new User(usr.id, usr.first_name);
         }
 
-        public async Task AddUser(string Id, string name)
+        private async Task AddUser(string id, string name)
         {
-            //await -> adds user to DB;
+            await Execute(() => db.Users.Add(new User(id, name)));
+            await db.SaveChangesAsync();
         }
-            
 
-        
+        public async Task BanUser(string id)
+        {
+            await Execute(() => { db.Users.Find(id).IsBanned = true; });
+            await db.SaveChangesAsync();
+        }
+
+        public async Task AdminUser(string id)
+        {
+            await Execute(() => { db.Users.Find(id).IsAdmin = true; });
+            await db.SaveChangesAsync();
+        }
 
         ~DatabaseManager()
         {

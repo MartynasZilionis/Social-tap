@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace social_tapX
 {
+    public enum Role { Anonymous, User, Admin };
     public interface IWebService
     {
 
         List<User> GetListOfUsers(int ToNumber);
-        Task<int> GetRole(string authToken);
+        Task<Role> GetRole(string authToken);
         /// <summary>
         /// Gets bars in the database. Not guaranteed to get all of them, might be limited to the first few.
         /// </summary>
@@ -113,9 +114,23 @@ namespace social_tapX
             return ListOfUsers;
         }
 
-        public async Task<int> GetRole(string authToken)
+        private class UserRoleHolder
         {
-            return 0;// <- 0 - annonymous, 1 - user, 2 - admin;
+            public Role Role { get; set; }
+        }
+
+        public async Task<Role> GetRole(string authToken)
+        {
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, serviceUrl + "/Role/" + authToken);
+            using (var response = await client.SendAsync(request))
+            {
+                if (!response.IsSuccessStatusCode)
+                    throw new HttpRequestException(response.StatusCode.ToString());
+                var json = await response.Content.ReadAsStringAsync();
+
+                var res = JsonConvert.DeserializeObject<UserRoleHolder>(json);
+                return res.Role;
+            }
         }
         // END OF FB
         public async Task<IEnumerable<Bar>> GetAllBars(string authToken = null)

@@ -17,3 +17,4 @@ SocialTapServer/Properties/PublishProfiles/SocialTapX - Web Deploy.pubxml
 Unit_Testai/bin/
 Unit_Testai/obj/
 SocialTapServerTests/obj/
+SocialTapServerTests/bin/
