@@ -47,7 +47,7 @@ namespace social_tapX
             DoneEvent?.Invoke(this, new EventArgs());
         }
 
-        private void Submit_Pressed(object sender, EventArgs e)
+        private async void Submit_Pressed(object sender, EventArgs e)
         {
             if(ComentOnUs.Text == null || ComentOnUs.Text == "")
             {
@@ -63,7 +63,7 @@ namespace social_tapX
                 Submit.IsVisible = false;
                 FeedBack = ComentOnUs.Text;
 
-                App.WebSvc.UploadFeedback(FeedBack);
+               await App.WebSvc.UploadFeedback(FeedBack);
 
                 Thankyou();
             }

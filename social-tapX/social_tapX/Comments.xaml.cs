@@ -57,13 +57,13 @@ namespace social_tapX
         {
             if ((Comment.Text != "") && (Comment.Text != "Please Enter Your Comment Here") && Rating != 0)
             {
-                if(Author.Text != "")
+                if(Author.Text == "")
                 {
-                    author = Author.Text;
+                    author = "";
                 }
                 else
                 {
-                    author = "Anonymous";
+                    author = "";
                 }
 
                 barname = Bar.Name;

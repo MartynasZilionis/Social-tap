@@ -114,7 +114,11 @@ namespace social_tapX
 
         private void Comment_Pressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ChoseCommentsPage(Bar, AuthToken));
+            if (Role != 0)
+            {
+                Navigation.PushAsync(new ChoseCommentsPage(Bar, AuthToken));
+            }
+            else Navigation.PushAsync(new ReadCommentsPage_2(Bar, AuthToken));
         }
 
         private void Rating_Pressed(object sender, EventArgs e)

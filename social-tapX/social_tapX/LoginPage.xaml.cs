@@ -85,9 +85,9 @@ namespace social_tapX
                 await Task.Delay(25);
             }
         }
-        private void LoginPressed(object sender, EventArgs e)
+        private async void LoginPressed(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new FacebookProfilePage());
+            await Navigation.PushAsync(new FacebookProfilePage());
         }
         private void DoNotLogInPressed(object sender, EventArgs e)
         {
