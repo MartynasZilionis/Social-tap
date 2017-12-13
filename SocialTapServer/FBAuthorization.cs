@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SocialTapServer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,10 +30,10 @@ namespace SocialTapServer
                 string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
                 var logged = Task.Run(async () => await ValidateUser(authToken)).Result;
                 Task.WaitAll();
-                if (logged)/*validuojasi su fb*/
+                if (logged.Item1)/*validuojasi su fb*/
                 {
                     if (allowedRoles.Contains(Role.User)) return; //praleidziam
-                    if (allowedRoles.Contains(Role.Admin) /*&& useris yra adminas (bus funkcija DatabaseManager klasej)*/) return; //praleidziam
+                    if (allowedRoles.Contains(Role.Admin) && logged.Item2) return; //praleidziam
                 }
             }
             catch { }
@@ -45,12 +46,7 @@ namespace SocialTapServer
 
         }
 
-        public async Task<bool> isLoggedIn(string token)
-        {
-            return await ValidateUser(token);
-        }
-
-        public async Task<bool> ValidateUser(string authToken)
+        public async Task<Tuple<bool, bool>> ValidateUser(string authToken)
         {
             var requestUrl =
                 "https://graph.facebook.com/debug_token?input_token="
@@ -60,16 +56,11 @@ namespace SocialTapServer
             var httpClient = new HttpClient();
             var userJson = await httpClient.GetStringAsync(requestUrl);
             dynamic obj = JsonConvert.DeserializeObject(userJson);
-            string isValid = obj.data.is_valid;
-            if (isValid == "True")
-            {
-                return true;
-                //return await GetFacebookProfileAsync(authToken);
-            }
-            else return false;
+            bool isValid = obj.data.is_valid == "True" ? true : false;
+            return new Tuple<bool, bool>(isValid, true);
         }
         //Sita funkcija gauna info apie vartotoja.
-        public async Task<bool> GetFacebookProfileAsync(string accessToken)
+        public async Task<User> GetFacebookIdAndNameAsync(string accessToken)
         {
             var requestUrl =
                 "https://graph.facebook.com/v2.7/me/?fields=first_name&access_token="
@@ -78,18 +69,7 @@ namespace SocialTapServer
             var httpClient = new HttpClient();
             var userJson = await httpClient.GetStringAsync(requestUrl);
             dynamic obj = JsonConvert.DeserializeObject(userJson);
-            string Id = obj.id;
-            string firstName = obj.first_name;
-            var isAdmin = true; // <- Gets userRights from DB
-            if (isAdmin == false)
-            {
-                return false;
-            }
-            else if (isAdmin == true)
-            {
-                return true;
-            }
-            else return false;
+            return new User(obj.id, obj.name);
         }
     }
 }
