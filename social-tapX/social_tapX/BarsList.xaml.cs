@@ -16,9 +16,9 @@ namespace social_tapX
         private double Lat;
         private double Long;
         private string AuthToken;
-        private int Role;
+        private Role Role;
 
-        public BarsList(double Lat_, double Long_, int role, string authToken = null)
+        public BarsList(double Lat_, double Long_, Role role, string authToken = null)
         {
             Role = role;
             AuthToken = authToken;

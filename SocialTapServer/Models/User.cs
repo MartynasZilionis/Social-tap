@@ -9,13 +9,13 @@ namespace SocialTapServer.Models
     public class User
     {
         [Key]
-        string Id { get; set; }
+        public string Id { get; set; }
 
-        bool IsBanned { get; set; }
+        public bool IsBanned { get; set; }
 
-        bool IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
 
-        string Name { get; set; }
+        public string Name { get; set; }
 
         public User() : this("", "") { }
 

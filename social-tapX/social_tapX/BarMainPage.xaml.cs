@@ -15,9 +15,9 @@ namespace social_tapX
         private RestModels.Bar Bar;
         private string BarName;
         private string AuthToken;
-        private int Role;
+        private Role Role;
 
-        public BarMainPage(RestModels.Bar bar, int role, string authToken = null)
+        public BarMainPage(RestModels.Bar bar, Role role, string authToken = null)
         {
             AuthToken = authToken;
             Role = role;
@@ -39,7 +39,7 @@ namespace social_tapX
             {
                 await Navigation.PopAsync();
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 //its all good here, just skip it
             }
@@ -56,7 +56,7 @@ namespace social_tapX
             Button[] Buttons = { Picture, Comment, Rating};
             foreach (Button B in Buttons)
             {
-                if (Role == 0 && (B == Picture))
+                if (Role == Role.Anonymous && (B == Picture))
                 {
                     B.IsEnabled = false;
                     B.IsVisible = false;

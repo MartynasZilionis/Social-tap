@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using SocialTapServer.Database;
 
 namespace SocialTapServer
 {
@@ -28,12 +29,12 @@ namespace SocialTapServer
             try
             {
                 string authToken = filterContext.Request.Headers.Where(x => x.Key == "authToken").FirstOrDefault().Value.FirstOrDefault();// <-- tokenas
-                var logged = Task.Run(async () => await ValidateUser(authToken)).Result;
+                var user = Task.Run(async () => await ValidateUser(authToken)).Result;
                 Task.WaitAll();
-                if (logged.Item1)/*validuojasi su fb*/
+                if (!user.IsBanned)/*validuojasi su fb*/
                 {
                     if (allowedRoles.Contains(Role.User)) return; //praleidziam
-                    if (allowedRoles.Contains(Role.Admin) && logged.Item2) return; //praleidziam
+                    if (allowedRoles.Contains(Role.Admin) && user.IsAdmin) return; //praleidziam
                 }
             }
             catch { }
@@ -46,30 +47,35 @@ namespace SocialTapServer
 
         }
 
-        public async Task<Tuple<bool, bool>> ValidateUser(string authToken)
+        public async Task<User> ValidateUser(string authToken)
         {
             var requestUrl =
                 "https://graph.facebook.com/debug_token?input_token="
                 + authToken
                 + "&access_token="
                 + AppToken;
-            var httpClient = new HttpClient();
-            var userJson = await httpClient.GetStringAsync(requestUrl);
+            string userJson;
+            using (var httpClient = new HttpClient())
+                userJson = await httpClient.GetStringAsync(requestUrl);
             dynamic obj = JsonConvert.DeserializeObject(userJson);
-            bool isValid = obj.data.is_valid == "True" ? true : false;
-            return new Tuple<bool, bool>(isValid, true);
+            if (obj.data.is_valid != "True")
+                return new User { IsBanned = true };
+            FbUser fbusr = await GetFacebookUserAsync(authToken);
+            return await DatabaseManager.Instance.GetUser(fbusr);
         }
         //Sita funkcija gauna info apie vartotoja.
-        public async Task<User> GetFacebookIdAndNameAsync(string accessToken)
+        public async Task<FbUser> GetFacebookUserAsync(string accessToken)
         {
             var requestUrl =
                 "https://graph.facebook.com/v2.7/me/?fields=first_name&access_token="
                 + accessToken;
 
-            var httpClient = new HttpClient();
-            var userJson = await httpClient.GetStringAsync(requestUrl);
-            dynamic obj = JsonConvert.DeserializeObject(userJson);
-            return new User(obj.id, obj.name);
+            using (var httpClient = new HttpClient())
+            {
+                var userJson = await httpClient.GetStringAsync(requestUrl);
+                return JsonConvert.DeserializeObject<FbUser>(userJson);
+            }
+
         }
     }
 }
